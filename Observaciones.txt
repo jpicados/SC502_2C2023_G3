@@ -1,0 +1,14 @@
+-Software en español
+-No tocar parte contable (solo lo básico del activo: precio, orden, lote.)
+-Manejar organigrama (donde esta el activo, donde ubicarlo y quien es el jefe de quien)
+-La boleta de salida la hace el técnico, no el elempleado
+-El empleado ingresa un codigo y este le despliega la boleta a imprimir.
+-Control de bodegas (Solo nombre) para darle trazabilidad
+-Crear boleta de bitacora con cada activo que se entrega
+-Tener bien claro todo lo que lleva el control activo
+-Codigos de barra permitidos
+
+
+
+
+

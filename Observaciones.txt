@@ -1,3 +1,5 @@
+Semana 2 / Notas del profesor
+
 -Software en español
 -No tocar parte contable (solo lo básico del activo: precio, orden, lote.)
 -Manejar organigrama (donde esta el activo, donde ubicarlo y quien es el jefe de quien)
@@ -8,7 +10,67 @@
 -Tener bien claro todo lo que lleva el control activo
 -Codigos de barra permitidos
 
+Semana 3 / Requerimientos
 
+El software de seguimiento de activos incluirá las siguientes funcionalidades requeridas:
+
+Registro de activos:
+
+1.	Registro de un activo nuevo:
+Tipo de Activo: La aplicación debe permitir seleccionar el tipo de activo de una lista predefinida, como Monitor, Laptop, etc.
+Número de PO: Se debe ingresar el número de orden de compra (PO) por el cual se compró el activo.
+Número de RAM: Se debe ingresar el número de referencia de aduanas (RAM) por el cual el activo ingresó desde aduanas hacia DHL-Intel.
+Número de Serie: Se debe ingresar el número de serie único del activo.
+Número de entidad legal y cost center: En Intel, existen 3 entidades legales identificadas como 230, 231 y 232. Además, el número de cost center consta de 4-5 dígitos. La aplicación debe permitir seleccionar la entidad legal correspondiente e ingresar el número de cost center asociado al activo.
+Número de TAG: Se debe ingresar el número de etiqueta (TAG) asignado al activo.
+
+2.	Almacenamiento de la información:
+La aplicación debe almacenar los detalles del activo registrado, incluyendo el tipo de activo, el número de PO, el número de RAM, el número de serie, la entidad legal y el cost center, así como el número de TAG, en una base de datos.
+3.	Visualización y búsqueda de activos:
+La aplicación debe proporcionar una interfaz para ver y buscar los activos registrados. Esto podría incluir una lista de activos con la posibilidad de filtrar y buscar por diferentes criterios, como el tipo de activo, el número de serie, o la entidad legal.
+
+4.	Edición y actualización de activos:
+La aplicación debe permitir editar y actualizar la información de los activos registrados. Esto puede incluir la posibilidad de cambiar el tipo de activo, el número de PO, el número de RAM, la entidad legal y el cost center.
+
+
+
+5.	Eliminar de activos:
+La aplicación debe proporcionar una opción para eliminar un activo registrado de la base de datos, en caso de que ya no esté en posesión de Intel.
+
+6.	Historial de Movimientos:
+Estatus: La aplicación debe permitir registrar el estado actual del activo, ya sea asignado a un empleado o libre.
+Ubicación: Se debe registrar la ubicación física del activo en un momento dado. Esto podría ser una oficina, un departamento, una sala, etc.
+Fechas de Movimientos: Cada vez que se produzca un cambio en el estado o la ubicación del activo, se debe registrar la fecha correspondiente en el historial de movimientos.
+
+7.	Visualización del Historial de Movimientos:
+La aplicación debe ofrecer una forma de visualizar el historial completo de movimientos del activo. Esto podría incluir una lista ordenada cronológicamente de los cambios de estado y ubicación, junto con las fechas correspondientes.
+
+8.	Búsqueda en el Historial de Movimientos:
+La aplicación debe permitir la búsqueda y filtrado de registros en el historial de movimientos. Esto podría ser útil para encontrar un registro específico basado en el estado, la ubicación o la fecha.
+
+9.	Lector de Barras:
+La aplicación debe ser compatible con un lector de barras, que permita escanear el número de serie de un activo.
+
+10.	Consulta de Activo:
+Al activar el lector de barras y escanear el número de serie de un activo, la aplicación debe buscar en la base de datos y recuperar la información correspondiente a ese activo y mostrarlo en pantalla.
+
+11.	
+Control de Accesos:
+La aplicación solo será utilizada por los técnicos de IT, se contará con acceso genérico, cuentas nuevas.
+
+
+
+Semana 3 / inicio de tareas
+
+Login basico Andres
+Index basico Diego
+Josue basico CSS
+
+Jose Pablo Diagrama
+
+Osvaldo
+Johan
+Stiphne
 
 
 

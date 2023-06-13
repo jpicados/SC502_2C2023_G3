@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Empleados</title>
+</head>
+<body>
+    <link rel="stylesheet" href="../assets/styles.css">
+    <header class="header">
+        <div>
+          <a href="index.html" class="logo">Intel Costa Rica</a> 
+        </div>
+        <nav class="navigation">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="empleados.html">Empleados</a></li>
+            <li><a href="#">Activos</a>
+              <ul>
+                <li>
+                  <a href="agregaractivo.html">Agregar activos</a>
+                  
+                    </form>
+                  </div>
+                </li>
+                <li><a href="veractivos.html">Ver activos </a></li>
+          
+              </ul>
+            </li>
+            <li><a href="#">Movimientos</a>
+              <ul>
+                <li><a href="#">Opcion 1</a></li>
+                <li><a href="#">Opcion 2</a></li>
+                <li><a href="#">Opcion 3</a></li>
+              </ul>
+              <li><a href="#">Perfil</a></li>
+            </li>
+            <li><a href="login.html">Cerrar Sesion</a></li>
+          </ul>
+        </nav>
+      </header>
+
+    <section class="mt-4">
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">WWID</th>
+                </tr>
+                
+             </thead>
+            
+            <tbody id="empleados">   
+            </tbody>
+        </table>
+    </section>    
+       
+   
+    <script type="text/javascript" src="../models/js/empleadoModel.js"></script>
+</body>
+</html>

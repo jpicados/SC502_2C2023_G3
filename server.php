@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // select de activo
-$sql = "SELECT * FROM ";
+$sql = "SELECT * FROM activo";
 $result = $conn->query($sql);
 
 // fetch a un array

@@ -1,41 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"><!-- Implementacion de bootstrap -->
-    <link rel="stylesheet" href="../assets/login.css">
-    <title>Login</title>
-  </head>
 
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/login.css">
 
-    <div class="login-box">
-      <p>Login</p>
-      <form>
-        <div class="usuario-box">
-          <input required="" name="" type="text">
-          <label>Email</label>
-        </div>
-        <div class="usuario-box">
-          <input required="" name="" type="password">
-          <label>Password</label>
-        </div>
-        <a href="#">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Ingresar
+  <title>Login</title>
+</head>
+
+<body>
+  
+  <header class="header">
+
+    <nav class="navbar navbar-expand-lg navbar-dark py-3 bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand mx-auto" href="#">
+          <button class="shadow__btn">
+            Intel
+          </button>
         </a>
-      </form>
-      <p>
-        ¿No tienes una cuenta? <a href="" class="a2">
-          Registrarse!</a></p>
+        <div>
+          <div class="wrapper">
+            <input type="checkbox" name="checkbox" class="switch">
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+<main class="main">
+  <div class="login-box">
+    <p>Login</p>
+    <form>
+      <div class="usuario-box">
+        <input required="" name="" type="text">
+        <label>Email</label>
+      </div>
+      <div class="usuario-box">
+        <input required="" name="" type="password">
+        <label>Password</label>
+      </div>
+      <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Ingresar
+      </a>
+    </form>
+    <p>
+      ¿No tienes una cuenta? <a href="" class="a2">
+        Registrarse!</a></p>
+  </div>
+
+</main>
+ 
+
+
+
+<footer class="footer">
+  <div class="footer-info">
+    <div class="contact-info">
+      <h3>Contacto</h3>
+      <p><strong>Teléfono:</strong>  (+506) 2298-6000</p>
+      <p><strong>Dirección:</strong> Componentes Intel de Costa Rica Calle 129 La Ribera de Belen Heredia, Costa Rica</p>
     </div>
+    <div class="social-media">
+      <h3>Redes Sociales</h3>
+      <div class="social-icons">
+        <a href="#"><img src="../img/Logo_de_Facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="../img/twitter-icon-free-png.webp" alt="Twitter"></a>
+        <a href="#"><img src="../img/instagram-icon.png" alt="Instagram"></a>
+      </div>
+    </div>
+  </div>
+  <p>© 2023 Intel Costa Rica. Todos los derechos reservados.</p>
+</footer>
+  
+  
+  
+    
 
-     
 
-  </body>
+
+
+</body>
+
 </html>

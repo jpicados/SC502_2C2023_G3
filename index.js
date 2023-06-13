@@ -14,14 +14,14 @@ fetch("server.php")
     console.error("Error:", error);
   });
 
-  fetch("empleadoController.php")
+fetch("empleadoController.php")
   .then((response) => response.json())
   .then((data) => {
     // accediendo a activo
     const empleadoList = document.getElementById("empleados");
     data.forEach((empleado) => {
       const listItem = document.createElement("li");
-      console.log(empleado.IdEmpleado)
+      console.log(empleado.IdEmpleado);
       listItem.textContent = `Id: ${empleado.IdEmpleado}, NombreEmpleado: ${empleado.NombreEmpleado}, Correo: ${empleado.CorreoEmpleado}, WWID: ${empleado.WWID}`;
       empleadoList.appendChild(listItem);
     });
@@ -29,4 +29,3 @@ fetch("server.php")
   .catch((error) => {
     console.error("Error:", error);
   });
-

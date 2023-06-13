@@ -1,28 +1,3 @@
-// // Fetch activos from the controller endpoint
-// fetch("../controllers/activoController.php")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     // Access activos
-//     const activoList = document.getElementById("activo-list");
-//     data.forEach((activo) => {
-//       const listItem = document.createElement("li");
-//       listItem.textContent = `
-//       Serie: ${activo.Serie}, Marca: ${activo.Marca},
-//       Tag: ${activo.Tag}, PO: ${activo.PO},
-//       RAM ${activo.RAM},
-//       Categoria: ${activo.NombreCategoria},
-//       Entidad: ${activo.NumeroEntidad},
-//       Estado: ${activo._Estado},
-//       Empleado: ${activo.NombreEmpleado},
-//       Correo: ${activo.CorreoEmpleado}, WWID: ${activo.WWID}
-//       `;
-//       activoList.appendChild(listItem);
-//     });
-//   })
-//   .catch((error) => {
-//     console.error("Error:", error);
-//   });
-
 // Fetch activos from the controller endpoint
 fetch("../controllers/activoController.php")
   .then((response) => response.json())

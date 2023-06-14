@@ -7,7 +7,7 @@ class ActivoModel {
         $this->conn = $conn;
     }
 
-    public function listarActivos() {
+    public function listar_activos() {
         $sql = "CALL Listar_Activos()";
         $result = $this->conn->query($sql);
 
@@ -17,7 +17,6 @@ class ActivoModel {
                 $data[] = $row;
             }
         }
-
         return $data;
     }
 }

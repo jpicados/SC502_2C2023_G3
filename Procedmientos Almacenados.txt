@@ -1,0 +1,31 @@
+
+*******************************************************************
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Listar_empleados`()
+BEGIN
+
+SELECT * FROM assetsdb.empleado;
+
+END
+
+
+*******************************************************************
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Listar_Activos`()
+BEGIN
+
+	SELECT a.IdActivo, a.Serie, a.Marca, a.Tag, a.PO, a.RAM,
+		   c.IdCategoria, c.NombreCategoria,
+		   e.IdEntidad, e.NumeroEntidad,
+		   es.IdEstado, es._Estado,
+		   em.IdEmpleado, em.NombreEmpleado, em.CorreoEmpleado, em.WWID
+	FROM assetsdb.activo a
+	JOIN assetsdb.categoria c ON a.IdCategoria = c.IdCategoria
+	JOIN assetsdb.entidad e ON a.IdEntidad = e.IdEntidad
+	JOIN assetsdb.estado es ON a.IdEstado = es.IdEstado
+	JOIN assetsdb.empleado em ON a.IdEmpleado = em.IdEmpleado;
+
+END
+
+
+*******************************************************************

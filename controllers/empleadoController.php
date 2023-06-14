@@ -1,18 +1,21 @@
 <?php
-$conn = new mysqli("localhost", "admin", "admin", "assetsdb");//se crea la conexion a la base de datos con mysqli
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-$consultaEmpleados = $conn->query( "SELECT * FROM empleado");//se ejecuta la consulta en la base de datos y se guarda
+require_once "../models/empleadoModel.php";
+class empleadoController {
+    private $empleadoModel;
 
-$empleados = [];
-
-if ($consultaEmpleados->num_rows > 0) {//Translada la consulta de empleados y la cantidad hasta que ya no hayan 
-    while ($empleado = $consultaEmpleados->fetch_assoc()) {
-        $empleados[] = $empleado;
+    public function __construct($empleadoModel) {
+        $this->empleadoModel = $empleadoModel;
     }
+
+    public function handleRequest() {
+        $empleados = $this->empleadoModel->listarEmpleados();
+
+        // Send the response as JSON
+        header("Content-Type: application/json");
+        echo json_encode($empleados);
+    }
+
 }
-echo json_encode($empleados);//Retorna como respuesta el arreglo de empleados en formato Json
-$conn->close();
-//fin de la conexion
+
+
 ?>

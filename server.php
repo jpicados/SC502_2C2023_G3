@@ -40,17 +40,24 @@ if ($conn->connect_error) {
 // Include the activoModel and activoController files
 require_once "models/activoModel.php";
 require_once "controllers/activoController.php";
+require_once "models/empleadoModel.php";
+require_once "controllers/empleadoController.php";
+
 
 // Create an instance of the activoModel
-$activoModel = new ActivoModel($conn);
+$activoModel = new activoModel($conn);
+$empleadoModel=new empleadoModel($conn);
 
 // Create an instance of the activoController
-$activoController = new ActivoController($activoModel);
+$activoController = new activoController($activoModel);
+$empleadoController = new empleadoController($empleadoModel);
 
 // Handle the request
-$activoController->handleRequest();
+//$activoController->handleRequest();
+$empleadoController->handleRequest();
 
 // cerrar coneccion
 $conn->close();
+
 ?>
 

@@ -71,3 +71,17 @@ INSERT INTO Activo (Serie, Marca, Tag, PO, RAM, IdCategoria, IdEntidad, IdEstado
 VALUES  ('ADFSDG','Lenovo','1234','PO1341','13452',1,3,1,1),
 		('PHSEFS','HP','1245','PO1352','13432',2,2,1,2),
         ('SEGSDG','Lenovo','1314','PO1134','13483',3,1,1,3);
+
+DELIMITER //
+CREATE PROCEDURE listarEmpleados()
+BEGIN
+    SELECT * FROM empleado;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE listarActivos()
+BEGIN
+    SELECT * FROM activo;
+END//
+DELIMITER ;

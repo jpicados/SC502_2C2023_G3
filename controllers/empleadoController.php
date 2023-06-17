@@ -2,7 +2,7 @@
 require_once "../models/empleadoModel.php";
 //require_once "../server.php";
 
-class EmpleadoController {
+class empleadoController {
     private $empleadoModel;
 
     public function __construct($empleadoModel) {
@@ -10,17 +10,32 @@ class EmpleadoController {
     }
 
     public function get_empleados() {
-        $data = $this->empleadoModel->listar_empleados();
-        
+        $empleados = $this->empleadoModel->get_empleados();
+
+        // Send the response as JSON
         header("Content-Type: application/json");
-        echo json_encode($data);
+        echo json_encode($empleados);
     }
+
+    public function solicitudEmpleados() {
+        $empleado = json_decode(file_get_contents("php://input"));
+        // Acceder a las propiedades del usuario
+        $nombre = $empleado->nombre;
+        $correo = $empleado->correo;
+        $wwid = $empleado->wwid;
+        $empleados = $this->empleadoModel->nuevoEmpleado($nombre,$correo,$wwid);
+        // Send the response as JSON
+        header("Content-Type: application/json");
+        echo json_encode($empleados);
+    }
+    // Create an instance of the EmpleadoModel and EmpleadoController
+        
 }
-
-// Create an instance of the EmpleadoModel and EmpleadoController
-$model = new EmpleadoModel($conn);
-$controller = new EmpleadoController($model);
-
+$model = new empleadoModel($conn);
+$controller = new empleadoController($model);
 // Call the get_empleados function to generate the output
 $controller->get_empleados();
+
+
 ?>
+

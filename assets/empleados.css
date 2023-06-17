@@ -1,0 +1,88 @@
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+}
+.employees_box{
+    margin-left: 40px;
+}
+.table_box{
+    display: flex;
+    justify-content: left;
+   
+}
+.table_t{
+    border-collapse: collapse;
+    width: 25rem;
+}
+.table_head{
+    background-color: rgb(0, 160, 240);
+    padding-bottom: 12px;
+    padding-top: 12px;
+    text-align: left;
+    color: #ffffff;
+}
+.table_t tr{
+    text-align: center;
+}
+.table_t tr:nth-child(even){
+    background-color: rgba(166, 193, 222, 0.250);
+}
+
+.table_head,.table_t td ,.table_t th{
+    border: 1px solid #dadada;
+    padding: 8px;
+}
+
+/*Estilizado botones edicion*/
+.button_edit{
+    background-color: rgb(0, 160, 240);
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    padding-left: 11px;
+    padding-right: 11px;
+}
+.button_edit:hover{
+    background-color: rgba(0, 160, 240,0.800);
+    
+}
+.button_delete{
+    background-color: rgb(16, 77, 148);
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    padding-left: 11px;
+    padding-right: 11px;
+}
+.button_delete:hover{
+    background-color: rgba(16, 77, 148,0.800);
+    
+}
+.button_add_box{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.button_add{
+    background-color: rgb(0, 160, 240);
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    padding-left: 11px;
+    padding-right: 11px;
+    color: #ffffff;
+    font-weight: 700;
+}
+.button_icon{
+    color: #ffffff;
+}

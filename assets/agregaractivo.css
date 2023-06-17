@@ -1,17 +1,37 @@
-body {
+/*
+Inicio de CSS
+*/
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+}
+body{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background-image: url('../img/intel3.webp');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+/*body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
   background-image: url('../img/intel3.webp');
   background-size: cover;
   background-position: center;
-}
+}*/
 .formReg {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgba(240, 240, 240, 0.6);
   border-radius: 10px;
   color: black;
 }
@@ -41,13 +61,12 @@ input[type="submit"] {
 }
 
 /*inicia el diseño del menu de navegacion*/
-.header {
+.header{
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 36%, rgba(0, 212, 255, 1) 100%);
+  background: rgb(16,77,148);
   padding: 0px 10px;
   display: flex;
   align-items: center;
@@ -55,7 +74,7 @@ input[type="submit"] {
   z-index: 1000;
 }
 
-.logo {
+.logo{
   font-size: 25px;
   text-transform: uppercase;
   color: #ffffff;
@@ -64,71 +83,69 @@ input[type="submit"] {
   margin-left: 25px;
 }
 
-.navigation ul {
+.navigation ul{
   list-style: none;
+
 }
 
-.header .navigation ul li {
+.header .navigation ul li{
   float: left;
   position: relative;
   margin-right: 25px;
 }
 
-.header .navigation ul li a {
-  font-size: 18px;
-  color: #ffffff;
-  text-decoration: none;
-  padding: 20px;
-  display: block;
-  transition: all 0.2s ease;
+.header .navigation ul li a{
+font-size: 18px;
+color: #ffffff;
+text-decoration: none;
+padding: 20px;
+display: block;
+transition: all .2s ease;
+}
+.header .navigation ul li a:hover{
+  background-color:lightblue;
+
 }
 
-.header .navigation ul li a:hover {
-  background-color: #685cfe;
+.header .navigation ul li ul{
+position: absolute;
+right: 0;
+width: 300px;
+background: rgb(16,77,148);
+display: none;
 }
 
-.header .navigation ul li ul {
-  position: absolute;
-  right: 0;
-  width: 300px;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 36%, rgba(0, 212, 255, 1) 100%);
-  display: none;
-}
-
-.header .navigation ul li ul li a {
+.header .navigation ul li ul li a{
   font-size: 15px;
   text-transform: capitalize;
 }
 
-.header .navigation ul li ul li ul {
+.header .navigation ul li ul li ul{
   position: absolute;
   top: 0;
   right: 300px;
 }
-
 .header .navigation ul li ul li {
   width: 100%;
 }
-
-.header .navigation ul li:hover>ul {
-  display: initial;
+.header .navigation ul li:hover > ul{
+display: initial;
 }
-
-.menu {
+.menu{
   width: 45px;
   height: 35px;
 }
+/*fin diseño del menu de navegación*/
 
-.formReg {
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgba(240, 240, 240, 0.6);
-  border-radius: 10px;
+  background-color: rgba(240, 240, 240, 0.3);
   color: black;
-  margin-top: 70px;
+  
+
 }
 
 form {
@@ -146,14 +163,15 @@ select {
   border-radius: 5px;
 }
 
-input[type="submit"] {
-  width: 100%;
+.button {
+  width: 20%;
   padding: 10px;
   background-color: blue;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  text-align: center;
 }
 
 .footer {
@@ -215,4 +233,17 @@ input[type="submit"] {
     max-width: 100%;
     margin-bottom: 20px;
   }
+}
+
+
+.buttonC{
+  margin-top: 10px;
+  width: 20%;
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
 }

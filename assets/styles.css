@@ -161,10 +161,11 @@ footer {
   .main {
     display: flex;
     justify-content: center;
-    align-items: center;
+    
     height: 100vh;
     background-color: rgba(240, 240, 240, 0.3);
     border-radius: 10px;
     color: black;
+    margin-top: 60px;
   
   }

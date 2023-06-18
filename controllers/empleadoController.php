@@ -1,9 +1,10 @@
 <?php
 require_once "../models/empleadoModel.php";
-//require_once "../server.php";
+require_once "../server.php";
 
 class empleadoController {
     private $empleadoModel;
+
 
     public function __construct($empleadoModel) {
         $this->empleadoModel = $empleadoModel;
@@ -18,23 +19,34 @@ class empleadoController {
     }
 
     public function solicitudEmpleados() {
+        //se decodifica el json de entrada
         $empleado = json_decode(file_get_contents("php://input"));
-        // Acceder a las propiedades del usuario
-        $nombre = $empleado->nombre;
-        $correo = $empleado->correo;
-        $wwid = $empleado->wwid;
-        $empleados = $this->empleadoModel->nuevoEmpleado($nombre,$correo,$wwid);
-        // Send the response as JSON
+        //se llama a empleado model para obtener su funcion nuevo empleado, se le pasa el empleado decodificado
+        $this->empleadoModel->nuevoEmpleado($empleado);
         header("Content-Type: application/json");
+        //se vuelven a obtener los empleados para actualizar
+        $empleados = $this->empleadoModel->get_empleados();
         echo json_encode($empleados);
     }
-    // Create an instance of the EmpleadoModel and EmpleadoController
+    
         
 }
-$model = new empleadoModel($conn);
-$controller = new empleadoController($model);
-// Call the get_empleados function to generate the output
-$controller->get_empleados();
+    // Create an instance of the EmpleadoModel and EmpleadoController
+    $model = new empleadoModel($conn);
+    $controller = new empleadoController($model);
+
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    // Llamar a la función get_empleados para generar la salida de los empleados cuando el servidor tenga 
+    //una solicitud tipo GET
+    $controller->get_empleados();
+} elseif ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Llamar a la función solicitudEmpleados para procesar el formulario de enviar empleados
+    $controller->solicitudEmpleados();
+
+
+    
+}
+
 
 
 ?>

@@ -16,13 +16,22 @@ body{
     margin-left: 40px;
 }
 .table_box{
+    margin-top: 20px;
+
+    
+
+}
+.table_box_d{
     display: flex;
-    justify-content: left;
-   
+    justify-content: center;
+    
+    
 }
 .table_t{
     border-collapse: collapse;
     width: 25rem;
+    
+   
 }
 .table_head{
     background-color: rgb(0, 160, 240);
@@ -33,14 +42,33 @@ body{
 }
 .table_t tr{
     text-align: center;
+    color: rgb(255, 255, 255) ;
+    background-color: rgb(16, 77, 148);
+    
 }
 .table_t tr:nth-child(even){
-    background-color: rgba(166, 193, 222, 0.250);
+    background-color: rgb(166, 193, 222);
+    color: black;
+}
+.table_t tr:nth-child(even) .button_delete{
+    
+    background-color: rgb(16, 77, 148);
+}
+.table_t tr .button_delete{
+    background-color: rgb(166, 193, 222);
+}
+.table_t tr .button_delete i{
+    color:rgb(16, 77, 148); ;
+}
+.table_t tr:nth-child(even) .button_delete i{
+    color:rgb(255, 255, 255); ;
 }
 
 .table_head,.table_t td ,.table_t th{
-    border: 1px solid #dadada;
-    padding: 8px;
+    border: 0.001mm solid #ffffff69;
+    
+    padding: 23px;
+
 }
 
 /*Estilizado botones edicion*/
@@ -48,9 +76,9 @@ body{
     background-color: rgb(0, 160, 240);
     border: none;
     border-radius: 5px;
-    padding: 8px;
-    padding-left: 11px;
-    padding-right: 11px;
+    padding: 10px;
+    padding-left: 13px;
+    padding-right: 13px;
 }
 .button_edit:hover{
     background-color: rgba(0, 160, 240,0.800);
@@ -60,9 +88,9 @@ body{
     background-color: rgb(16, 77, 148);
     border: none;
     border-radius: 5px;
-    padding: 8px;
-    padding-left: 11px;
-    padding-right: 11px;
+    padding: 10px;
+    padding-left: 13px;
+    padding-right: 13px;
 }
 .button_delete:hover{
     background-color: rgba(16, 77, 148,0.800);
@@ -74,12 +102,12 @@ body{
     margin-top: 20px;
 }
 .button_add{
-    background-color: rgb(0, 160, 240);
+    background-color: rgb(16, 77, 148);
     border: none;
-    border-radius: 5px;
-    padding: 8px;
-    padding-left: 11px;
-    padding-right: 11px;
+    border-radius: 7px;
+    padding: 17px;
+    padding-left: 17px;
+    padding-right: 17px;
     color: #ffffff;
     font-weight: 700;
 }

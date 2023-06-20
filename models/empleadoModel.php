@@ -26,7 +26,12 @@ class empleadoModel {
       $sql = "INSERT INTO empleado (NombreEmpleado, CorreoEmpleado, WWID) VALUES ('" . $nombre . "','" . $correo . "'," . $wwid . ")";;
       $this->conn->query($sql);
     }
+    public function eliminarEmpleado($id){
+      $sql="delete from empleado WHERE IdEmpleado=".$id.";";
+      $this->conn->query($sql);
+    }
   }
+    
 
   
   

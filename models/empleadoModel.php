@@ -18,10 +18,10 @@ class empleadoModel {
       return $empleados;
     }
   
-    public function nuevoEmpleado($empleado) {  
-      $nombre = $empleado->NombreEmpleado;
-      $correo = $empleado->CorreoEmpleado;
-      $wwid = $empleado->WWID;
+    public function nuevoEmpleado($NombreEmpleado,$CorreoEmpleado,$WWID) {  
+      $nombre = $NombreEmpleado;
+      $correo = $CorreoEmpleado;
+      $wwid = $WWID;
       //se insertan las variables empleado en tabla empleado
       $sql = "INSERT INTO empleado (NombreEmpleado, CorreoEmpleado, WWID) VALUES ('" . $nombre . "','" . $correo . "'," . $wwid . ")";;
       $this->conn->query($sql);

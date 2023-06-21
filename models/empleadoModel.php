@@ -26,6 +26,16 @@ class empleadoModel {
       $sql = "INSERT INTO empleado (NombreEmpleado, CorreoEmpleado, WWID) VALUES ('" . $nombre . "','" . $correo . "'," . $wwid . ")";;
       $this->conn->query($sql);
     }
+    public function editarEmpleado($id,$NombreEmpleado,$CorreoEmpleado,$WWID) {  
+      $nombre = $NombreEmpleado;
+      $correo = $CorreoEmpleado;
+      $wwid = $WWID;
+      $Id=$id;
+      //se insertan las variables empleado en tabla empleado
+      //update empleado set NombreEmpleado="Johan Precioso",CorreoEmpleado="Nose@gmail.com",WWID=122231 where idEmpleado=189;
+      $sql = "update empleado set NombreEmpleado='".$nombre."',CorreoEmpleado='".$correo."',WWID=".$wwid." where idEmpleado='".$Id."';";;
+      $this->conn->query($sql);
+    }
     public function eliminarEmpleado($id){
       $sql="delete from empleado WHERE IdEmpleado=".$id.";";
       $this->conn->query($sql);

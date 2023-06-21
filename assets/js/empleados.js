@@ -17,11 +17,16 @@ function Boton (iconoValor,botonValor,id) {
 function item (tabla,empleado){
   //se crean los elementos basicos de lo que lleva cada item, tambien se le pasa un empleado
   var tr = document.createElement("tr"); 
+  tr.setAttribute("class","trs");
   var tdId = document.createElement("td");
   tdId.setAttribute("name","id");
   var tdNombre = document.createElement("td");
   var tdCorreo = document.createElement("td");
   var tdWWID = document.createElement("td");
+  tdNombre.setAttribute("class","empleado");//Colocamos los atributos empleado para obtener su valor en el edit
+  tdCorreo.setAttribute("class","empleado");
+  tdWWID.setAttribute("class","empleado");
+
   //se crean los botones que van dentro de la tabla
   btnModificar= Boton ("fa-solid fa-user-pen button_icon","button_edit",`${empleado.IdEmpleado}`);
   btnEliminar= Boton ("fa-solid fa-user-minus button_icon","button_delete",`${empleado.IdEmpleado}`);
@@ -42,7 +47,9 @@ function getTabla(){
       empleados.forEach((empleado) => {
       tablaEmpleados=item(tabla,empleado);//Se crea la tabla y se retorna a ella misma para que se iguale a todos los empleados que recorrio
     });
-      obtener(document.querySelectorAll(".button_delete"));
+      obtener(".button_delete");
+      obtener(".button_edit");
+      
   })
   .catch((error) => {
     console.error("Error:", error);
@@ -77,7 +84,8 @@ async function enviarDatos(Nombre,Correo,WWIDe) {
     var tabla = document.getElementById("empleados");//Se obtiene la tabla
     respuestaEmpleado=empleados[empleados.length-1];//Se obtiene el ultimo elemento de todos los empleados para agregarse
     item(tabla,respuestaEmpleado); //Se crea un nuevo item de la tabla, este item es insertado en la tabla que le pasamos por parametro.
-    obtener(document.querySelectorAll(".button_delete"));//Esta funcion se agrega justo debajo ya que se debe agregar al event listener luego de estar insertado.
+    obtener(".button_delete");
+    obtener(".button_edit");//Esta funcion se agrega justo debajo ya que se debe agregar al event listener luego de estar insertado.
   } catch (error) {
     //console.error('Error', respuesta);
   }
@@ -138,6 +146,48 @@ function eliminarEmpleado(id){ //Se le pasa el id a eliminar por parametro este 
   })
 }
 
+async function editarId(id,nombre,correo,wwid){//Este EJECUTA LA LOGICA
+  const formElemento = document.createElement('form'); //Crear un nuevo elemento de formulario HTML
+  const nombreElemento= document.createElement('input'); //Se crea el input del formulario
+  const correoElemento= document.createElement('input'); //Se crea el input del formulario
+  const wwidElemento= document.createElement('input'); //Se crea el input del formulario
+  const idElemento = document.createElement('input'); //Se crea el input del formulario
+  //Establecer atributos esenciales que lee el php
+  idElemento.name='editId';
+  idElemento.value=id;
+  nombreElemento.name='editNombre';
+  nombreElemento.value= nombre;
+  correoElemento.name='editCorreo';
+  correoElemento.value= correo;
+  wwidElemento.name='editWwid';
+  wwidElemento.value=wwid;
+  //Agregar el elementos al formulario
+  formElemento.appendChild(nombreElemento);
+  formElemento.appendChild(correoElemento);
+  formElemento.appendChild(wwidElemento);
+  formElemento.appendChild(idElemento);
+  const datos = new FormData(formElemento);  //Crear un nuevo objeto FormData para el formulario
+  
+  try{ 
+    var respuesta = await fetch('../controllers/empleadoController.php', { //Se busca la direccion del controlador
+      method: 'POST',//se configura el envio tipo post
+      body: datos,//se convierte el elemento en tipo json
+      cache: "no-cache", //se especifica el cache
+    }); 
+    var empleados=await respuesta.json(); //Se reciben los datos tipo json
+    var tbody = document.getElementById("empleados");
+    tbody.remove(); //Se remueve el tbody para insertarlo denuevo
+    tbody=document.createElement("tbody");
+    tbody.setAttribute("id","empleados");
+    var table = document.querySelector(".table_t");
+    table.appendChild(tbody);
+    getTabla();
+
+    }catch (error) {
+      console.error('Error', error);
+    }
+  }
+
 async function eliminarId(id){//Este EJECUTA LA LOGICA
   const formElemento = document.createElement('form'); //Crear un nuevo elemento de formulario HTML
   const inputElemento = document.createElement('input'); //Se crea el input del formulario
@@ -154,7 +204,7 @@ async function eliminarId(id){//Este EJECUTA LA LOGICA
     var validacion=await respuesta.json(); //Se reciben los datos tipo json
     var td = document.getElementById(validacion);
     if (td){//Si existe el elemento en la tabla lo elimina
-      var tr = td.closest('tr');//closest recibe el primer elemento que esta contenido en una etiqueta, aca obtiene el primer tr que contiene td con esa id
+       var tr = td.closest('tr');//closest recibe el primer elemento que esta contenido en una etiqueta, aca obtiene el primer tr que contiene td con esa id
     }
     if (tr) {
       tr.remove(); // Elimina el elemento <tr> es decir todo el elemento de la tabla
@@ -163,14 +213,72 @@ async function eliminarId(id){//Este EJECUTA LA LOGICA
       console.error('Error', error);
     }
   }
+function editarEmpleado(id,nombre,correo,wwid){
 
-function obtener(botones){ //Se le pasan por parametro los botones de eliminar
-  botones.forEach(button => { //For each que recorre todos los botones
-  button.addEventListener("click", () => {
-  id = button.getAttribute("id"); //Obtiene el atributo del boton, su id
-  if (id!=null){
-    eliminarEmpleado(id); //Elimina mientras el id sea diferente a nulo
+  Swal.fire({ //Utilizamos Fire de la libreria Swal para las animaciones
+  //Se coloca un titulo que sera mostrado en la ventana
+  title: 'Editando a '+nombre,
+  //Se coloca todo el html con sus respectivas entradas
+  html: `<label for="NombreEmpleado"></label><input type="text" id="NombreEmpleado" name="NombreEmpleado" class="swal2-input" placeholder="Nombre" value="`+nombre+`">
+  <label for="CorreoEmpleado"></label><input type="email" id="CorreoEmpleado" name="CorreoEmpleado" class="swal2-input" placeholder="Correo" value="`+correo+`">
+  <label for="WWID"></label><input type="number" id="WWID" name="WWID" class="swal2-input" placeholder="WWID" value="`+wwid+`">`,
+  confirmButtonText: 'Editar Empleado',//Se rellena el boton de registro
+  confirmButtonColor: 'rgb(16, 77, 148)',//Se le pone un color acorde a la paleta
+  focusConfirm: false,
+  preConfirm: () => {//Se pre confirma obteniendo los datos y validando si estos se llenaron
+    //Se obtiene cada elemento que se encuentra dentro de los inputs generados por "Swal"
+    const NombreEmpleado = Swal.getPopup().querySelector('#NombreEmpleado').value
+    const CorreoEmpleado = Swal.getPopup().querySelector('#CorreoEmpleado').value
+    const WWID = Swal.getPopup().querySelector('#WWID').value
+    editarId(id,NombreEmpleado,CorreoEmpleado,WWID);
+    if (!WWID || !NombreEmpleado || !CorreoEmpleado) { //Se realiza la validacion
+      Swal.showValidationMessage(`Ingrese todos los datos`)
+    }    
+    return {NombreEmpleado: NombreEmpleado}
   }
+}).then((result) => {
+          
+    const Toast = Swal.mixin({//Se añade el mixin de la libreria Swal
+    toast: true,
+    position: 'top-end', //Se posiciona arriba a la derecha de la pagina
+    showConfirmButton: false,
+    timer: 3000, //Dura 3000ms
+    timerProgressBar: true,  //Mostrar la barra de pogreso
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  }) 
+    Toast.fire({ 
+      icon: 'success', //le pasamos que queremos icono info
+      title: 'Empleado Editado' //mostramos por mensaje que el empleado ha sido eliminado
+    })
+  })
+}
+function obtener(tipo){ //Se le pasan por parametro los botones de eliminar y botones de editar
+  var botones=document.querySelectorAll(tipo);
+  botones.forEach(button => { //For each que recorre todos los botones
+  button.addEventListener("click", () => { //Evento que activa el for each
+  id = button.getAttribute("id"); //Obtiene el atributo del boton, su id
+
+  if (id!=null && tipo==".button_delete"){
+    eliminarEmpleado(id); //Elimina mientras el id sea diferente a nulo
+    
+  }else if(id!=null && tipo==".button_edit"){
+    var nombre,correo,wwid;
+    var empleados=document.querySelectorAll(".trs"); //Se obtienen todos los trs 
+    empleados.forEach(empleados=>{ //Se recorren todos los trs
+    
+      if (empleados.getAttribute("id")==id){ //El tr que tenga el mismo id clickeado se le obtienen los datos
+        nombre=empleados.getElementsByClassName("empleado")[0].textContent;//Se añade el contenido al placeholder del Swa, este [0] retorna primer valor del objeto y textcontent el contenido de este td
+        correo=empleados.getElementsByClassName("empleado")[1].textContent;
+        wwid=empleados.getElementsByClassName("empleado")[2].textContent;
+      }
+    });
+    editarEmpleado(id,nombre,correo,wwid);//Edita el id mientras este no sea nulo
+    
+  }
+  
   });
 }); 
 }

@@ -24,6 +24,14 @@ class empleadoController {
         $empleados = $this->empleadoModel->get_empleados();
         echo json_encode($empleados);
     }
+    public function editarEmpleados($id,$NombreEmpleado,$CorreoEmpleado,$WWID) {
+        //se llama a empleado model para obtener su funcion nuevoempleado y se agregan los parametros obtenidos por metodo $_POST
+        $this->empleadoModel->editarEmpleado($id,$NombreEmpleado,$CorreoEmpleado,$WWID);
+        header("Content-Type: application/json");
+        //se vuelven a obtener los empleados para actualizar
+        $empleados = $this->empleadoModel->get_empleados();
+        echo json_encode($empleados);
+    }
     public function eliminarEmpleado($id){
         $this->empleadoModel->eliminarEmpleado($id);
         header("Content-Type: application/json");
@@ -49,6 +57,13 @@ de los empleados cuando el servidor tenga una solicitud tipo GET---*/
             $CorreoEmpleado = $_POST['CorreoEmpleado'];
             $WWID = $_POST['WWID'];
             $controller->solicitudEmpleados($NombreEmpleado, $CorreoEmpleado, $WWID);
+        }
+        elseif (isset($_POST['editId']) && isset($_POST['editNombre']) && isset($_POST['editCorreo'] ) && isset($_POST['editWwid'] )) {
+            $NombreEmpleado = $_POST['editNombre'];
+            $CorreoEmpleado = $_POST['editCorreo'];
+            $WWID = $_POST['editWwid'];
+            $id=$_POST['editId'];
+            $controller->editarEmpleados($id,$NombreEmpleado, $CorreoEmpleado, $WWID);
         }
     }
 

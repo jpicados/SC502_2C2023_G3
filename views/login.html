@@ -1,84 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../assets/login.css" />
 
-    <title>Login</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../assets/login.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+  <title>Login</title>
+  <!-- fuente para Navbar -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@600&display=swap" rel="stylesheet">
+</head>
 
-  <body>
-    <header class="header">
-      <nav class="navbar navbar-expand-lg navbar-dark py-3 bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand mx-auto" href="#">
-            <button class="shadow__btn">Intel</button>
-          </a>
-          <div>
-            <div class="wrapper">
-              <input type="checkbox" name="checkbox" class="switch" />
-            </div>
-          </div>
-        </div>
+<body>
+  <!-- Navbar para login -->
+  <div class=" navbarLogin">
+    <div class="Intel">
+      <nav>
+        <h2 class="Logo"> Intel <span>Corporation</span></h2>
+        <ul>
+          <li><a href="#">Mision</a></li>
+          <li><a href="#">Vison</a></li>
+          <li><a href="#">Contactanos</a></li>
+        </ul>
+        <button class="BtnNav">Registrarse</button>
       </nav>
-    </header>
+    </div>
+  </div>
 
-    <main class="main">
-      <div class="login-box">
-        <p>Login</p>
-        <form>
-          <div class="usuario-box">
-            <input required="" name="" type="text" />
-            <label>Email</label>
-          </div>
-          <div class="usuario-box">
-            <input required="" name="" type="password" />
-            <label>Password</label>
-          </div>
-          <a href="#">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Ingresar
-          </a>
-        </form>
-        <p>¿No tienes una cuenta? <a href="" class="a2"> Registrarse!</a></p>
-      </div>
-    </main>
+  <main class="main">
 
-    <footer class="footer">
-      <div class="footer-info">
-        <div class="contact-info">
-          <h3>Contacto</h3>
-          <p><strong>Teléfono:</strong> (+506) 2298-6000</p>
-          <p>
-            <strong>Dirección:</strong> Componentes Intel de Costa Rica Calle
-            129 La Ribera de Belen Heredia, Costa Rica
-          </p>
+    <div class="centro">
+      <h1> <!-- Implememtacion del boton  -->
+        <button>
+          L O G I N<!-- Falta darle animacion a la palabra LOGIN -->
+        </button>
+      </h1> <!-- Fin de la implementacion del boton -->
+
+      <form method="post">
+        <div class="Campo_txt">
+          <input type="text" required>
+          <span></span>
+          <label>Usuario</label>
         </div>
-        <div class="social-media">
-          <h3>Redes Sociales</h3>
-          <div class="social-icons">
-            <a href="#"
-              ><img src="../img/Logo_de_Facebook.png" alt="Facebook"
-            /></a>
-            <a href="#"
-              ><img src="../img/twitter-icon-free-png.webp" alt="Twitter"
-            /></a>
-            <a href="#"
-              ><img src="../img/instagram-icon.png" alt="Instagram"
-            /></a>
-          </div>
+        <div class="Campo_txt">
+          <input type="password" required>
+          <span></span>
+          <label>Contraseña</label>
         </div>
-      </div>
-      <p>© 2023 Intel Costa Rica. Todos los derechos reservados.</p>
-    </footer>
-  </body>
+        <div class="aprobar">Olvido su contraseña?</div>
+        <input class="BtnNav" type="submit" value="Login">
+        <div class="Registrarse">
+          No es un miembro? <a href="#">
+            Regístrate</a>
+        </div>
+      </form>
+    </div>
+
+  </main>
+
+<!-- Aqui va el footer -->
+
+</body>
 </html>

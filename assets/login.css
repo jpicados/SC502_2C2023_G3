@@ -1,15 +1,33 @@
-body {
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+}
+body{
+  height: 100vh;
   margin: 0;
   padding: 0;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background-image: url('../img/intel3.webp');
+  background-size: cover;
+  background-position: center;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+}
+/*body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
 
 }
+*/
 
 /* Navbar Login */
 
 .navbarLogin,.Intel{
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
   height: 100vh;
   width: 100%;
   background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("../img/intel3.webp");
@@ -29,7 +47,7 @@ nav{
 
 .Logo{
   color: #e9f4fb;
-  font-size: 28px;
+  font-size: 50px;
 
 }
 span{
@@ -171,10 +189,10 @@ button:hover {
 
 .centro {
   position: absolute;
-  top: 45%;
-  left: 53%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  width: 900px;
+  width: 500px;
   background: #333333;
   border-radius: 10px;
 
@@ -298,3 +316,68 @@ input[type="submit"]:hover {
   
   text-decoration: underline;
 }
+
+
+/* Inicio estilo footer*/
+footer {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  background-color: #333333;
+  color: white;
+  padding: 30px 0;
+  text-align: center;
+}
+
+footer .footer-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+footer .footer-info h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+footer .contact-info p {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+footer .social-media .social-icons a {
+  display: inline-block;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+footer .social-media .social-icons a:hover {
+  transform: scale(1.1);
+}
+
+footer .social-media .social-icons img {
+  width: 24px;
+  height: 24px;
+}
+
+footer p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+footer .contact-info, footer .social-media {
+  flex-basis: 50%;
+  max-width: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+  .footer .footer-info {
+    flex-direction: column;
+  }
+  
+  footer .contact-info, footer .social-media {
+    flex-basis: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+}
+/* Fin estilo footer*/

@@ -8,7 +8,7 @@ Inicio de CSS
     padding: 0;
 }
 body{
-    min-height: 100vh;
+  height: 100vh;
   margin: 0;
   padding: 0;
   display: flex;
@@ -17,6 +17,7 @@ body{
   background-image: url('../img/intel3.webp');
   background-size: cover;
   background-position: center;
+
 }
 /*inicia el diseño del menu de navegacion*/
 header{
@@ -93,6 +94,17 @@ display: initial;
     height: 35px;
 }
 /*fin diseño del menu de navegación*/
+main {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: rgba(240, 240, 240, 0.3);
+  border-radius: 10px;
+  color: black;
+  margin-top: 60px;
+
+}
+
 
 
 
@@ -158,14 +170,3 @@ footer {
   }
 
   /**/
-  .main {
-    display: flex;
-    justify-content: center;
-    
-    height: 100vh;
-    background-color: rgba(240, 240, 240, 0.3);
-    border-radius: 10px;
-    color: black;
-    margin-top: 60px;
-  
-  }

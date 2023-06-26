@@ -1,0 +1,48 @@
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+}
+  
+  form {
+    width: 500px;
+    padding: 20px;
+    margin-top: 9%;
+    font-size: 18px;
+  }
+  
+.text, .email {
+    color: rgb(0, 0, 0);
+    background-color: rgb(182, 180, 180);
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 13px;
+  }
+  
+
+  .button {
+    width: 20%;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .buttonC{
+    margin-top: 10px;
+    width: 20%;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;/*Cambia el puntero por una manita cuando esta encima*/
+    text-align: center;
+  }

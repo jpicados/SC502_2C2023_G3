@@ -1,21 +1,12 @@
-
-  .container {
-    
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h1 {
+    h1 {
     text-align: center;
-    margin-bottom: 20px;
+
   }
   
   form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+    width: 500px;
+    padding: 20px;
+    font-size: 18px;
   }
   
   label {
@@ -23,9 +14,14 @@
   }
   
   input[type="text"] {
+    color: rgb(0, 0, 0);
+    background-color: rgb(182, 180, 180);
+    width: 100%;
     padding: 10px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 13px;
   }
   
   button[type="submit"] {
@@ -37,7 +33,10 @@
     cursor: pointer;
   }
   
-  .resultado {
+  .activo-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #f2f2f2;
     padding: 20px;
     border-radius: 5px;

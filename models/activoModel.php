@@ -19,5 +19,21 @@ class ActivoModel {
         }
         return $data;
     }
+    public function buscarActivo($serie) {
+        $stmt = $this->conn->prepare("CALL Buscar_Activo(?)");
+        $stmt->bind_param("s", $serie);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $data = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+        }
+
+        $stmt->close();
+        return $data;
+    }
 }
 ?>

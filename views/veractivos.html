@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/styles.css">
-  <link rel="stylesheet" href="../assets/veractivos.css">
-  <title>Vista de Activos</title>
-</head>
-<body>
-  <header>
-    </header>
-<main>
-    <form>
-      <h1>Ver Activos</h1>
-      <label for="codigoCliente">Código del Activo:</label>
-      <input type="text" id="codigoCliente" placeholder="Ingrese el código del Activo" required>
-      <button type="submit">Buscar</button>
-    </form>
-    <div class="resultado">
-      <ul id="activo-list"></ul>
-      <!-- Aquí se mostrarán los activos relacionados al cliente -->
-    </div>
-  </main>
-  
-    <footer>
-    </footer>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <link rel="stylesheet" href="../assets/veractivos.css" />
+    <title>Vista de Activos</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <form>
+        <h1>Ver Activos</h1>
+        <label for="codigoCliente">Código del Activo:</label>
+        <input
+          type="text"
+          id="codigoCliente"
+          placeholder="Ingrese el código del Activo"
+          required
+        />
+        <button type="submit">Buscar</button>
+      </form>
+      <div class="resultado">
+        <ul id="activo-list"></ul>
+        <!-- Aquí se mostrarán los activos relacionados al cliente -->
+      </div>
+      <form id="scannerForm">
+        <h2>Buscar por Scanner</h2>
+        <input
+          type="text"
+          id="scannerInput"
+          placeholder="Escanee el código del Activo"
+          required
+        />
+        <button type="button" id="searchButton">Buscar</button>
+      </form>
+    </main>
+
+    <footer></footer>
   </body>
-<script src="../assets/js/activos.js"></script>
-<script src="../assets/js/templateHnF.js"></script>
+  <script src="../assets/js/activos.js"></script>
+  <script src="../assets/js/templateHnF.js"></script>
 </html>

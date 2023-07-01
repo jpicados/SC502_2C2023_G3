@@ -9,9 +9,8 @@ class ActivoController {
         $this->activoModel = $activoModel;
     }
 
-    public function get_activos() {
-        $data = $this->activoModel->listar_activos();
-        
+    public function buscarActivo($serie) {
+        $data = $this->activoModel->buscarActivo($serie);
         header("Content-Type: application/json");
         echo json_encode($data);
     }
@@ -22,5 +21,6 @@ $model = new ActivoModel($conn);
 $controller = new ActivoController($model);
 
 //Call the get_activos function to generate the output
-$controller->get_activos();
+$serie = $_GET['serie'] ?? '';
+$controller->buscarActivo($serie);
 ?>

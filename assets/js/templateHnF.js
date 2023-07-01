@@ -13,12 +13,12 @@ header.innerHTML = `
     <ul>
       <li>
         <a href="agregaractivo.html">Agregar activos</a>
-        
           </form>
         </div>
       </li>
       <li><a href="veractivos.html">Ver activos </a></li>
       <li><a href="empleados.html">Empleados</a></li>
+      <li><a href="buscaractivo.html">Buscar</a></li>
     </ul>
   </li>
   <li><a href="#">Movimientos</a>

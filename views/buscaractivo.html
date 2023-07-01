@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <title>Buscar Activo</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <h1>Buscar Activo</h1>
+      <form id="buscarActivoForm">
+        <label for="scannerInput">Scanner Input:</label>
+        <input
+          type="text"
+          id="scannerInput"
+          placeholder="Scan the barcode or enter the value manually"
+          required
+        />
+        <button type="submit">Search</button>
+      </form>
+      <div id="activoDetails">
+        <!-- Activo details will be populated here -->
+      </div>
+    </main>
+    <footer></footer>
+    <script src="../assets/js/buscaractivo.js"></script>
+    <script src="../assets/js/templateHnF.js"></script>
+  </body>
+</html>

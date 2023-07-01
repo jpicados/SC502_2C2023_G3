@@ -1,6 +1,6 @@
 <?php
 require_once "../models/empleadoModel.php";
-require_once "../server.php";
+//require_once "../server.php";
 
 class empleadoController {
     private $empleadoModel;

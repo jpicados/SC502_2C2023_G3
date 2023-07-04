@@ -8,7 +8,7 @@ class empleadoModel {
     }
   
     public function get_empleados() {
-      $sql = "SELECT * FROM empleado";
+      $sql = "CALL Listar_empleados";
       $consultaEmpleados = $this->conn->query($sql);
       $empleados = [];
       while ($empleado = $consultaEmpleados->fetch_assoc()) {
@@ -23,7 +23,7 @@ class empleadoModel {
       $correo = $CorreoEmpleado;
       $wwid = $WWID;
       //se insertan las variables empleado en tabla empleado
-      $sql = "INSERT INTO empleado (NombreEmpleado, CorreoEmpleado, WWID) VALUES ('" . $nombre . "','" . $correo . "'," . $wwid . ")";;
+      $sql = "CALL Nuevo_Empleado('" . $nombre . "','" . $correo . "'," . $wwid . ")";
       $this->conn->query($sql);
     }
     public function editarEmpleado($id,$NombreEmpleado,$CorreoEmpleado,$WWID) {  
@@ -33,11 +33,11 @@ class empleadoModel {
       $Id=$id;
       //se insertan las variables empleado en tabla empleado
       //update empleado set NombreEmpleado="Johan Precioso",CorreoEmpleado="Nose@gmail.com",WWID=122231 where idEmpleado=189;
-      $sql = "update empleado set NombreEmpleado='".$nombre."',CorreoEmpleado='".$correo."',WWID=".$wwid." where idEmpleado='".$Id."';";;
+      $sql = "CALL Editar_Empleado('" . $nombre . "','" . $correo . "'," . $wwid . "," . $Id . ")";
       $this->conn->query($sql);
     }
     public function eliminarEmpleado($id){
-      $sql="delete from empleado WHERE IdEmpleado=".$id.";";
+      $sql = "CALL Eliminar_Empleado(" . $id . ")";
       $this->conn->query($sql);
     }
   }

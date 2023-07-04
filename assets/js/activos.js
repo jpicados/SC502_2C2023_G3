@@ -21,7 +21,7 @@ function createActivoListItem(activo) {
 
 // Function to fetch and display the activo list
 function fetchActivos() {
-  fetch("../controllers/activoController.php")
+  fetch("../controllers/activoController.php?action=get_activos")
     .then((response) => response.json())
     .then((data) => {
       activoList.innerHTML = "";

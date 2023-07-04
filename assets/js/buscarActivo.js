@@ -3,6 +3,11 @@ const buscarActivoForm = document.getElementById("buscarActivoForm");
 const scannerInput = document.getElementById("scannerInput");
 const activoDetails = document.getElementById("activoDetails");
 
+// Set focus on the input field when the page loads
+window.addEventListener("load", () => {
+  scannerInput.focus();
+});
+
 // Add event listener to form submission
 buscarActivoForm.addEventListener("submit", handleSearch);
 
@@ -13,7 +18,7 @@ function handleSearch(event) {
 
   // Fetch the data from the controller/model using the serie value
   fetch(
-    `../controllers/buscarActivoController.php?action=buscarActivo&serie=${serie}`
+    `../controllers/activoController.php?action=buscar_activo&serie=${serie}`
   )
     .then((response) => response.json())
     .then((data) => {

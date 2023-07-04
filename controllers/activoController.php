@@ -1,6 +1,6 @@
 <?php
 require_once "../models/activoModel.php";
-//require_once "../server.php";
+// require_once "../server.php";
 
 class ActivoController {
     private $activoModel;
@@ -9,9 +9,14 @@ class ActivoController {
         $this->activoModel = $activoModel;
     }
 
-    public function get_activos() {
-        $data = $this->activoModel->listar_activos();
-        
+    public function getActivos() {
+        $data = $this->activoModel->listarActivos();
+        header("Content-Type: application/json");
+        echo json_encode($data);
+    }
+
+    public function buscarActivo($serie) {
+        $data = $this->activoModel->buscarActivo($serie);
         header("Content-Type: application/json");
         echo json_encode($data);
     }
@@ -21,6 +26,24 @@ class ActivoController {
 $model = new ActivoModel($conn);
 $controller = new ActivoController($model);
 
-//Call the get_activos function to generate the output
-$controller->get_activos();
+// Determine the action to perform based on the 'action' query parameter
+$action = $_GET['action'] ?? '';
+switch ($action) {
+    case 'get_activos':
+        $controller->getActivos();
+        break;
+    case 'buscar_activo':
+        $serie = $_GET['serie'] ?? '';
+        $controller->buscarActivo($serie);
+        break;
+    default:
+        // Invalid action
+        if (!empty($action) && method_exists($controller, $action)) {
+            // Dynamic method invocation for custom actions
+            $controller->{$action}();
+        } else {
+            echo json_encode(["error" => "Invalid action"]);
+        }
+        break;
+}
 ?>

@@ -1,6 +1,5 @@
 <?php
 require_once "../models/empleadoModel.php";
-//require_once "../server.php";
 
 class empleadoController {
     private $empleadoModel;
@@ -12,60 +11,80 @@ class empleadoController {
     public function get_empleados() {
         $empleados = $this->empleadoModel->get_empleados();
         header("Content-Type: application/json");
-        // Envia la respuesta al js tipo json
         echo json_encode($empleados);
     }
 
-    public function solicitudEmpleados($NombreEmpleado,$CorreoEmpleado,$WWID) {
-        //se llama a empleado model para obtener su funcion nuevoempleado y se agregan los parametros obtenidos por metodo $_POST
-        $this->empleadoModel->nuevoEmpleado($NombreEmpleado,$CorreoEmpleado,$WWID);
+    public function solicitudEmpleados($NombreEmpleado, $CorreoEmpleado, $WWID) {
+        $this->empleadoModel->nuevoEmpleado($NombreEmpleado, $CorreoEmpleado, $WWID);
         header("Content-Type: application/json");
-        //se vuelven a obtener los empleados para actualizar
         $empleados = $this->empleadoModel->get_empleados();
         echo json_encode($empleados);
     }
-    public function editarEmpleados($id,$NombreEmpleado,$CorreoEmpleado,$WWID) {
-        //se llama a empleado model para obtener su funcion nuevoempleado y se agregan los parametros obtenidos por metodo $_POST
-        $this->empleadoModel->editarEmpleado($id,$NombreEmpleado,$CorreoEmpleado,$WWID);
-        header("Content-Type: application/json");
-        //se vuelven a obtener los empleados para actualizar
-        $empleados = $this->empleadoModel->get_empleados();
-        echo json_encode($empleados);
+
+    public function editarEmpleados($id, $NombreEmpleado, $CorreoEmpleado, $WWID) {
+        if ($this->empleadoModel->editarEmpleado($id, $NombreEmpleado, $CorreoEmpleado, $WWID)) {
+            $empleado = $this->empleadoModel->get_empleado($id);
+            header("Content-Type: application/json");
+            echo json_encode($empleado);
+        } else {
+            echo json_encode(['error' => 'Failed to edit employee']);
+        }
     }
-    public function eliminarEmpleado($id){
+
+    public function eliminarEmpleado($id) {
         $this->empleadoModel->eliminarEmpleado($id);
         header("Content-Type: application/json");
-        echo json_encode($id);
+        echo json_encode(['message' => 'Empleado eliminado con éxito']);
     }
 }
-    // Se crea las instancias del modelo y del controlador.
-    $model = new empleadoModel($conn);
-    $controller = new empleadoController($model);
 
-/* ---Llamar a la función get_empleados para generar la salida 
-de los empleados cuando el servidor tenga una solicitud tipo GET---*/
-    if ($_SERVER["REQUEST_METHOD"] === "GET") {
+$model = new empleadoModel($conn);
+$controller = new empleadoController($model);
+
+// Check if the action parameter is set
+$action = isset($_GET['action']) ? $_GET['action'] : '';
+
+// Perform the switch based on the action
+switch ($action) {
+    case 'get_empleados':
+        // Get employees and return the response
         $controller->get_empleados();
-//---Si la solicitud es tipo POST ejectua esta sentencia:
-    } elseif ($_SERVER["REQUEST_METHOD"] === "POST") {
-//---isset nos retorna si la variable existe, de lo contrario retorna false
-        if (isset($_POST['idEmpleado']) && $_POST['idEmpleado'] != '') {
-            $id = $_POST['idEmpleado'];
-            $controller->eliminarEmpleado($id);
-        } elseif (isset($_POST['NombreEmpleado']) && isset($_POST['CorreoEmpleado']) && isset($_POST['WWID'])) {
-            $NombreEmpleado = $_POST['NombreEmpleado'];
-            $CorreoEmpleado = $_POST['CorreoEmpleado'];
-            $WWID = $_POST['WWID'];
+        break;
+        
+    case 'solicitud_empleados':
+        $postData = $_POST;
+        if (isset($postData['NombreEmpleado']) && isset($postData['CorreoEmpleado']) && isset($postData['WWID'])) {
+            $NombreEmpleado = $postData['NombreEmpleado'];
+            $CorreoEmpleado = $postData['CorreoEmpleado'];
+            $WWID = $postData['WWID'];
             $controller->solicitudEmpleados($NombreEmpleado, $CorreoEmpleado, $WWID);
         }
-        elseif (isset($_POST['editId']) && isset($_POST['editNombre']) && isset($_POST['editCorreo'] ) && isset($_POST['editWwid'] )) {
-            $NombreEmpleado = $_POST['editNombre'];
-            $CorreoEmpleado = $_POST['editCorreo'];
-            $WWID = $_POST['editWwid'];
-            $id=$_POST['editId'];
-            $controller->editarEmpleados($id,$NombreEmpleado, $CorreoEmpleado, $WWID);
+        break;
+        
+    case 'editar_empleados':
+        $postData = $_POST;
+        if (isset($postData['editId']) && isset($postData['editNombre']) && isset($postData['editCorreo']) && isset($postData['editWwid'])) {
+            $NombreEmpleado = $postData['editNombre'];
+            $CorreoEmpleado = $postData['editCorreo'];
+            $WWID = $postData['editWwid'];
+            $id = $postData['editId'];
+            $controller->editarEmpleados($id, $NombreEmpleado, $CorreoEmpleado, $WWID);
+        } else {
+            echo json_encode(['error' => 'Invalid parameters for editing employee']);
         }
-    }
-
+        break;
+        
+    case 'eliminar_empleado':
+        $postData = $_POST;
+        if (isset($postData['idEmpleado']) && $postData['idEmpleado'] != '') {
+            $id = $postData['idEmpleado'];
+            $controller->eliminarEmpleado($id);
+        }
+        break;
+        
+    default:
+        // Handle unknown action or no action provided
+        // Return an appropriate response or error message
+        break;
+}
 ?>
-

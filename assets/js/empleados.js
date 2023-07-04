@@ -1,288 +1,339 @@
-getTabla();
-//Se crea una funcion boton que nos genera los botones de la tabla empleado para editar como para eliminar
-function Boton (iconoValor,botonValor,id) {
-  //cada boton se conforma por td que es el campo donde va, por button que es el boton y la etiqueta i que es el icono que llevan
-  var tdBot= document.createElement("td");
-  var modificar= document.createElement("button");
-  var iconoMod=document.createElement("i");
-  //se añaden atributos basicos a los botones
-  iconoMod.setAttribute("class",iconoValor);
-  modificar.setAttribute("class",botonValor);
-  modificar.setAttribute("id",id);
-  modificar.setAttribute("button","button");
+// Standard Swal configuration
+const swalConfig = {
+  confirmButtonColor: "rgb(16, 77, 148)",
+  cancelButtonColor: "rgb(209, 68, 68)",
+  focusConfirm: false,
+};
+
+// Se crea una funcion boton que nos genera los botones de la tabla empleado para editar como para eliminar
+function Boton(iconoValor, botonValor, id) {
+  // Cada boton se conforma por td que es el campo donde va, por button que es el boton y la etiqueta i que es el icono que llevan
+  var tdBot = document.createElement("td");
+  var modificar = document.createElement("button");
+  var iconoMod = document.createElement("i");
+  // Se añaden atributos básicos a los botones
+  iconoMod.setAttribute("class", iconoValor);
+  modificar.setAttribute("class", botonValor);
+  modificar.setAttribute("id", id);
+  modificar.setAttribute("button", "button");
   modificar.append(iconoMod);
   tdBot.append(modificar);
   return tdBot;
-};
-function item (tabla,empleado){
-  //se crean los elementos basicos de lo que lleva cada item, tambien se le pasa un empleado
-  var tr = document.createElement("tr"); 
-  tr.setAttribute("class","trs");
+}
+
+function item(tabla, empleado) {
+  // Se crean los elementos básicos de lo que lleva cada item, también se le pasa un empleado
+  var tr = document.createElement("tr");
+  tr.setAttribute("class", "trs");
   var tdId = document.createElement("td");
-  tdId.setAttribute("name","id");
+  tdId.setAttribute("name", "id");
   var tdNombre = document.createElement("td");
   var tdCorreo = document.createElement("td");
   var tdWWID = document.createElement("td");
-  tdNombre.setAttribute("class","empleado");//Colocamos los atributos empleado para obtener su valor en el edit
-  tdCorreo.setAttribute("class","empleado");
-  tdWWID.setAttribute("class","empleado");
+  tdNombre.setAttribute("class", "empleado"); // Colocamos los atributos empleado para obtener su valor en el edit
+  tdCorreo.setAttribute("class", "empleado");
+  tdWWID.setAttribute("class", "empleado");
 
-  //se crean los botones que van dentro de la tabla
-  btnModificar= Boton ("fa-solid fa-user-pen button_icon","button_edit",`${empleado.IdEmpleado}`);
-  btnEliminar= Boton ("fa-solid fa-user-minus button_icon","button_delete",`${empleado.IdEmpleado}`);
+  // Se crean los botones que van dentro de la tabla
+  btnModificar = Boton(
+    "fa-solid fa-user-pen button_icon",
+    "button_edit",
+    `${empleado.IdEmpleado}`
+  );
+  btnEliminar = Boton(
+    "fa-solid fa-user-minus button_icon",
+    "button_delete",
+    `${empleado.IdEmpleado}`
+  );
   tdId.textContent = `${empleado.IdEmpleado}`;
-  tr.setAttribute("id",`${empleado.IdEmpleado}`);
+  tr.setAttribute("id", `${empleado.IdEmpleado}`);
   tdNombre.textContent = `${empleado.NombreEmpleado}`;
   tdCorreo.textContent = `${empleado.CorreoEmpleado}`;
   tdWWID.textContent = `${empleado.WWID}`;
-  tabla.appendChild(tr).append(tdId, tdNombre, tdCorreo, tdWWID,btnModificar,btnEliminar);
+  tabla
+    .appendChild(tr)
+    .append(tdId, tdNombre, tdCorreo, tdWWID, btnModificar, btnEliminar);
   return tabla;
 }
-//Se realiza un fetch para buscar todos los elementos que seran proyectados.
-function getTabla(){
-  fetch("../controllers/empleadoController.php") //Busca en la direccion del controlador
-  .then((datos) => datos.json()) // Se reciben los datos y se traducen a json
-  .then((empleados) => {
-      var tabla = document.getElementById("empleados"); //Se obtiene el id de la lista que sera manipulada
+
+function getTabla() {
+  fetch("../controllers/empleadoController.php?action=get_empleados")
+    .then((datos) => datos.json())
+    .then((empleados) => {
+      var tabla = document.getElementById("empleados");
       empleados.forEach((empleado) => {
-      tablaEmpleados=item(tabla,empleado);//Se crea la tabla y se retorna a ella misma para que se iguale a todos los empleados que recorrio
-    });
+        tablaEmpleados = item(tabla, empleado);
+      });
       obtener(".button_delete");
       obtener(".button_edit");
-      
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
 
-//se crea la funcion que envia los datos de empleado al controlador
-async function enviarDatos(Nombre,Correo,WWIDe) {
-  const formElement = document.createElement('form'); //Crear un nuevo elemento de formulario HTML para enviar datos
-  const NombreEmpleado = document.createElement('input'); //Se crean los elemementos que se agregan al form
-  const CorreoEmpleado = document.createElement('input');
-  const WWID = document.createElement('input');
-  // CrearElementos especificamente igual (Esta parte es la que se lee en php Atributo NAME)
-  NombreEmpleado.name = 'NombreEmpleado';
+async function enviarDatos(Nombre, Correo, WWIDe) {
+  const formElement = document.createElement("form");
+  const NombreEmpleado = document.createElement("input");
+  const CorreoEmpleado = document.createElement("input");
+  const WWID = document.createElement("input");
+  NombreEmpleado.name = "NombreEmpleado";
   NombreEmpleado.value = Nombre;
-  CorreoEmpleado.name = 'CorreoEmpleado';
+  CorreoEmpleado.name = "CorreoEmpleado";
   CorreoEmpleado.value = Correo;
-  WWID.name = 'WWID';
+  WWID.name = "WWID";
   WWID.value = WWIDe;
-  // Agregar el elementos al formulario
   formElement.appendChild(NombreEmpleado);
   formElement.appendChild(CorreoEmpleado);
   formElement.appendChild(WWID);
-  // Crear un nuevo objeto FormData con el formulario
   const datos = new FormData(formElement);
   try {
-    var respuesta = await fetch('../controllers/empleadoController.php', {
-    method: 'POST',//se configura el envio tipo post
-    body: datos,//se envia el archivo en tipo formulario con todos los inputs
-    }); 
-    var empleados = await respuesta.json();//Se obtiene la respuesta recibida por el servidor en formato json
-    var tabla = document.getElementById("empleados");//Se obtiene la tabla
-    respuestaEmpleado=empleados[empleados.length-1];//Se obtiene el ultimo elemento de todos los empleados para agregarse
-    item(tabla,respuestaEmpleado); //Se crea un nuevo item de la tabla, este item es insertado en la tabla que le pasamos por parametro.
+    var respuesta = await fetch(
+      "../controllers/empleadoController.php?action=solicitud_empleados",
+      {
+        method: "POST",
+        body: datos,
+      }
+    );
+    var empleados = await respuesta.json();
+    var tabla = document.getElementById("empleados");
+    respuestaEmpleado = empleados[empleados.length - 1];
+    item(tabla, respuestaEmpleado);
     obtener(".button_delete");
-    obtener(".button_edit");//Esta funcion se agrega justo debajo ya que se debe agregar al event listener luego de estar insertado.
+    obtener(".button_edit");
   } catch (error) {
-    //console.error('Error', respuesta);
+    console.error("Error:", error);
   }
 }
 
-const enviarEmpleado = document.getElementById('botonRegistro');//Se obtiene el boton que acciona la ventana flotante de registrar empleado
-enviarEmpleado.addEventListener('click', registroEmpleado);//Se le añade un event listener para que este reaccione al darle click
+const enviarEmpleado = document.getElementById("botonRegistro");
+enviarEmpleado.addEventListener("click", registroEmpleado);
 
-function registroEmpleado(){
-  Swal.fire({ //Utilizamos Fire de la libreria Swal para las animaciones
-  //Se coloca un titulo que sera mostrado en la ventana
-  title: 'Registrar empleado',
-  //Se coloca todo el html con sus respectivas entradas
-  html: `<label for="NombreEmpleado"></label><input type="text" id="NombreEmpleado" name="NombreEmpleado" class="swal2-input" placeholder="Nombre">
+function registroEmpleado() {
+  Swal.fire({
+    ...swalConfig, // Spread the Swal configuration
+    title: "Registrar empleado",
+    html: `<label for="NombreEmpleado"></label><input type="text" id="NombreEmpleado" name="NombreEmpleado" class="swal2-input" placeholder="Nombre">
   <label for="CorreoEmpleado"></label><input type="email" id="CorreoEmpleado" name="CorreoEmpleado" class="swal2-input" placeholder="Correo">
   <label for="WWID"></label><input type="number" id="WWID" name="WWID" class="swal2-input" placeholder="WWID">`,
-  confirmButtonText: 'Registrar',//Se rellena el boton de registro
-  confirmButtonColor: 'rgb(16, 77, 148)',//Se le pone un color acorde a la paleta
-  focusConfirm: false,
-  preConfirm: () => {//Se pre confirma obteniendo los datos y validando si estos se llenaron
-    //Se obtiene cada elemento que se encuentra dentro de los inputs generados por "Swal"
-    const NombreEmpleado = Swal.getPopup().querySelector('#NombreEmpleado').value
-    const CorreoEmpleado = Swal.getPopup().querySelector('#CorreoEmpleado').value
-    const WWID = Swal.getPopup().querySelector('#WWID').value
-    enviarDatos(NombreEmpleado,CorreoEmpleado,WWID);
-    if (!WWID || !NombreEmpleado || !CorreoEmpleado) { //Se realiza la validacion
-      Swal.showValidationMessage(`Ingrese todos los datos`)
-    }    
-    return {NombreEmpleado: NombreEmpleado}
-  }
-}).then((result) => {
-      
-  Swal.fire({
-    confirmButtonColor: 'rgb(16, 77, 148)',
-    title: result.value.NombreEmpleado+" registrado con exito." 
-  })      
-})
-    
-    
-  }
-
-function eliminarEmpleado(id){ //Se le pasa el id a eliminar por parametro este EJECUTA LA ANIMACION
-  const Toast = Swal.mixin({//Se añade el mixin de la libreria Swal
-  toast: true,
-  position: 'top-end', //Se posiciona arriba a la derecha de la pagina
-  showConfirmButton: false,
-  timer: 3000, //Dura 3000ms
-  timerProgressBar: true,  //Mostrar la barra de pogreso
-  didOpen: (toast) => {
-    eliminarId(id); //Ejecuta toda la logica de envio al servidor.
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-}) 
-  Toast.fire({ 
-    icon: 'info', //le pasamos que queremos icono info
-    title: 'Empleado Eliminado' //mostramos por mensaje que el empleado ha sido eliminado
-  })
+    confirmButtonText: "Registrar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const nombre = Swal.getPopup().querySelector("#NombreEmpleado").value;
+      const correo = Swal.getPopup().querySelector("#CorreoEmpleado").value;
+      const wwid = Swal.getPopup().querySelector("#WWID").value;
+      if (nombre && correo && wwid) {
+        enviarDatos(nombre, correo, wwid);
+        Swal.fire({
+          ...swalConfig,
+          icon: "success",
+          title: `${nombre} registrado con éxito.`,
+        });
+      } else {
+        Swal.fire({
+          ...swalConfig,
+          icon: "error",
+          title: "Error",
+          text: "Por favor, complete todos los campos.",
+        });
+      }
+    }
+  });
 }
 
-async function editarId(id,nombre,correo,wwid){//Este EJECUTA LA LOGICA
-  const formElemento = document.createElement('form'); //Crear un nuevo elemento de formulario HTML
-  const nombreElemento= document.createElement('input'); //Se crea el input del formulario
-  const correoElemento= document.createElement('input'); //Se crea el input del formulario
-  const wwidElemento= document.createElement('input'); //Se crea el input del formulario
-  const idElemento = document.createElement('input'); //Se crea el input del formulario
-  //Establecer atributos esenciales que lee el php
-  idElemento.name='editId';
-  idElemento.value=id;
-  nombreElemento.name='editNombre';
-  nombreElemento.value= nombre;
-  correoElemento.name='editCorreo';
-  correoElemento.value= correo;
-  wwidElemento.name='editWwid';
-  wwidElemento.value=wwid;
-  //Agregar el elementos al formulario
+function eliminarEmpleado(id) {
+  const Toast = Swal.mixin({
+    ...swalConfig, // Spread the Swal configuration
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      eliminarId(id);
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+  Toast.fire({
+    icon: "info",
+    title: "Empleado Eliminado",
+  });
+}
+
+async function editarId(id, nombre, correo, wwid) {
+  const formElemento = document.createElement("form");
+  const nombreElemento = document.createElement("input");
+  const correoElemento = document.createElement("input");
+  const wwidElemento = document.createElement("input");
+  const idElemento = document.createElement("input");
+  idElemento.name = "editId";
+  idElemento.value = id;
+  nombreElemento.name = "editNombre";
+  nombreElemento.value = nombre;
+  correoElemento.name = "editCorreo";
+  correoElemento.value = correo;
+  wwidElemento.name = "editWwid";
+  wwidElemento.value = wwid;
   formElemento.appendChild(nombreElemento);
   formElemento.appendChild(correoElemento);
   formElemento.appendChild(wwidElemento);
   formElemento.appendChild(idElemento);
-  const datos = new FormData(formElemento);  //Crear un nuevo objeto FormData para el formulario
-  
-  try{ 
-    var respuesta = await fetch('../controllers/empleadoController.php', { //Se busca la direccion del controlador
-      method: 'POST',//se configura el envio tipo post
-      body: datos,//se convierte el elemento en tipo json
-      cache: "no-cache", //se especifica el cache
-    }); 
-    var empleados=await respuesta.json(); //Se reciben los datos tipo json
+  const datos = new FormData(formElemento);
+  try {
+    var respuesta = await fetch(
+      "../controllers/empleadoController.php?action=editar_empleados",
+      {
+        method: "POST",
+        body: datos,
+        cache: "no-cache",
+      }
+    );
+    var empleados = await respuesta.json();
     var tbody = document.getElementById("empleados");
-    tbody.remove(); //Se remueve el tbody para insertarlo denuevo
-    tbody=document.createElement("tbody");
-    tbody.setAttribute("id","empleados");
+    tbody.remove();
+    tbody = document.createElement("tbody");
+    tbody.setAttribute("id", "empleados");
     var table = document.querySelector(".table_t");
     table.appendChild(tbody);
     getTabla();
-
-    }catch (error) {
-      console.error('Error', error);
-    }
+  } catch (error) {
+    console.error("Error", error);
   }
-
-async function eliminarId(id){//Este EJECUTA LA LOGICA
-  const formElemento = document.createElement('form'); //Crear un nuevo elemento de formulario HTML
-  const inputElemento = document.createElement('input'); //Se crea el input del formulario
-  inputElemento.name = 'idEmpleado'; //Establecer atributos esenciales que lee el php
-  inputElemento.value = id;
-  formElemento.appendChild(inputElemento); //Agregar el elemento al formulario
-  const datos = new FormData(formElemento);  //Crear un nuevo objeto FormData para el formulario
-  try{ 
-    var respuesta = await fetch('../controllers/empleadoController.php', { //Se busca la direccion del controlador
-      method: 'POST',//se configura el envio tipo post
-      body: datos,//se convierte el elemento en tipo json
-      cache: "no-cache", //se especifica el cache
-    }); 
-    var validacion=await respuesta.json(); //Se reciben los datos tipo json
-    var td = document.getElementById(validacion);
-    if (td){//Si existe el elemento en la tabla lo elimina
-       var tr = td.closest('tr');//closest recibe el primer elemento que esta contenido en una etiqueta, aca obtiene el primer tr que contiene td con esa id
-    }
-    if (tr) {
-      tr.remove(); // Elimina el elemento <tr> es decir todo el elemento de la tabla
-    }    
-    }catch (error) {
-      console.error('Error', error);
-    }
-  }
-function editarEmpleado(id,nombre,correo,wwid){
-
-  Swal.fire({ //Utilizamos Fire de la libreria Swal para las animaciones
-  //Se coloca un titulo que sera mostrado en la ventana
-  title: 'Editando a '+nombre,
-  //Se coloca todo el html con sus respectivas entradas
-  html: `<label for="NombreEmpleado"></label><input type="text" id="NombreEmpleado" name="NombreEmpleado" class="swal2-input" placeholder="Nombre" value="`+nombre+`">
-  <label for="CorreoEmpleado"></label><input type="email" id="CorreoEmpleado" name="CorreoEmpleado" class="swal2-input" placeholder="Correo" value="`+correo+`">
-  <label for="WWID"></label><input type="number" id="WWID" name="WWID" class="swal2-input" placeholder="WWID" value="`+wwid+`">`,
-  confirmButtonText: 'Editar Empleado',//Se rellena el boton de registro
-  confirmButtonColor: 'rgb(16, 77, 148)',//Se le pone un color acorde a la paleta
-  focusConfirm: false,
-  preConfirm: () => {//Se pre confirma obteniendo los datos y validando si estos se llenaron
-    //Se obtiene cada elemento que se encuentra dentro de los inputs generados por "Swal"
-    const NombreEmpleado = Swal.getPopup().querySelector('#NombreEmpleado').value
-    const CorreoEmpleado = Swal.getPopup().querySelector('#CorreoEmpleado').value
-    const WWID = Swal.getPopup().querySelector('#WWID').value
-    editarId(id,NombreEmpleado,CorreoEmpleado,WWID);
-    if (!WWID || !NombreEmpleado || !CorreoEmpleado) { //Se realiza la validacion
-      Swal.showValidationMessage(`Ingrese todos los datos`)
-    }    
-    return {NombreEmpleado: NombreEmpleado}
-  }
-}).then((result) => {
-          
-    const Toast = Swal.mixin({//Se añade el mixin de la libreria Swal
-    toast: true,
-    position: 'top-end', //Se posiciona arriba a la derecha de la pagina
-    showConfirmButton: false,
-    timer: 3000, //Dura 3000ms
-    timerProgressBar: true,  //Mostrar la barra de pogreso
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  }) 
-    Toast.fire({ 
-      icon: 'success', //le pasamos que queremos icono info
-      title: 'Empleado Editado' //mostramos por mensaje que el empleado ha sido eliminado
-    })
-  })
 }
-function obtener(tipo){ //Se le pasan por parametro los botones de eliminar y botones de editar
-  var botones=document.querySelectorAll(tipo);
-  botones.forEach(button => { //For each que recorre todos los botones
-  button.addEventListener("click", () => { //Evento que activa el for each
-  id = button.getAttribute("id"); //Obtiene el atributo del boton, su id
 
-  if (id!=null && tipo==".button_delete"){
-    eliminarEmpleado(id); //Elimina mientras el id sea diferente a nulo
-    
-  }else if(id!=null && tipo==".button_edit"){
-    var nombre,correo,wwid;
-    var empleados=document.querySelectorAll(".trs"); //Se obtienen todos los trs 
-    empleados.forEach(empleados=>{ //Se recorren todos los trs
-    
-      if (empleados.getAttribute("id")==id){ //El tr que tenga el mismo id clickeado se le obtienen los datos
-        nombre=empleados.getElementsByClassName("empleado")[0].textContent;//Se añade el contenido al placeholder del Swa, este [0] retorna primer valor del objeto y textcontent el contenido de este td
-        correo=empleados.getElementsByClassName("empleado")[1].textContent;
-        wwid=empleados.getElementsByClassName("empleado")[2].textContent;
+async function eliminarId(id) {
+  const formElemento = document.createElement("form");
+  const inputElemento = document.createElement("input");
+  inputElemento.name = "idEmpleado";
+  inputElemento.value = id;
+  formElemento.appendChild(inputElemento);
+  const datos = new FormData(formElemento);
+  try {
+    var respuesta = await fetch(
+      "../controllers/empleadoController.php?action=eliminar_empleado",
+      {
+        method: "POST",
+        body: datos,
+        cache: "no-cache",
+      }
+    );
+    if (respuesta.ok) {
+      var response = await respuesta.json();
+      var message = response.message;
+      if (message === "Empleado eliminado con éxito") {
+        var tr = document.getElementById(id);
+        if (tr) {
+          tr.remove();
+        }
+        Swal.fire({
+          ...swalConfig,
+          icon: "info",
+          title: message,
+        });
+      }
+    } else {
+      throw new Error("Error en la respuesta de eliminar empleado");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+async function editarEmpleado(id, nombre, correo, wwid) {
+  const { value: formValues } = await Swal.fire({
+    ...swalConfig, // Spread the Swal configuration
+    title: "Editando a " + nombre,
+    html: `<label for="editNombre"></label><input type="text" id="editNombre" class="swal2-input" placeholder="Nombre" value="${nombre}">
+       <label for="editCorreo"></label><input type="email" id="editCorreo" class="swal2-input" placeholder="Correo" value="${correo}">
+       <label for="editWwid"></label><input type="number" id="editWwid" class="swal2-input" placeholder="WWID" value="${wwid}">`,
+    showCancelButton: true,
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Guardar cambios",
+    preConfirm: () => {
+      const editNombre = Swal.getPopup().querySelector("#editNombre").value;
+      const editCorreo = Swal.getPopup().querySelector("#editCorreo").value;
+      const editWwid = Swal.getPopup().querySelector("#editWwid").value;
+      return { editNombre, editCorreo, editWwid };
+    },
+  });
+
+  if (formValues) {
+    try {
+      const { editNombre, editCorreo, editWwid } = formValues;
+      const datos = new FormData();
+      datos.append("editId", id);
+      datos.append("editNombre", editNombre);
+      datos.append("editCorreo", editCorreo);
+      datos.append("editWwid", editWwid);
+
+      const respuesta = await fetch(
+        "../controllers/empleadoController.php?action=editar_empleados",
+        {
+          method: "POST",
+          body: datos,
+          cache: "no-cache",
+        }
+      );
+
+      if (respuesta.ok) {
+        const empleado = await respuesta.json();
+        const tr = document.getElementById(id);
+        if (tr) {
+          const tdNombre = tr.querySelector(".empleado");
+          const tdCorreo = tdNombre.nextElementSibling;
+          const tdWwid = tdCorreo.nextElementSibling;
+          tdNombre.textContent = empleado.NombreEmpleado;
+          tdCorreo.textContent = empleado.CorreoEmpleado;
+          tdWwid.textContent = empleado.WWID;
+        }
+        Swal.fire({
+          ...swalConfig,
+          icon: "success",
+          title: "Empleado editado con éxito.",
+          showConfirmButton: false,
+          timer: 1500,
+        }).then(() => {
+          location.reload();
+        });
+      } else {
+        throw new Error("Error en la respuesta de editar empleado");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      Swal.fire({
+        ...swalConfig,
+        icon: "error",
+        title: "Error",
+        text: "Ha ocurrido un error al editar el empleado. Por favor, intenta nuevamente.",
+      });
+    }
+  }
+}
+
+function obtener(tipo) {
+  var botones = document.querySelectorAll(tipo);
+  botones.forEach((button) => {
+    button.addEventListener("click", () => {
+      id = button.getAttribute("id");
+      if (id != null && tipo == ".button_delete") {
+        eliminarEmpleado(id);
+      } else if (id != null && tipo == ".button_edit") {
+        var nombre, correo, wwid;
+        var empleados = document.querySelectorAll(".trs");
+        empleados.forEach((empleados) => {
+          if (empleados.getAttribute("id") == id) {
+            nombre =
+              empleados.getElementsByClassName("empleado")[0].textContent;
+            correo =
+              empleados.getElementsByClassName("empleado")[1].textContent;
+            wwid = empleados.getElementsByClassName("empleado")[2].textContent;
+          }
+        });
+        editarEmpleado(id, nombre, correo, wwid);
       }
     });
-    editarEmpleado(id,nombre,correo,wwid);//Edita el id mientras este no sea nulo
-    
-  }
-  
   });
-}); 
 }
-  
-  
 
-  
+getTabla();

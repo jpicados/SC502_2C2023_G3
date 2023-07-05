@@ -1,0 +1,89 @@
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Listar_Empleados`()
+BEGIN
+
+SELECT * FROM assetsdb.empleado;
+
+END
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Nuevo_Empleado`(
+IN p_Nombre VARCHAR(50),
+IN p_Correo VARCHAR(50),
+IN p_WWID INT)
+BEGIN
+	INSERT INTO empleado(
+    NombreEmpleado,
+    CorreoEmpleado,
+    WWID
+    ) 
+    VALUES (
+    p_Nombre,
+    p_Correo,
+    p_WWID
+    );
+END
+
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Editar_Empleado`(
+IN p_Nombre VARCHAR(50)
+, IN p_Correo VARCHAR(50),
+IN p_WWID INT,
+IN p_Id INT)
+BEGIN
+	UPDATE empleado
+    SET 
+    NombreEmpleado = p_Nombre,
+    CorreoEmpleado = p_Correo,
+    WWID = p_WWID
+    WHERE IdEmpleado = p_Id;
+END
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Eliminar_Empleado`(
+IN p_Id INT)
+BEGIN
+	DELETE FROM empleado
+    WHERE IdEmpleado = p_Id;
+END
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Buscar_EmpleadoWWID`(
+    IN p_WWID VARCHAR(50)
+)
+BEGIN
+    SELECT * FROM empleado
+    WHERE WWID = p_WWID;
+END
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Buscar_EmpleadoCorreo`(
+    IN p_Correo VARCHAR(50)
+)
+BEGIN
+    SELECT * FROM empleado
+    WHERE CorreoEmpleado = p_Correo;
+END
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************

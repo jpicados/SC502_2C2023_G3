@@ -1,0 +1,84 @@
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Listar_Activos`()
+BEGIN
+
+	SELECT a.IdActivo, a.Serie, a.Marca, a.Tag, a.PO, a.RAM,
+		   c.IdCategoria, c.NombreCategoria,
+		   e.IdEntidad, e.NumeroEntidad,
+		   es.IdEstado, es._Estado,
+		   em.IdEmpleado, em.NombreEmpleado, em.CorreoEmpleado, em.WWID
+	FROM assetsdb.activo a
+	JOIN assetsdb.categoria c ON a.IdCategoria = c.IdCategoria
+	JOIN assetsdb.entidad e ON a.IdEntidad = e.IdEntidad
+	JOIN assetsdb.estado es ON a.IdEstado = es.IdEstado
+	JOIN assetsdb.empleado em ON a.IdEmpleado = em.IdEmpleado;
+
+END
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Buscar_ActivoSerie`(IN p_Serie VARCHAR(50))
+BEGIN
+    SELECT * FROM activo WHERE Serie = p_Serie;
+END
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Eliminar_ActivoId`(IN p_IdActivo INT)
+BEGIN
+    DELETE FROM assetsdb.activo WHERE IdActivo = p_IdActivo;
+END
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Eliminar_ActivoSerie`(IN p_Serie VARCHAR(255))
+BEGIN
+    DELETE FROM assetsdb.activo WHERE Serie = p_Serie;
+END
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Modificar_ActivoSerie`(
+    IN p_Serie VARCHAR(255),
+    IN p_Marca VARCHAR(255),
+    IN p_Tag VARCHAR(255),
+    IN p_PO VARCHAR(255),
+    IN p_RAM VARCHAR(255),
+    IN p_IdCategoria INT,
+    IN p_IdEntidad INT,
+    IN p_IdEstado INT,
+    IN p_IdEmpleado INT
+)
+BEGIN
+    UPDATE assetsdb.activo
+    SET
+        Marca = p_Marca,
+        Tag = p_Tag,
+        PO = p_PO,
+        RAM = p_RAM,
+        IdCategoria = p_IdCategoria,
+        IdEntidad = p_IdEntidad,
+        IdEstado = p_IdEstado,
+        IdEmpleado = p_IdEmpleado
+    WHERE
+        Serie = p_Serie;
+END
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************

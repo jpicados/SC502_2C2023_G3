@@ -17,7 +17,7 @@ _Estado ENUM ('active', 'inactive') NOT NULL
 CREATE TABLE Empleado(
 IdEmpleado INT PRIMARY KEY AUTO_INCREMENT,
 NombreEmpleado VARCHAR(50) NOT NULL,
-CorreoEmpleado VARCHAR(50),
+CorreoEmpleado VARCHAR(50) NOT NULL UNIQUE,
 WWID INT NOT NULL
 );
 CREATE TABLE Activo(

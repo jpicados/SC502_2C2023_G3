@@ -1,29 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/styles.css">
-    <link rel="stylesheet" href="../assets/registroUsuarios.css">
-    <title>Registro de Usuarios</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=<?php echo(rand()); ?>">
+    <link rel="stylesheet" href="../assets/empleados.css?v=<?php echo(rand()); ?>">
+    <title>Usuarios</title>
 </head>
 <body>
-    <header>
-    </header>
-    <main>
-        <form>
-            <h1 style="text-align: center;">Registro de Usuarios
-            </h1>
-            <input type="text" class="text" placeholder="Identificacion" required>
-            <input type="text" class="text" placeholder="Nombre de Usuario" required>
-            <input type="email" class="email" placeholder="Correo Electronico" required>
-            <input class="button" type="button" value="Ingresar">
-            <input class="buttonC" type="button" value="Cancelar">
-          </form>
-    </main>
-    <footer>
+  <header > <!--necesario tener las etiquetas para que se inserte el menu del JS-->
+  </header>
+  <main class="main">
+    <section class="mt-4 employees_box">
+      <div class="table_box">
+        <div class="table_box_d">
+        <table class="table_t">
+            <thead class="table_head">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">CORREO</th>
+                    <th scope="col">MODIFICAR</th>
+                    <th scope="col">ELIMINAR</th>
+                </tr>
+                
+             </thead>
+            
+            <tbody id="usuarios">   
+           
+            </tbody>
+            
+        </table>
+        </div>
+        
+        <div class="button_add_box">
+          <label for="botonRegistro"></label>
+          <button type="submit" id="botonRegistro" class="button_add" name="solicitud" onclick="registroUsuario()">AGREGAR USUARIO</button>
+        </div>
 
+        </div>
+      </div>
+    </section>  
+  </main>
+    <footer>
     </footer>
+       
+    <script src="../assets/js/templateHnF.js?v=<?php echo(rand()); ?>"></script>
+    <script src="https://kit.fontawesome.com/947bdf3007.js?v=<?php echo(rand()); ?" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11?v=<?php echo(rand()); ?"></script>
+    <script src="../assets/js/usuarios.js"></script>
 </body>
-<script src="../assets/js/templateHnF.js"></script>
 </html>

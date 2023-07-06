@@ -1,0 +1,40 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Listar_Usuarios`()
+BEGIN
+	select NombreUsuario, CorreoUsuario from usuario;
+END
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Registrar_Usuario`(
+IN p_Nombre VARCHAR(50),
+IN p_Correo VARCHAR(50),
+IN p_Contrasenna VARCHAR(50))
+BEGIN
+	INSERT INTO usuario(NombreUsuario, CorreoUsuario, Contrasenna)
+    VALUES(p_Nombre, p_Correo, p_Contrasenna);
+END
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Eliminar_Usuario`(
+IN p_IdUsuario INT)
+BEGIN
+	DELETE FROM usuario where IdUuario = p_IdUsuario;
+END
+*******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Editar_Usuario`(
+IN p_Nombre VARCHAR(50),
+IN p_Correo VARCHAR(50),
+IN p_Contrasenna VARCHAR(50),
+IN p_IdUsuario INT)
+BEGIN
+	UPDATE usuario
+    SET
+    NombreUsuario = p_Nombre,
+    CorreoUsuario = p_Correo,
+    Contrasenna = p_Contrasenna
+    WHERE IdUsuario = p_IdUsuario;
+END
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************
+
+*******************************************************************

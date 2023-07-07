@@ -22,7 +22,7 @@ class ActivoModel {
     }
 
     public function buscarActivo($codigoActivo) {
-        $stmt = $this->conn->prepare("CALL Buscar_Activo(?)");
+        $stmt = $this->conn->prepare("CALL Buscar_ActivoSerie(?)");
         $stmt->bind_param("s", $codigoActivo);
         $stmt->execute();
         $result = $stmt->get_result();

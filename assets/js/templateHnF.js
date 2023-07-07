@@ -10,7 +10,6 @@ header.innerHTML = `
   <li><a href="index.html">Inicio</a></li>
   <li><a href="empleados.html">Empleados</a></li>
   <li><a href="veractivos.html">Activos</a>
-  <li><a href="usuarios.html">Usuarios</a>
     <ul>
       <li>
         <a href="agregaractivo.html">Agregar activos</a>
@@ -23,6 +22,7 @@ header.innerHTML = `
   </li>
   <li><a href="#">Movimientos</a>
   <li><a href="#">Perfil</a></li>
+  <li><a href="usuarios.html">Usuarios</a>
   </li>
   <li><a href="login.html">Cerrar Sesion</a></li>
 </ul>

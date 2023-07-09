@@ -1,383 +1,259 @@
-*,
-*::before,
-*::after{
+/* falta acomodar el navbar */
+* {
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
     margin: 0;
     padding: 0;
-}
-body{
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
-  background-image: url('../img/intel3.webp');
-  background-size: cover;
-  background-position: center;
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-}
-/*body {
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-
-}
-*/
-
-/* Navbar Login */
-
-.navbarLogin,.Intel{
-  height: 100vh;
-  width: 100%;
-  background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("../img/intel3.webp");
-  background-size: cover;
-  background-position: center;
-
+    box-sizing: border-box;
 }
 
-nav{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 40px;
-  padding-left: 10%;
-  padding-right: 10%;
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/intel3.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #e9f4fb;
 }
 
-.Logo{
-  color: #e9f4fb;
-  font-size: 50px;
 
-}
-span{
-  color: #2691d9;
-}
-
-nav ul li{
-  list-style-type: none;
-  display: inline-block;
-  padding: 10px;
-}
-nav ul li a{
-  color: #e9f4fb;
-  text-decoration: none;
-  font-weight: bold;
-}
-nav ul li a:hover{
-  color: #104d94;
-  transition: .3s;
-}
-
-.BtnNav{
-  border: none;
-  background: #104d94;
-  padding: 12px,30px;
-  border-radius: 30px;
-  color: #e9f4fb;
-  font-weight: bold;
-  font-size: 15px;
-  transition: .4s;
-}
 
 /* boton Intel */
 
-button,button::after {
-  padding: 10px 50px;
-  font-size: 20px;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  background-color: transparent;
-  position: relative;
+button,
+button::after {
+    padding: 10px 50px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: transparent;
+    position: relative;
 }
 
 button::after {
-  --move1: inset(50% 50% 50% 50%);
-  --move2: inset(31% 0 40% 0);
-  --move3: inset(39% 0 15% 0);
-  --move4: inset(45% 0 40% 0);
-  --move5: inset(45% 0 6% 0);
-  --move6: inset(14% 0 61% 0);
-  clip-path: var(--move1);
-  content: 'INTEL';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: block;
+    --move1: inset(50% 50% 50% 50%);
+    --move2: inset(31% 0 40% 0);
+    --move3: inset(39% 0 15% 0);
+    --move4: inset(45% 0 40% 0);
+    --move5: inset(45% 0 6% 0);
+    --move6: inset(14% 0 61% 0);
+    clip-path: var(--move1);
+    content: 'INTEL';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
 }
 
 button:hover::after {
-  animation: glitch_4011 1s;
-  text-shadow: 10 10px 10px black;
-  animation-timing-function: steps(2, end);
-  text-shadow: -3px -3px 0px #104d94, 3px 3px 0px #4995cf;
-  background-color: transparent;
-  border: 3px solid #104d94;
+    animation: glitch_4011 1s;
+    text-shadow: 10 10px 10px rgb(255, 255, 255);
+    animation-timing-function: steps(2, end);
+    text-shadow: -3px -3px 0px #104d94, 3px 3px 0px #4995cf;
+    background-color: transparent;
+    border: 3px solid #104d94;
 }
 
 button:hover {
-  text-shadow: -1px -1px 0px #104d94, 1px 1px 0px #4995cf;
+    text-shadow: -1px -1px 0px #104d94, 1px 1px 0px #4995cf;
 }
 
 button:hover {
-  background-color: transparent;
-  border: 1px solid #104d94;
-  box-shadow: 0px 10px 10px -10px #104d94;
+    background-color: transparent;
+    border: 1px solid #104d94;
+    box-shadow: 0px 10px 10px -10px #104d94;
 }
 
 @keyframes glitch_4011 {
-  0% {
-    clip-path: var(--move1);
-    transform: translate(0px,-10px);
-  }
+    0% {
+        clip-path: var(--move1);
+        transform: translate(0px, -10px);
+    }
 
-  10% {
-    clip-path: var(--move2);
-    transform: translate(-10px,10px);
-  }
+    10% {
+        clip-path: var(--move2);
+        transform: translate(-10px, 10px);
+    }
 
-  20% {
-    clip-path: var(--move3);
-    transform: translate(10px,0px);
-  }
+    20% {
+        clip-path: var(--move3);
+        transform: translate(10px, 0px);
+    }
 
-  30% {
-    clip-path: var(--move4);
-    transform: translate(-10px,10px);
-  }
+    30% {
+        clip-path: var(--move4);
+        transform: translate(-10px, 10px);
+    }
 
-  40% {
-    clip-path: var(--move5);
-    transform: translate(10px,-10px);
-  }
+    40% {
+        clip-path: var(--move5);
+        transform: translate(10px, -10px);
+    }
 
-  50% {
-    clip-path: var(--move6);
-    transform: translate(-10px,10px);
-  }
+    50% {
+        clip-path: var(--move6);
+        transform: translate(-10px, 10px);
+    }
 
-  60% {
-    clip-path: var(--move1);
-    transform: translate(10px,-10px);
-  }
+    60% {
+        clip-path: var(--move1);
+        transform: translate(10px, -10px);
+    }
 
-  70% {
-    clip-path: var(--move3);
-    transform: translate(-10px,10px);
-  }
+    70% {
+        clip-path: var(--move3);
+        transform: translate(-10px, 10px);
+    }
 
-  80% {
-    clip-path: var(--move2);
-    transform: translate(10px,-10px);
-  }
+    80% {
+        clip-path: var(--move2);
+        transform: translate(10px, -10px);
+    }
 
-  90% {
-    clip-path: var(--move4);
-    transform: translate(-10px,10px);
-  }
+    90% {
+        clip-path: var(--move4);
+        transform: translate(-10px, 10px);
+    }
 
-  100% {
-    clip-path: var(--move1);
-    transform: translate(0);
-  }
+    100% {
+        clip-path: var(--move1);
+        transform: translate(0);
+    }
 }
 
-/* Inicio de la caja del login */
-
-.centro {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px;
-  background: #333333;
-  border-radius: 10px;
-
+.container-from {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: space-around;
+    transition: all .5s ease-out;
 }
 
-.centro h1 {
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  color: floralwhite;
-  text-align: center;
-  padding: 0 0 10px 0;
-  border-bottom: 1px solid floralwhite;
-
+.welcome-back {
+    display: flex;
+    align-items: center;
+    text-align: center;
 }
 
-.centro form {
-  padding: 0 40px;
-  box-sizing: border-box;
+.messange {
+    padding: 1rem;
 }
 
-form .Campo_txt {
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  position: relative;
-  border-bottom: 2px solid floralwhite;
-  margin: 30px 0;
+.messange h2 {
+    font-size: 1.7rem;
+    padding: 1rem 0;
 }
 
-.Campo_txt input {
-  width: 100%;
-  padding: 0 5px;
-  height: 40px;
-  font-size: 16px;
-  border: none;
-  background: none;
-  outline: none;
+.messange button {
+    padding: 1rem;
+    font-weight: 400;
+    background-color: #2691d9;
+    border-radius: 2rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: .9rem;
+    margin-top: 2rem;
+    transition: all .3s ease-in;
+    color: #e9f4fb;
 }
 
-.Campo_txt label {
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  color: floralwhite;
-  transform: translateY(-50%);
-  font-size: 16px;
-  pointer-events: none;
-  transition: .5s;
+.messange button:hover {
+    background-color: #2691d9;
 }
 
-.Campo_txt span::before {
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  content: '';
-  position: absolute;
-  top: 40px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: #2691d9;
-  transition: .5s;
+.formulario {
+    width: 435px;
+    padding: 7rem;
+    margin: 1rem;
+    background-color: rgb(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.Campo_txt input:focus~label,
-.Campo_txt input:valid~label {
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  top: -5px;
-  color: #2691d9;
+.create-account {
+    padding: 2.7rem 0;
+    font-size: 1.7rem;
 }
 
-.Campo_txt input:focus~span::before,
-.Campo_txt input:valid~span::before {
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  width: 100%;
-
+.iconos {
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
 }
 
-.aprobar {
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  margin: -5px 0 20px 5px;
-  color: floralwhite;
-  cursor: pointer;
+.border-icon {
+    height: 20px;
+    width: 20 px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border: solid thin #e9f4fb;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    transition: all .3s ease-in;
 }
 
-.aprobar:hover {
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  text-decoration: underline;
+.border-icon:hover {
+    background-color: #2691d9;
+    cursor: pointer;
 }
 
-input[type="submit"] {
-  width: 100%;
-  height: 50px;
-  border: 1px solid;
-  background: #104d94;
-  border-radius: 25px;
-  font-size: 18px;
-  color: #e9f4fb;
-  font-weight: 700;
-  cursor: pointer;
-  outline: none;
+.cuenta-Gratis {
+    padding: 2rem 0;
 }
 
-input[type="submit"]:hover {
-  border-color: #2691d9;
-  transition: .5s;
-
+.parrafo-Bienvenida{
+    margin: 40px;
 }
 
-.Registrarse {
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  margin: 30px 0;
-  text-align: center;
-  font-size: 16px;
-  color: floralwhite;
+.formulario input {
+    width: 70%;
+    display: block;
+    margin: auto;
+    margin-bottom: 2rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: #e9f4fb thin solid;
+    text-align: center;
+    outline: none;
+    padding: .2rem 0;
+    font-size: .9rem;
+    color: #e9f4fb;
 }
 
-.Registrarse a {
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  color: #2691d9;
-  text-decoration: none;
+.formulario input[type="button"] {
+    width: 60%;
+    margin: auto;
+    border: solid thin #e9f4fb;
+    padding: .7rem;
+    border-radius: 2rem;
+    background-color: #e9f4fb;
+    font-weight: 600;
+    margin-top: .8rem;
+    cursor: pointer;
+    color: #333333;
 }
 
-.Registrarse a:hover {
-  
-  text-decoration: underline;
+/* css de Registrarse */
+.sign-in {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
 }
 
-
-/* Inicio estilo footer*/
-footer {
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
-  background-color: #333333;
-  color: white;
-  padding: 30px 0;
-  text-align: center;
+.sign-in.active {
+    opacity: 1;
+    visibility: visible;
 }
 
-footer .footer-info {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+.sign-up.active {
+    opacity: 0;
+    visibility: hidden;
 }
-
-footer .footer-info h3 {
-  margin-bottom: 10px;
-  font-size: 18px;
-}
-
-footer .contact-info p {
-  margin-bottom: 8px;
-  font-size: 14px;
-}
-
-footer .social-media .social-icons a {
-  display: inline-block;
-  margin-right: 10px;
-  transition: transform 0.3s ease;
-}
-
-footer .social-media .social-icons a:hover {
-  transform: scale(1.1);
-}
-
-footer .social-media .social-icons img {
-  width: 24px;
-  height: 24px;
-}
-
-footer p {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-footer .contact-info, footer .social-media {
-  flex-basis: 50%;
-  max-width: 50%;
-}
-
-@media only screen and (max-width: 768px) {
-  .footer .footer-info {
-    flex-direction: column;
-  }
-  
-  footer .contact-info, footer .social-media {
-    flex-basis: 100%;
-    max-width: 100%;
-    margin-bottom: 20px;
-  }
-}
-/* Fin estilo footer*/

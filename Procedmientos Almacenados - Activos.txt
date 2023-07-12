@@ -56,7 +56,24 @@ BEGIN
         Serie = p_Serie;
 END
 *******************************************************************
-
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Nuevo_Activo`(
+    IN p_Serie VARCHAR(255),
+    IN p_Marca VARCHAR(255),
+    IN p_Tag VARCHAR(255),
+    IN p_PO VARCHAR(255),
+    IN p_RAM VARCHAR(255),
+    IN p_IdCategoria INT,
+    IN p_IdEntidad INT,
+    IN p_IdEstado INT,
+    IN p_IdEmpleado INT
+)
+BEGIN
+    Insert into assetsdb.activo (
+    Serie, Marca, Tag, PO, RAM, IdCategoria, IdEntidad,IdEstado, IdEmpleado
+    )
+	Values
+        (p_Serie, p_Marca, p_Tag, p_PO, p_RAM, p_IdCategoria, p_IdEntidad, p_IdEstado, p_IdEmpleado);
+END
 *******************************************************************
 
 *******************************************************************

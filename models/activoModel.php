@@ -37,5 +37,38 @@ class ActivoModel {
         $stmt->close();
         return $data;
     }
-}
+
+
+                 //Agregar + activo
+    public function EliminarActivo($id){
+        $sql = "CALL Eliminar_ActivoId(" . $id . ")";
+        $this->conn->query($sql);
+      }
+      public function EliminarActivoSerie($serie){
+        $sql = "CALL Eliminar_ActivoSerie(" . $serie . ")";
+        $this->conn->query($sql);
+      }
+
+        public function ModificarActivoSerie($Marca,$Tag,$PO,$RAM,
+        $IdCategoria,$IdEntidad,$IdEstado,$IdEmpleado){
+            
+            $marca = $Marca
+            $tag = $Tag
+            $po =$PO
+            $ram = $RAM
+            $idcategoria = $IdCategoria
+            $identidad = $IdEntidad
+            $idestado = $IdEstado
+            $idempleado = $IdEmpleado
+
+            $sql = "Modificar_ActivoSerie
+            ('" . $Marca . "','" . $Tag . "',
+            " . $PO . "," . $RAM . "," . $IdCategoria . ",
+            " . $IdEntidad . "," . $IdCategoria . ",
+            " . $IdEstado . "," . $IdEmpleado . ")";
+            $this->conn->query($sql);
+        }
+      
+
+    }
 ?>

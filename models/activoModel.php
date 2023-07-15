@@ -17,7 +17,9 @@ class ActivoModel {
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
             }
+
         }
+
         return $data;
     }
 
@@ -32,18 +34,30 @@ class ActivoModel {
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
             }
+
         }
 
         $stmt->close();
         return $data;
     }
 
+    public function NuevoActivo($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad,$IdEstado, $IdEmpleado){  
+        $serie = $Serie
+         $marca = $Marca
+          $tag = $Tag
+           $po = $Po
+            $ram = $RAM
+             $idcategoria = $IdCategoria
+              $identidad = $IdEntidad
+              $idestado = $IdEstado
+        $idempleado = 
+   }
 
-                 //Agregar + activo
     public function EliminarActivo($id){
         $sql = "CALL Eliminar_ActivoId(" . $id . ")";
         $this->conn->query($sql);
       }
+
       public function EliminarActivoSerie($serie){
         $sql = "CALL Eliminar_ActivoSerie(" . $serie . ")";
         $this->conn->query($sql);
@@ -51,7 +65,6 @@ class ActivoModel {
 
         public function ModificarActivoSerie($Marca,$Tag,$PO,$RAM,
         $IdCategoria,$IdEntidad,$IdEstado,$IdEmpleado){
-            
             $marca = $Marca
             $tag = $Tag
             $po =$PO
@@ -67,8 +80,10 @@ class ActivoModel {
             " . $IdEntidad . "," . $IdCategoria . ",
             " . $IdEstado . "," . $IdEmpleado . ")";
             $this->conn->query($sql);
+            
         }
-      
 
     }
+
 ?>
+

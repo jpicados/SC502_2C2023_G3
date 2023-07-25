@@ -1,116 +1,116 @@
 *,
 *::before,
-*::after{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
+body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
   font-family: Arial, sans-serif;
   text-decoration: none;
 }
-.employees_box{
-    margin-left: 40px;
+.employees_box {
+  margin-left: 40px;
 }
-.table_box{
-    margin-top: 20px;
-
-    
-
+.table_box {
+  margin-top: 20px;
 }
-.table_box_d{
-    display: flex;
-    justify-content: center;
-    
-    
+.table_box_d {
+  display: flex;
+  justify-content: center;
 }
-.table_t{
-    border-collapse: collapse;
-    width: 25rem;
-    
-   
+.table_t {
+  border-collapse: collapse;
+  width: 25rem;
 }
-.table_head{
-    background-color: rgb(0, 160, 240);
-    padding-bottom: 12px;
-    padding-top: 12px;
-    text-align: left;
-    color: #ffffff;
+.table_head {
+  background-color: rgb(0, 160, 240);
+  padding-bottom: 12px;
+  padding-top: 12px;
+  text-align: left;
+  color: #ffffff;
 }
-.table_t tr{
-    text-align: center;
-    color: rgb(255, 255, 255) ;
-    background-color: rgb(16, 77, 148);
-    
+.table_t tr {
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background-color: rgb(16, 77, 148);
 }
-.table_t tr:nth-child(even){
-    background-color: rgb(166, 193, 222);
-    color: black;
+.table_t tr:nth-child(even) {
+  background-color: rgb(166, 193, 222);
+  color: black;
 }
-.table_t tr:nth-child(even) .button_delete{
-    
-    background-color: rgb(16, 77, 148);
+.table_t tr:nth-child(even) .button_delete {
+  background-color: rgb(16, 77, 148);
 }
-.table_t tr .button_delete{
-    background-color: rgb(166, 193, 222);
+.table_t tr .button_delete {
+  background-color: rgb(166, 193, 222);
 }
-.table_t tr .button_delete i{
-    color:rgb(16, 77, 148); ;
+.table_t tr .button_delete i {
+  color: rgb(16, 77, 148);
 }
-.table_t tr:nth-child(even) .button_delete i{
-    color:rgb(255, 255, 255); ;
+.table_t tr:nth-child(even) .button_delete i {
+  color: rgb(255, 255, 255);
 }
 
-.table_head,.table_t td ,.table_t th{
-    border: 0.001mm solid #ffffff69;
-    
-    padding: 23px;
+.table_head,
+.table_t td,
+.table_t th {
+  border: 0.001mm solid #ffffff69;
 
+  padding: 23px;
 }
 
 /*Estilizado botones edicion*/
-.button_edit{
-    background-color: rgb(0, 160, 240);
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    padding-left: 13px;
-    padding-right: 13px;
+.button_edit {
+  background-color: rgb(0, 160, 240);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  padding-left: 13px;
+  padding-right: 13px;
 }
-.button_edit:hover{
-    background-color: rgba(0, 160, 240,0.800);
-    
+.button_edit:hover {
+  background-color: rgba(0, 160, 240, 0.8);
 }
-.button_delete{
-    background-color: rgb(16, 77, 148);
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    padding-left: 13px;
-    padding-right: 13px;
+.button_delete {
+  background-color: rgb(16, 77, 148);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  padding-left: 13px;
+  padding-right: 13px;
 }
-.button_delete:hover{
-    background-color: rgba(16, 77, 148,0.800);
-    
+.button_delete:hover {
+  background-color: rgba(16, 77, 148, 0.8);
 }
-.button_add_box{
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+.button_add_box {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
-.button_add{
-    background-color: rgb(16, 77, 148);
-    border: none;
-    border-radius: 7px;
-    padding: 17px;
-    padding-left: 17px;
-    padding-right: 17px;
-    color: #ffffff;
-    font-weight: 700;
+.button_add {
+  background-color: rgb(16, 77, 148);
+  border: none;
+  border-radius: 7px;
+  padding: 17px;
+  padding-left: 17px;
+  padding-right: 17px;
+  color: #ffffff;
+  font-weight: 700;
 }
-.button_icon{
-    color: #ffffff;
+.button_icon {
+  color: #ffffff;
+}
+#searchFormContainer {
+  margin-bottom: 20px;
+}
+#activoDetails {
+  display: flex;
+  flex-direction: column;
+}
+.table_box {
+  margin-bottom: 10px;
 }

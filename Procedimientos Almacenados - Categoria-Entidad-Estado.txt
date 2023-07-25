@@ -3,9 +3,15 @@ BEGIN
 	select * from categoria;
 END
 *******************************************************************
-
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Listar_Entidad`()
+BEGIN
+	select * from entidad;
+END
 *******************************************************************
-
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Listar_Estado`()
+BEGIN
+	select * from estado;
+END
 *******************************************************************
 
 *******************************************************************

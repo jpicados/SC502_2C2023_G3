@@ -6,12 +6,12 @@ BEGIN
 		   c.IdCategoria, c.NombreCategoria,
 		   e.IdEntidad, e.NumeroEntidad,
 		   es.IdEstado, es._Estado,
-		   em.IdEmpleado, em.NombreEmpleado, em.CorreoEmpleado, em.WWID
+		   em.WWID, em.NombreEmpleado, em.CorreoEmpleado
 	FROM assetsdb.activo a
 	JOIN assetsdb.categoria c ON a.IdCategoria = c.IdCategoria
 	JOIN assetsdb.entidad e ON a.IdEntidad = e.IdEntidad
 	JOIN assetsdb.estado es ON a.IdEstado = es.IdEstado
-	JOIN assetsdb.empleado em ON a.IdEmpleado = em.IdEmpleado;
+	JOIN assetsdb.empleado em ON a.WWID = em.WWID;
 
 END
 *******************************************************************
@@ -39,7 +39,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Modificar_ActivoSerie`(
     IN p_IdCategoria INT,
     IN p_IdEntidad INT,
     IN p_IdEstado INT,
-    IN p_IdEmpleado INT
+    IN p_WWID INT
 )
 BEGIN
     UPDATE assetsdb.activo
@@ -51,7 +51,7 @@ BEGIN
         IdCategoria = p_IdCategoria,
         IdEntidad = p_IdEntidad,
         IdEstado = p_IdEstado,
-        IdEmpleado = p_IdEmpleado
+        WWID = WWID
     WHERE
         Serie = p_Serie;
 END
@@ -65,14 +65,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Nuevo_Activo`(
     IN p_IdCategoria INT,
     IN p_IdEntidad INT,
     IN p_IdEstado INT,
-    IN p_IdEmpleado INT
+    IN p_WWID INT
 )
 BEGIN
     Insert into assetsdb.activo (
-    Serie, Marca, Tag, PO, RAM, IdCategoria, IdEntidad,IdEstado, IdEmpleado
+    Serie, Marca, Tag, PO, RAM, IdCategoria, IdEntidad,IdEstado, WWID
     )
 	Values
-        (p_Serie, p_Marca, p_Tag, p_PO, p_RAM, p_IdCategoria, p_IdEntidad, p_IdEstado, p_IdEmpleado);
+        (p_Serie, p_Marca, p_Tag, p_PO, p_RAM, p_IdCategoria, p_IdEntidad, p_IdEstado, p_WWID);
 END
 *******************************************************************
 

@@ -12,15 +12,15 @@ class ActivoModel {
         $sql = "CALL Listar_Activos()";
         $result = $this->conn->query($sql);
 
-        $data = [];
+        $activos = [];
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
+                $activos[] = $row;
             }
 
         }
 
-        return $data;
+        return $activos;
     }
 
     public function buscarActivo($codigoActivo) {
@@ -41,47 +41,54 @@ class ActivoModel {
         return $data;
     }
 
-    public function NuevoActivo($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad,$IdEstado, $IdEmpleado){  
-        $serie = $Serie
-         $marca = $Marca
-          $tag = $Tag
-           $po = $Po
-            $ram = $RAM
-             $idcategoria = $IdCategoria
-              $identidad = $IdEntidad
-              $idestado = $IdEstado
-        $idempleado = 
-   }
-
-    public function EliminarActivo($id){
-        $sql = "CALL Eliminar_ActivoId(" . $id . ")";
-        $this->conn->query($sql);
-      }
-
-      public function EliminarActivoSerie($serie){
-        $sql = "CALL Eliminar_ActivoSerie(" . $serie . ")";
-        $this->conn->query($sql);
-      }
-
-        public function ModificarActivoSerie($Marca,$Tag,$PO,$RAM,
-        $IdCategoria,$IdEntidad,$IdEstado,$IdEmpleado){
-            $marca = $Marca
-            $tag = $Tag
-            $po =$PO
-            $ram = $RAM
-            $idcategoria = $IdCategoria
-            $identidad = $IdEntidad
-            $idestado = $IdEstado
-            $idempleado = $IdEmpleado
-
-            $sql = "Modificar_ActivoSerie
-            ('" . $Marca . "','" . $Tag . "',
-            " . $PO . "," . $RAM . "," . $IdCategoria . ",
-            " . $IdEntidad . "," . $IdCategoria . ",
-            " . $IdEstado . "," . $IdEmpleado . ")";
-            $this->conn->query($sql);
-            
+    public function NuevoActivo($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad, $IdEstado, $WWID) {
+        $sql = "CALL Nuevo_Activo(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("sssssiisi", $Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad, $IdEstado, $WWID);
+    
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true;
+        } else {
+            $error = $stmt->error;
+            $stmt->close();
+            error_log("Error executing stored procedure: " . $error);
+            return false;
         }
+    }
+
+    public function EliminarActivo($serie) {
+        $sql = "CALL Eliminar_ActivoSerie(?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $serie);
+    
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true;
+        } else {
+            $error = $stmt->error;
+            $stmt->close();
+            error_log("Error executing stored procedure: " . $error);
+            return false;
+        }
+    }
+
+      
+      public function ModificarActivoSerie($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad, $IdEstado, $WWID) {  
+        $sql = "CALL Modificar_ActivoSerie(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("sssssiisi", $Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad, $IdEstado, $WWID);
+    
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true;
+        } else {
+            $error = $stmt->error;
+            $stmt->close();
+            error_log("Error executing stored procedure: " . $error);
+            return false;
+        }
+    }
 
     }
 

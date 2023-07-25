@@ -11,66 +11,121 @@ class ActivoController {
     }
 
     public function getActivos() {
-        $data = $this->activoModel->listarActivos();
+        $activos = $this->activoModel->listarActivos();
         header("Content-Type: application/json");
-        echo json_encode($data);
+        echo json_encode($activos);
     
     }
 
     public function buscarActivo($serie) {
-        $data = $this->activoModel->buscarActivo($serie);
+        $activo = $this->activoModel->buscarActivo($serie);
         header("Content-Type: application/json");
-        echo json_encode($data);
+        echo json_encode($activo);
     
     }
 
-    /* Eliminar activo cambiar a ID?*/
+    
+
     public function EliminarActivo($serie) {
-        $this->ActivoModel->EliminarActivo($serie);
-        header("Content-Type: application/json");
-        echo json_encode(['message' => 'Activo eliminado con éxito']);
-    
-    }
-
-public function EliminarActivoSerie($serie) {
-        $this->ActivoModel->EliminarActivoSerie($serie);
+        $this->activoModel->EliminarActivo($serie);
         header("Content-Type: application/json");
         echo json_encode(['message' => 'Activo Serie eliminado con éxito']);
     
     }
 /*Revisar */
-    public function NuevoActivo($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad,$IdEstado, $IdEmpleado) {
-        $this->ActivoModel->NuevoActivo($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad,$IdEstado, $IdEmpleado);
-        header("Content-Type: application/json");
-        $data = $this->empleadoModel->listarActivos();
-        echo json_encode($data);
-
+public function NuevoActivo($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad, $IdEstado, $WWID) {
+    $this->activoModel->NuevoActivo($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad, $IdEstado, $WWID);
+    header("Content-Type: application/json");
+    echo json_encode(['message' => 'Asset added successfully']);
 }
 
-public function ModificarActivoSerie($id, $NombreEmpleado, $CorreoEmpleado, $WWID) {
-    if ($this->empleadoModel->ModificarActivoSerie($id, $NombreEmpleado, $CorreoEmpleado, $WWID)) {
-        $data = $this->empleadoModel->listarActivos($id);
-        header("Content-Type: application/json");
-        echo json_encode($data);
+public function modificarActivo($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad, $IdEstado, $WWID) {
+    $success = $this->activoModel->ModificarActivoSerie($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad, $IdEstado, $WWID);
+    if ($success) {
+        // Modification was successful
+        http_response_code(200);
+        echo json_encode(['message' => 'Asset modified successfully']);
     } else {
-        echo json_encode(['error' => 'fallo al modificiar el activo serie']);
+        // Modification failed
+        http_response_code(500);
+        echo json_encode(['error' => 'Failed to modify asset']);
     }
 }
-
+}
 // Create an instance of the ActivoModel and ActivoController
 $model = new ActivoModel($conn);
 $controller = new ActivoController($model);
 
 // Determine the action to perform based on the 'action' query parameter
-$action = $_GET['action'] ?? '';
+$action = isset($_GET['action']) ? $_GET['action'] : '';
 switch ($action) {
-    case 'get_activos':
+    case 'getActivos':
         $controller->getActivos();
         break;
     case 'buscar_activo':
         $serie = $_GET['serie'] ?? '';
         $controller->buscarActivo($serie);
         break;
+    case 'EliminarActivo':
+        $serie = $_GET['serie'] ?? '';
+        $controller->EliminarActivo($serie);
+    break;
+case 'modificar_activo':
+            $postData = json_decode(file_get_contents('php://input'), true);
+            if (
+                isset($postData['Serie']) &&
+                isset($postData['Marca']) &&
+                isset($postData['Tag']) &&
+                isset($postData['PO']) &&
+                isset($postData['RAM']) &&
+                isset($postData['IdCategoria']) &&
+                isset($postData['IdEntidad']) &&
+                isset($postData['IdEstado']) &&
+                isset($postData['WWID'])
+            ) {
+                $serie = $postData['Serie'];
+                $marca = $postData['Marca'];
+                $tag = $postData['Tag'];
+                $po = $postData['PO'];
+                $ram = $postData['RAM'];
+                $idCategoria = $postData['IdCategoria'];
+                $idEntidad = $postData['IdEntidad'];
+                $idEstado = $postData['IdEstado'];
+                $WWID = $postData['WWID'];
+                $controller->modificarActivo($serie, $marca, $tag, $po, $ram, $idCategoria, $idEntidad, $idEstado, $WWID);
+            } else {
+                echo json_encode(['error' => 'Invalid parameters for modifying asset']);
+            }
+            break;
+        
+            case 'nuevo_activo':
+                $postData = json_decode(file_get_contents('php://input'), true);
+                if (
+                    isset($postData['Serie']) &&
+                    isset($postData['Marca']) &&
+                    isset($postData['Tag']) &&
+                    isset($postData['PO']) &&
+                    isset($postData['RAM']) &&
+                    isset($postData['IdCategoria']) &&
+                    isset($postData['IdEntidad']) &&
+                    isset($postData['IdEstado']) &&
+                    isset($postData['WWID'])
+                ) {
+                    $serie = $postData['Serie'];
+                    $marca = $postData['Marca'];
+                    $tag = $postData['Tag'];
+                    $po = $postData['PO'];
+                    $ram = $postData['RAM'];
+                    $idCategoria = $postData['IdCategoria'];
+                    $idEntidad = $postData['IdEntidad'];
+                    $idEstado = $postData['IdEstado'];
+                    $WWID = $postData['WWID'];
+                    $controller->NuevoActivo($serie, $marca, $tag, $po, $ram, $idCategoria, $idEntidad, $idEstado, $WWID);
+                } else {
+                    http_response_code(400);
+                    echo json_encode(['error' => 'Invalid parameters for adding asset']);
+                }
+                break;
     default:
         // Invalid action
         if (!empty($action) && method_exists($controller, $action)) {
@@ -81,5 +136,5 @@ switch ($action) {
         }
         break;
 }
-}
+
 ?>

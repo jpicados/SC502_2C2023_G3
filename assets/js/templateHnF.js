@@ -9,17 +9,8 @@ header.innerHTML = `
 <ul>
   <li><a href="index.html">Inicio</a></li>
   <li><a href="empleados.html">Empleados</a></li>
-  <li><a href="veractivos.html">Activos</a>
-    <ul>
-      <li>
-        <a href="agregaractivo.html">Agregar activos</a>
-          </form>
-        </div>
-      </li>
-      <li><a href="veractivos.html">Ver activos </a></li>
-      <li><a href="buscaractivo.html">Buscar</a></li>
-    </ul>
-  </li>
+  <li><a href="Activos.html">Listar Activos</a>
+  <li><a href="ActivoForm.html">Administrar Activos</a>
   <li><a href="#">Movimientos</a>
   <li><a href="#">Perfil</a></li>
   <li><a href="usuarios.html">Usuarios</a>

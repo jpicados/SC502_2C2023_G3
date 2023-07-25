@@ -7,42 +7,40 @@ SELECT * FROM assetsdb.empleado;
 END
 *******************************************************************
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Nuevo_Empleado`(
+IN p_WWID INT,
 IN p_Nombre VARCHAR(50),
-IN p_Correo VARCHAR(50),
-IN p_WWID INT)
+IN p_Correo VARCHAR(50)
+)
 BEGIN
 	INSERT INTO empleado(
+    WWID,
     NombreEmpleado,
-    CorreoEmpleado,
-    WWID
+    CorreoEmpleado
     ) 
     VALUES (
+    p_WWID,
     p_Nombre,
-    p_Correo,
-    p_WWID
+    p_Correo
     );
 END
-
 *******************************************************************
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Editar_Empleado`(
 IN p_Nombre VARCHAR(50)
-, IN p_Correo VARCHAR(50),
-IN p_WWID INT,
-IN p_Id INT)
+,IN p_Correo VARCHAR(50),
+IN p_WWID INT)
 BEGIN
 	UPDATE empleado
     SET 
     NombreEmpleado = p_Nombre,
-    CorreoEmpleado = p_Correo,
-    WWID = p_WWID
-    WHERE IdEmpleado = p_Id;
+    CorreoEmpleado = p_Correo
+    WHERE WWID = p_WWID;
 END
 *******************************************************************
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Eliminar_Empleado`(
-IN p_Id INT)
+IN p_WWID INT)
 BEGIN
 	DELETE FROM empleado
-    WHERE IdEmpleado = p_Id;
+    WHERE WWID = p_WWID;
 END
 *******************************************************************
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Buscar_EmpleadoWWID`(

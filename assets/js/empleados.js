@@ -29,30 +29,30 @@ function item(tabla, empleado) {
   tdId.setAttribute("name", "id");
   var tdNombre = document.createElement("td");
   var tdCorreo = document.createElement("td");
-  var tdWWID = document.createElement("td");
+  //var tdWWID = document.createElement("td");
   tdNombre.setAttribute("class", "empleado"); // Colocamos los atributos empleado para obtener su valor en el edit
   tdCorreo.setAttribute("class", "empleado");
-  tdWWID.setAttribute("class", "empleado");
+  //tdWWID.setAttribute("class", "empleado");
 
   // Se crean los botones que van dentro de la tabla
   btnModificar = Boton(
     "fa-solid fa-user-pen button_icon",
     "button_edit",
-    `${empleado.IdEmpleado}`
+    `${empleado.WWID}`
   );
   btnEliminar = Boton(
     "fa-solid fa-user-minus button_icon",
     "button_delete",
-    `${empleado.IdEmpleado}`
+    `${empleado.WWID}`
   );
-  tdId.textContent = `${empleado.IdEmpleado}`;
-  tr.setAttribute("id", `${empleado.IdEmpleado}`);
+  tdId.textContent = `${empleado.WWID}`;
+  tr.setAttribute("id", `${empleado.WWID}`);
   tdNombre.textContent = `${empleado.NombreEmpleado}`;
   tdCorreo.textContent = `${empleado.CorreoEmpleado}`;
-  tdWWID.textContent = `${empleado.WWID}`;
+  //tdWWID.textContent = `${empleado.WWID}`;
   tabla
     .appendChild(tr)
-    .append(tdId, tdNombre, tdCorreo, tdWWID, btnModificar, btnEliminar);
+    .append(tdId, tdNombre, tdCorreo, btnModificar, btnEliminar);
   return tabla;
 }
 
@@ -97,10 +97,12 @@ async function enviarDatos(Nombre, Correo, WWIDe) {
     );
     var empleados = await respuesta.json();
     var tabla = document.getElementById("empleados");
-    respuestaEmpleado = empleados[empleados.length - 1];
-    item(tabla, respuestaEmpleado);
-    obtener(".button_delete");
-    obtener(".button_edit");
+    tabla.remove();
+    tabla = document.createElement("tbody");
+    tabla.setAttribute("id", "empleados");
+    var table = document.querySelector(".table_t");
+    table.appendChild(tabla);
+    getTabla();
   } catch (error) {
     console.error("Error:", error);
   }
@@ -124,6 +126,7 @@ function registroEmpleado() {
       const wwid = Swal.getPopup().querySelector("#WWID").value;
       if (nombre && correo && wwid) {
         enviarDatos(nombre, correo, wwid);
+        
         Swal.fire({
           ...swalConfig,
           icon: "success",
@@ -168,7 +171,7 @@ async function editarId(id, nombre, correo, wwid) {
   const wwidElemento = document.createElement("input");
   const idElemento = document.createElement("input");
   idElemento.name = "editId";
-  idElemento.value = id;
+  idElemento.value = wwid;
   nombreElemento.name = "editNombre";
   nombreElemento.value = nombre;
   correoElemento.name = "editCorreo";
@@ -207,6 +210,7 @@ async function eliminarId(id) {
   const inputElemento = document.createElement("input");
   inputElemento.name = "idEmpleado";
   inputElemento.value = id;
+  console.log(id);
   formElemento.appendChild(inputElemento);
   const datos = new FormData(formElemento);
   try {

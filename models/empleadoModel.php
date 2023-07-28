@@ -33,7 +33,7 @@ class empleadoModel {
       $Id=$id;
       //se insertan las variables empleado en tabla empleado
       //update empleado set NombreEmpleado="Johan Precioso",CorreoEmpleado="Nose@gmail.com",WWID=122231 where idEmpleado=189;
-      $sql = "CALL Editar_Empleado('" . $nombre . "','" . $correo . "'," . $wwid . "," . $Id . ")";
+      $sql = "CALL Editar_Empleado('" . $nombre . "','" . $correo . "'," . $wwid . ")";
       $this->conn->query($sql);
     }
     public function eliminarEmpleado($id){

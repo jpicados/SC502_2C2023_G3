@@ -7,12 +7,23 @@
     />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href="../assets/styles.css?v=<?php echo(rand()); ?>">
+    <link rel="stylesheet" href="../assets/activoForm.css echo(rand()); ?>">
     <title>Modify Product</title>
   </head>
   <body>
-    <h1>Activo</h1>
+    <header>
+    </header>
 
-    <h1>Buscar Activo</h1>
+    <main class="main">
+      <div class="Tittle">
+        <h1>Activo</h1>
+      </div>
+    
+<div class="buscarActivos">
+  <h1>Buscar Activo</h1>
+</div>
+  
     <div>
       <form id="buscarActivoForm">
         <label for="scannerInput">Scanner Input:</label>
@@ -25,9 +36,10 @@
         <button type="search">Search</button>
       </form>
     </div>
-
+    <div
+    class="detallesActivo">
     <form id="activoform">
-      <h2>Activo Details</h2>
+      <h2>Detalles de Activo</h2>
 
       <input type="hidden" id="activoId" />
 
@@ -58,11 +70,15 @@
       <label for="WWID">WWID:</label>
       <input type="text" id="WWID" name="WWID" />
 
-      <button type="submit" id="saveButton">Save</button>
-      <button type="button" id="newActivoButton">New Activo</button>
-      <button type="button" id="deleteButton">Delete</button>
+      <button type="submit" id="saveButton">Guardar</button>
+      <button type="button" id="newActivoButton">Nuevo Activo</button>
+      <button type="button" id="deleteButton">Borrar</button>
     </form>
-
+  </div>
+    </main>
+<footer>
+</footer>
     <script src="../assets/js/ActivoForm.js"></script>
+    <script src="../assets/js/templateHnF.js"></script>
   </body>
 </html>

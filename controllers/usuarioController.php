@@ -1,4 +1,6 @@
 <?php
+session_start(); // Para lo del inicio de Session 
+
 require_once "../models/usuarioModel.php";
 
 class usuarioController {
@@ -35,6 +37,27 @@ class usuarioController {
         $this->usuarioModel->eliminarUsuario($id);
         header("Content-Type: application/json");
         echo json_encode(['message' => 'User deleted successfully']);
+    }
+
+    public function loginUsuario($CorreoUsuario, $Contrasenna) {
+        $usuario = $this->usuarioModel->getUsuarioByEmail($CorreoUsuario);
+
+        if ($usuario && password_verify($Contrasenna, $usuario['Contrasenna'])) {
+            // Guardar informacion de la session
+            $_SESSION['user_id'] = $usuario['IdUsuario'];
+            $_SESSION['user_name'] = $usuario['NombreUsuario'];
+
+            // Mensaje de si se pudo loggear successfully o no
+            echo json_encode(['message' => 'Login correcto']);
+        } else {
+            echo json_encode(['error' => 'Credenciales incorrectas']);
+        }
+    }
+
+    public function logoutUsuario() {
+        // Para destruir la session
+        session_destroy();
+        echo json_encode(['message' => 'Logout correcto']);
     }
 }
 

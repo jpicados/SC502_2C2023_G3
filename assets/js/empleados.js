@@ -32,7 +32,7 @@ function item(tabla, empleado) {
   //var tdWWID = document.createElement("td");
   tdNombre.setAttribute("class", "empleado"); // Colocamos los atributos empleado para obtener su valor en el edit
   tdCorreo.setAttribute("class", "empleado");
-  //tdWWID.setAttribute("class", "empleado");
+  tdId.setAttribute("class", "empleado");
 
   // Se crean los botones que van dentro de la tabla
   btnModificar = Boton(
@@ -125,7 +125,11 @@ function registroEmpleado() {
       const correo = Swal.getPopup().querySelector("#CorreoEmpleado").value;
       const wwid = Swal.getPopup().querySelector("#WWID").value;
       if (nombre && correo && wwid) {
+        console.log(nombre)
+        console.log(correo)
+        console.log(wwid)
         enviarDatos(nombre, correo, wwid);
+        
         
         Swal.fire({
           ...swalConfig,
@@ -247,10 +251,10 @@ async function eliminarId(id) {
 async function editarEmpleado(id, nombre, correo, wwid) {
   const { value: formValues } = await Swal.fire({
     ...swalConfig, // Spread the Swal configuration
-    title: "Editando a " + nombre,
-    html: `<label for="editNombre"></label><input type="text" id="editNombre" class="swal2-input" placeholder="Nombre" value="${nombre}">
-       <label for="editCorreo"></label><input type="email" id="editCorreo" class="swal2-input" placeholder="Correo" value="${correo}">
-       <label for="editWwid"></label><input type="number" id="editWwid" class="swal2-input" placeholder="WWID" value="${wwid}">`,
+    title: "Editando a " + correo,
+    html: `<label for="editNombre"></label><input type="text" id="editNombre" class="swal2-input" placeholder="WWID" value="${nombre}" readonly>
+       <label for="editCorreo"></label><input type="email" id="editCorreo" class="swal2-input" placeholder="Nombre" value="${correo}">
+       <label for="editWwid"></label><input type="text" id="editWwid" class="swal2-input" placeholder="Correo" value="${wwid}">`,
     showCancelButton: true,
     cancelButtonText: "Cancelar",
     confirmButtonText: "Guardar cambios",
@@ -266,10 +270,17 @@ async function editarEmpleado(id, nombre, correo, wwid) {
     try {
       const { editNombre, editCorreo, editWwid } = formValues;
       const datos = new FormData();
-      datos.append("editId", id);
-      datos.append("editNombre", editNombre);
-      datos.append("editCorreo", editCorreo);
-      datos.append("editWwid", editWwid);
+      datos.append("editId", editNombre);
+      datos.append("editNombre", editCorreo);
+      datos.append("editCorreo", editWwid);
+      datos.append("editWwid", editNombre);
+      console.log(editNombre);//edit wwid
+      console.log(editCorreo);//edit nombre
+      console.log(editWwid+'so');//edit correo
+    
+
+
+
 
       const respuesta = await fetch(
         "../controllers/empleadoController.php?action=editar_empleados",
@@ -282,15 +293,15 @@ async function editarEmpleado(id, nombre, correo, wwid) {
 
       if (respuesta.ok) {
         const empleado = await respuesta.json();
-        const tr = document.getElementById(id);
-        if (tr) {
-          const tdNombre = tr.querySelector(".empleado");
-          const tdCorreo = tdNombre.nextElementSibling;
-          const tdWwid = tdCorreo.nextElementSibling;
-          tdNombre.textContent = empleado.NombreEmpleado;
-          tdCorreo.textContent = empleado.CorreoEmpleado;
-          tdWwid.textContent = empleado.WWID;
-        }
+        var tabla = document.getElementById("empleados");
+        tabla.remove();
+        tabla = document.createElement("tbody");
+        tabla.setAttribute("id", "empleados");
+        var table = document.querySelector(".table_t");
+        table.appendChild(tabla);
+        getTabla();
+
+
         Swal.fire({
           ...swalConfig,
           icon: "success",
@@ -298,7 +309,7 @@ async function editarEmpleado(id, nombre, correo, wwid) {
           showConfirmButton: false,
           timer: 1500,
         }).then(() => {
-          location.reload();
+          
         });
       } else {
         throw new Error("Error en la respuesta de editar empleado");
@@ -329,12 +340,16 @@ function obtener(tipo) {
           if (empleados.getAttribute("id") == id) {
             nombre =
               empleados.getElementsByClassName("empleado")[0].textContent;
+              console.log(nombre);
             correo =
               empleados.getElementsByClassName("empleado")[1].textContent;
-            wwid = empleados.getElementsByClassName("empleado")[2].textContent;
-          }
+           
+              wwid = empleados.getElementsByClassName("empleado")[2].textContent;
+              console.log(correo);
+              console.log(wwid);
+            }
         });
-        editarEmpleado(id, nombre, correo, wwid);
+        editarEmpleado(wwid, nombre, correo, wwid);
       }
     });
   });

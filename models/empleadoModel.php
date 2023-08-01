@@ -23,7 +23,7 @@ class empleadoModel {
       $correo = $CorreoEmpleado;
       $wwid = $WWID;
       //se insertan las variables empleado en tabla empleado
-      $sql = "CALL Nuevo_Empleado('" . $nombre . "','" . $correo . "'," . $wwid . ")";
+      $sql = "CALL Nuevo_Empleado(" . $wwid . ",'" . $nombre . "','". $correo. "')";
       $this->conn->query($sql);
     }
     public function editarEmpleado($id,$NombreEmpleado,$CorreoEmpleado,$WWID) {  

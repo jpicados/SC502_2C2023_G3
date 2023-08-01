@@ -1,7 +1,7 @@
 <?php
 require_once "../models/empleadoModel.php";
 
-class empleadoController {
+class empleadoController{
     private $empleadoModel;
 
     public function __construct($empleadoModel) {

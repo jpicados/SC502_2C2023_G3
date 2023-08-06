@@ -22,6 +22,20 @@ class ActivoModel {
 
         return $activos;
     }
+    public function listarBitacora() {
+        $sql = "CALL Listar_Bitacora()";
+        $result = $this->conn->query($sql);
+
+        $bitacora = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $bitacora[] = $row;
+            }
+
+        }
+
+        return $bitacora;
+    }
 
     public function buscarActivo($codigoActivo) {
         $stmt = $this->conn->prepare("CALL Buscar_ActivoSerie(?)");
@@ -74,7 +88,7 @@ class ActivoModel {
     }
 
       
-      public function ModificarActivoSerie($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad, $IdEstado, $WWID) {  
+    public function ModificarActivoSerie($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad, $IdEstado, $WWID) {  
         $sql = "CALL Modificar_ActivoSerie(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("sssssiisi", $Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad, $IdEstado, $WWID);
@@ -89,6 +103,24 @@ class ActivoModel {
             return false;
         }
     }
+    public function registrarBitacora($accion, $serie, $idUsuario) {
+        $sql = "CALL Registrar_Bitacora(?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+
+        // Bind the parameters
+        $stmt->bind_param('ssi', $accion, $serie, $idUsuario);
+
+        // Execute the query
+        $stmt->execute();
+
+        // Check for errors
+        if ($stmt->error) {
+            return array("status" => "error", "message" => $stmt->error);
+        } else {
+            return array("status" => "success", "message" => "Bitacora record successfully registered");
+        }
+    }
+
 
     }
 

@@ -22,21 +22,43 @@ class usuarioModel {
         $nombre = $NombreUsuario;
         $correo = $CorreoUsuario;
         $contrasenna = $Contrasenna;
-        //se insertan las variables empleado en tabla empleado
-        $sql = "CALL Registrar_Usuario('" . $nombre . "','" . $correo . "'," . $contrasenna . ")";
-        $this->conn->query($sql);
+        $sql = "CALL Registrar_Usuario('" . $nombre . "','" . $correo . "','" . $contrasenna . "')";
+        if (!$this->conn->query($sql)) {
+          echo "Error: " . $this->conn->error;
+          return false;
+        }
+        return true;
       }
-      public function editarUsuario($id,$NombreUsuario,$CorreoUsuario,$Contrasenna) {  
-        $nombre = $NombreUsuario;
-        $correo = $CorreoUsuario;
-        $contrasenna = $Contrasenna;
-        $Id=$id;
-        $sql = "CALL Editar_Usuario('" . $nombre . "','" . $correo . "'," . $contrasenna . "," . $Id . ")";
-        $this->conn->query($sql);
+      public function editarusuario($Tipo, $Id) {  
+        $tipo = (int)$Tipo; 
+        $id = (int)$Id;     
+        $sql = "CALL Editar_Usuario('" . $tipo . "','" . $id . "')";
+        if (!$this->conn->query($sql)) {
+            echo "Error: " . $this->conn->error;
+            return false;
+        }
+        return true;
+    }
+    public function eliminarUsuario($id){
+      $sql = "CALL Eliminar_Usuario(" . $id . ")";
+      if ($this->conn->query($sql) === TRUE) {
+          return true;
+      } else {
+          return false;
       }
-      public function eliminarUsuario($id){
-        $sql = "CALL Eliminar_Usuario(" . $id . ")";
-        $this->conn->query($sql);
-      }
+  }
+      
+      public function loginUsuario($correo, $contrasenna) {
+        $sql = "CALL Login_Usuario('" . $correo . "', '" . $contrasenna . "')";
+        $result = $this->conn->query($sql);
+
+        // Check if the login was successful and return the user data if it was
+        if ($result->num_rows === 1) {
+            $usuario = $result->fetch_assoc();
+            return $usuario;
+        } else {
+            return null; // Return null if login failed
+        }
+    }
     }
 ?>

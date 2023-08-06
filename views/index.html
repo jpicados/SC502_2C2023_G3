@@ -2,14 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      http-equiv="Cache-Control"
-      content="no-cache, no-store, must-revalidate"
-    />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
     <link rel="stylesheet" href="../assets/styles.css" />
     <title>Inicio</title>
   </head>
@@ -18,10 +10,33 @@
       <!--necesario tener las etiquetas para que se inserte el menu del JS-->
     </header>
 
-    <main class="main"></main>
+    <main class="main">
+      <title>"Bienvenido"</title>
+      <h1>Bienvenido</h1>
+      <div id="userinfo">
+        <!-- Display the user information if the user is logged in -->
+        <script>
+          window.onload = async function () {
+            const response = await fetch(
+              "../controllers/loginController.php?action=get_session_data"
+            );
+            const data = await response.json();
+
+            const userInfo = document.getElementById("userinfo");
+
+            if (data.isLoggedIn) {
+              userInfo.innerHTML = `${data.userName}`;
+            } else {
+              userInfo.innerHTML = "You are not logged in.";
+            }
+          };
+        </script>
+      </div>
+    </main>
 
     <footer></footer>
-    <script src="../assets/js/templateHnF.js"></script>
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/footer.js"></script>
     <!-- Template para el header y el footer-->
   </body>
 </html>

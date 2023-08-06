@@ -1,58 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta http-equiv="Expires" content="0">
-    <meta http-equiv="Last-Modified" content="0">
-    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta charset="UTF-8">
+  <head>
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Last-Modified" content="0" />
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/styles.css?v=<?php echo(rand()); ?>">
-    <link rel="stylesheet" href="../assets/empleados.css?v=<?php echo(rand()); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="../assets/styles.css?v=<?php echo(rand()); ?>"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/empleados.css?v=<?php echo(rand()); ?>"
+    />
     <title>Empleados</title>
-</head>
-<body>
-  <header > <!--necesario tener las etiquetas para que se inserte el menu del JS-->
-  </header>
-  <main class="main">
-    <section class="mt-4 employees_box">
-      <div class="table_box">
-        <div class="table_box_d">
-        <table class="table_t">
-            <thead class="table_head">
+  </head>
+  <body>
+    <header>
+      <!--necesario tener las etiquetas para que se inserte el menu del JS-->
+    </header>
+    <main class="main">
+      <section class="mt-4 employees_box">
+        <div class="table_box">
+          <div class="table_box_d">
+            <table class="table_t">
+              <thead class="table_head">
                 <tr>
-                    <th scope="col">WWID</th>
-                    <th scope="col">NOMBRE</th>
-                    <th scope="col">CORREO</th>      
-                    <th scope="col">MODIFICAR</th>
-                    <th scope="col">ELIMINAR</th>
+                  <th scope="col">WWID</th>
+                  <th scope="col">NOMBRE</th>
+                  <th scope="col">CORREO</th>
+                  <th scope="col">MODIFICAR</th>
+                  <th scope="col">ELIMINAR</th>
                 </tr>
-                
-             </thead>
-            
-            <tbody id="empleados">   
-           
-            </tbody>
-            
-        </table>
+              </thead>
+              <tbody id="empleados"></tbody>
+            </table>
+          </div>
         </div>
-        
         <div class="button_add_box">
           <label for="botonRegistro"></label>
-          <button type="submit" id="botonRegistro" class="button_add" name="solicitud" onclick="registroEmpleado()">AGREGAR EMPLEADO</button>
+          <button
+            type="submit"
+            id="botonRegistro"
+            class="button_add"
+            name="solicitud"
+            onclick="registroEmpleado()"
+          >
+            AGREGAR EMPLEADO
+          </button>
         </div>
-
-        </div>
-      </div>
-    </section>  
-  </main>
-    <footer>
-    </footer>
-       
-    <script src="../assets/js/templateHnF.js?v=<?php echo(rand()); ?>"></script>
-    <script src="https://kit.fontawesome.com/947bdf3007.js?v=<?php echo(rand()); ?" crossorigin="anonymous"></script>
+      </section>
+    </main>
+    <footer></footer>
+    <script
+      src="https://kit.fontawesome.com/947bdf3007.js?v=<?php echo(rand()); ?"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11?v=<?php echo(rand()); ?"></script>
     <script src="../assets/js/empleados.js"></script>
-</body>
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/footer.js"></script>
+  </body>
 </html>

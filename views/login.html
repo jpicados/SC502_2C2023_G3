@@ -1,92 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/Login.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@600&display=swap" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/Login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <title>Iniciar Sesión</title>
-
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- Registrarse -->
     <div class="container-from sign-up">
-        <div class="welcome-back">
-            <div class="messange">
-               
-                
-                <p>Si ya tienes una cuenta inicia Sesion aqui</p>
-                <button class="sign-up-btn">Iniciar Sesion</button>    
-            </div>
+      <div class="welcome-back">
+        <div class="messange">
+          <p>Si ya tienes una cuenta inicia Sesion aqui</p>
+          <button class="sign-up-btn">Iniciar Sesion</button>
         </div>
-    <form class="formulario">
+      </div>
+      <form class="formulario">
         <h2 class="create-account">Crear una cuenta</h2>
         <div class="iconos">
-            <div class="border-icon">
-                <i class='bx bxl-instagram' ></i>    
-             </div>
-            <div class="border-icon">
-                <i class='bx bxl-facebook-square'></i>
-            </div>
-            <div class="border-icon">
-                <i class='bx bxl-twitter'></i>
-            </div>
+          <div class="border-icon">
+            <i class="bx bxl-instagram"></i>
+          </div>
+          <div class="border-icon">
+            <i class="bx bxl-facebook-square"></i>
+          </div>
+          <div class="border-icon">
+            <i class="bx bxl-twitter"></i>
+          </div>
         </div>
         <p class="cuenta-Gratis">Crear una cuenta Gratis</p>
-        <input type="text" placeholder="Nombre">
-        <input type="email" placeholder="Email">
-        <input type="password" placeholder="Contraseña">
-        <input type="button" value="Registrarse">
+        <input type="text" placeholder="Nombre" id="nombreInput" />
+        <input type="email" placeholder="Email" id="correoInput" />
+        <input type="password" placeholder="Contraseña" id="contrasennaInput" />
+        <input type="button" value="Registrarse" id="botonRegistro" />
         <div class="parrafo-Bienvenida">
-            <h2>Bienvenidos a ItelCorporation</h2>
+          <h2>Bienvenidos a ItelCorporation</h2>
         </div>
-        
-    </form>
-
-    </div> 
+      </form>
+    </div>
 
     <!-- Iniciar Sesion -->
     <div class="container-from sign-in">
-        <form class="formulario">
-            <h2 class="create-account">Iniciar Sesion</h2>
-            <div class="iconos">
-                <div class="border-icon">
-                    <i class='bx bxl-instagram' ></i>            
-                </div>
-                <div class="border-icon">
-                    <i class='bx bxl-facebook-square'></i>
-                </div>
-                <div class="border-icon">
-                    <i class='bx bxl-twitter'></i>
-                </div>
-            </div>
-            <p class="cuenta-Gratis">Aún no tienes cuenta?</p>
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Contraseña">
-            <input type="button" value="Iniciar Sesion">
-            <div class="parrafo-Bienvenida">
-                <h2>Bienvenido de nuevo a Itel Corporation</h2>
-            </div>
-            
-        </form>
-        <div class="welcome-back">
-            <div class="messange">
-                <h2>Bienvenido de nuevo a Itel Corporation</h2>
-                <p>Si aún no tienes una cuenta por favor Registrese Aquí</p>
-                <button class="sign-in-btn">Registrarse</button>
-            </div>
+      <form class="formulario">
+        <h2 class="create-account">Iniciar Sesion</h2>
+        <div class="iconos">
+          <div class="border-icon">
+            <i class="bx bxl-instagram"></i>
+          </div>
+          <div class="border-icon">
+            <i class="bx bxl-facebook-square"></i>
+          </div>
+          <div class="border-icon">
+            <i class="bx bxl-twitter"></i>
+          </div>
         </div>
-   
+        <p class="cuenta-Gratis">Aún no tienes cuenta?</p>
+        <input type="email" placeholder="Email" id="email" required />
+        <input type="password" placeholder="Password" id="password" required />
+        <input type="button" value="Iniciar Sesion" id="signInButton" />
+        <div class="parrafo-Bienvenida">
+          <h2>Bienvenido de nuevo a Intel Corporation</h2>
+        </div>
+      </form>
+      <div class="welcome-back">
+        <div class="messange">
+          <h2>Bienvenido de nuevo a Intel Corporation</h2>
+          <p>Si aún no tienes una cuenta por favor Registrese Aquí</p>
+          <button class="sign-in-btn">Registrarse</button>
+        </div>
+      </div>
     </div>
+  </body>
 
-    
-
-</body>
-    
-    <script src="../assets/js/Login.js"></script>
-
+  <script src="../assets/js/Login.js"></script>
 </html>

@@ -74,9 +74,7 @@ function item(tabla, activo) {
       tdCategoria,
       tdEntidad,
       tdEstado,
-      tdEmpleado,
-      btnModificar,
-      btnEliminar
+      tdEmpleado
     );
   return tabla;
 }
@@ -88,8 +86,6 @@ function getTabla() {
       activos.forEach((activo) => {
         tablaActivos = item(tabla, activo);
       });
-      obtener(".button_delete");
-      obtener(".button_edit");
     })
     .catch((error) => {
       console.error("Error:", error);

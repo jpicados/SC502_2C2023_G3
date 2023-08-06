@@ -39,7 +39,17 @@ CREATE TABLE Usuario(
   IdUsuario INT PRIMARY KEY AUTO_INCREMENT,
   NombreUsuario VARCHAR(50) NOT NULL,
   CorreoUsuario VARCHAR(50) NOT NULL UNIQUE,
-  Contrasenna VARCHAR(50) NOT NULL
+  Contrasenna VARCHAR(50) NOT NULL,
+  Tipo INT
+);
+
+CREATE TABLE Bitacora(
+  IdBitacora INT PRIMARY KEY AUTO_INCREMENT,
+  Fecha datetime NOT NULL,
+  Accion VARCHAR(50) NOT NULL,
+  Serie VARCHAR(50) NOT NULL,
+  IdUsuario INT NOT NULL,
+  FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario)
 );
 
 INSERT INTO Categoria (NombreCategoria)
@@ -62,10 +72,10 @@ INSERT INTO Estado (_Estado)
 VALUES  ('active'),
 		('inactive');
         
-INSERT INTO Usuario (NombreUsuario,  CorreoUsuario, Contrasenna)
-VALUES  ('Usuario1', 'u1@u', 'asd'),
-		('Usuario2', 'u2@u', 'asd'),
-		('Usuario3', 'u3@u', 'asd');
+INSERT INTO Usuario (NombreUsuario,  CorreoUsuario, Contrasenna, Tipo)
+VALUES  ('SuperUser', '1@u', 'asd',2),
+		('Usuario2', '2@u', 'asd',0),
+		('Usuario3', '3@u', 'asd',0);
         
 INSERT INTO Activo (Serie, Marca, Tag, PO, RAM, IdCategoria, IdEntidad, IdEstado, WWID)
 VALUES  ('ADFSDG','Lenovo','1234','PO1341','13452',1,3,1,11111111),

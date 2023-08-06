@@ -75,9 +75,24 @@ BEGIN
         (p_Serie, p_Marca, p_Tag, p_PO, p_RAM, p_IdCategoria, p_IdEntidad, p_IdEstado, p_WWID);
 END
 *******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Registrar_Bitacora`(
+    IN p_Accion VARCHAR(50),
+    IN p_Serie VARCHAR(50),
+    IN p_IdUsuario INT
+)
+BEGIN
 
+	insert into assetsdb.Bitacora(Fecha, Accion, Serie, IdUsuario)
+	values(NOW(), p_Accion, p_Serie, p_IdUsuario);
+END
 *******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Listar_Bitacora`()
+BEGIN
 
+select b.*, u.NombreUsuario from bitacora b
+join usuario u on b.IdUsuario = u.IdUsuario;
+
+END
 *******************************************************************
 
 *******************************************************************

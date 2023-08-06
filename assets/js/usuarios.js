@@ -29,9 +29,9 @@ function item(tabla, usuario) {
   tdId.setAttribute("name", "id");
   var tdNombre = document.createElement("td");
   var tdCorreo = document.createElement("td");
+  var tdTipo = document.createElement("td");
 
-  tdNombre.setAttribute("class", "usuario"); // Colocamos los atributos usuario para obtener su valor en el edit
-  tdCorreo.setAttribute("class", "usuario");
+  tdTipo.setAttribute("class", "Tipo");
 
   // Se crean los botones que van dentro de la tabla
   btnModificar = Boton(
@@ -48,20 +48,27 @@ function item(tabla, usuario) {
   tr.setAttribute("id", `${usuario.IdUsuario}`);
   tdNombre.textContent = `${usuario.NombreUsuario}`;
   tdCorreo.textContent = `${usuario.CorreoUsuario}`;
+  tdTipo.textContent = `${usuario.Tipo}`;
   tabla
     .appendChild(tr)
-    .append(tdId, tdNombre, tdCorreo, btnModificar, btnEliminar);
+    .append(tdId, tdNombre, tdCorreo, tdTipo, btnModificar, btnEliminar);
   return tabla;
 }
 
 function getTabla() {
   fetch("../controllers/usuarioController.php?action=get_usuarios")
-    .then((datos) => datos.json())
-    .then((usuarios) => {
+    .then((response) => response.json())
+    .then((result) => {
+      if (!result.success) {
+        console.error("API returned an unsuccessful response:", result);
+        return;
+      }
+
       var tabla = document.getElementById("usuarios");
-      usuarios.forEach((usuario) => {
-        tablausuarios = item(tabla, usuario);
+      result.data.forEach((usuario) => {
+        item(tabla, usuario);
       });
+
       obtener(".button_delete");
       obtener(".button_edit");
     })
@@ -70,251 +77,88 @@ function getTabla() {
     });
 }
 
-async function enviarDatos(Nombre, Correo) {
-  const formElement = document.createElement("form");
-  const NombreUsario = document.createElement("input");
-  const CorreoUsario = document.createElement("input");
-  NombreUsario.name = "NombreUsario";
-  NombreUsario.value = Nombre;
-  CorreoUsario.name = "CorreoUsario";
-  CorreoUsario.value = Correo;
-  formElement.appendChild(Nombre);
-  formElement.appendChild(Correo);
-  const datos = new FormData(formElement);
-  try {
-    var respuesta = await fetch(
-      "../controllers/usuarioController.php?action=solicitud_usuarios",
-      {
-        method: "POST",
-        body: datos,
-      }
-    );
-    var usuarios = await respuesta.json();
-    var tabla = document.getElementById("usuarios");
-    respuestaUsuario = usuarios[usuarios.length - 1];
-    item(tabla, respuestaUsuario);
-    obtener(".button_delete");
-    obtener(".button_edit");
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
+function obtener(selector) {
+  document.querySelectorAll(selector).forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const userId = this.getAttribute("id");
 
-const enviarUsuario = document.getElementById("botonRegistro");
-enviarUsuario.addEventListener("click", registroUsuario);
+      // Check if it's the delete button that was clicked
+      if (selector === ".button_delete") {
+        const confirmation = confirm(
+          "Are you sure you want to delete this user?"
+        );
 
-function registroUsuario() {
-  Swal.fire({
-    ...swalConfig, // Spread the Swal configuration
-    title: "Registrar usuario",
-    html: `<label for="NombreUsuario"></label><input type="text" id="NombreUsuario" name="NombreUsuario" class="swal2-input" placeholder="Nombre">
-    <label for="CorreoUsuario"></label><input type="email" id="CorreoUsuario" name="CorreoUsuario" class="swal2-input" placeholder="Correo">`,
-    confirmButtonText: "Registrar",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      const nombre = Swal.getPopup().querySelector("#NombreUsuario").value;
-      const correo = Swal.getPopup().querySelector("#CorreoUsuario").value;
-      if (nombre && correo) {
-        enviarDatos(nombre, correo);
-        Swal.fire({
-          ...swalConfig,
-          icon: "success",
-          title: `${nombre} registrado con éxito.`,
-        });
-      } else {
-        Swal.fire({
-          ...swalConfig,
-          icon: "error",
-          title: "Error",
-          text: "Por favor, complete todos los campos.",
-        });
-      }
-    }
-  });
-}
-
-function eliminarUsuario(id) {
-  const Toast = Swal.mixin({
-    ...swalConfig, // Spread the Swal configuration
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      eliminarId(id);
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
-  Toast.fire({
-    icon: "info",
-    title: "Usuario Eliminado",
-  });
-}
-
-async function editarId(id, nombre, correo) {
-  const formElemento = document.createElement("form");
-  const nombreElemento = document.createElement("input");
-  const correoElemento = document.createElement("input");
-  const idElemento = document.createElement("input");
-  idElemento.name = "editId";
-  idElemento.value = id;
-  nombreElemento.name = "editNombre";
-  nombreElemento.value = nombre;
-  correoElemento.name = "editCorreo";
-  correoElemento.value = correo;
-  formElemento.appendChild(nombreElemento);
-  formElemento.appendChild(correoElemento);
-  formElemento.appendChild(idElemento);
-  const datos = new FormData(formElemento);
-  try {
-    var respuesta = await fetch(
-      "../controllers/usuarioController.php?action=editar_usuarios",
-      {
-        method: "POST",
-        body: datos,
-        cache: "no-cache",
-      }
-    );
-    var usuarios = await respuesta.json();
-    var tbody = document.getElementById("usuarios");
-    tbody.remove();
-    tbody = document.createElement("tbody");
-    tbody.setAttribute("id", "usuarios");
-    var table = document.querySelector(".table_t");
-    table.appendChild(tbody);
-    getTabla();
-  } catch (error) {
-    console.error("Error", error);
-  }
-}
-
-async function eliminarId(id) {
-  const formElemento = document.createElement("form");
-  const inputElemento = document.createElement("input");
-  inputElemento.name = "idUsuario";
-  inputElemento.value = id;
-  formElemento.appendChild(inputElemento);
-  const datos = new FormData(formElemento);
-  try {
-    var respuesta = await fetch(
-      "../controllers/usuarioController.php?action=eliminar_usuario",
-      {
-        method: "POST",
-        body: datos,
-        cache: "no-cache",
-      }
-    );
-    if (respuesta.ok) {
-      var response = await respuesta.json();
-      var message = response.message;
-      if (message === "Usuario eliminado con éxito") {
-        var tr = document.getElementById(id);
-        if (tr) {
-          tr.remove();
+        if (confirmation) {
+          deleteUser(userId);
         }
-        Swal.fire({
-          ...swalConfig,
-          icon: "info",
-          title: message,
-        });
       }
-    } else {
-      throw new Error("Error en la respuesta de eliminar usuario");
-    }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
+      // Check if it's the edit button that was clicked
+      else if (selector === ".button_edit") {
+        const newTipo = prompt("Please enter the new Tipo value:");
 
-async function editarUsuario(id, nombre, correo) {
-  const { value: formValues } = await Swal.fire({
-    ...swalConfig, // Spread the Swal configuration
-    title: "Editando a " + nombre,
-    html: `<label for="editNombre"></label><input type="text" id="editNombre" class="swal2-input" placeholder="Nombre" value="${nombre}">
-         <label for="editCorreo"></label><input type="email" id="editCorreo" class="swal2-input" placeholder="Correo" value="${correo}">`,
-    showCancelButton: true,
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "Guardar cambios",
-    preConfirm: () => {
-      const editNombre = Swal.getPopup().querySelector("#editNombre").value;
-      const editCorreo = Swal.getPopup().querySelector("#editCorreo").value;
-
-      return { editNombre, editCorreo };
-    },
-  });
-
-  if (formValues) {
-    try {
-      const { editNombre, editCorreo } = formValues;
-      const datos = new FormData();
-      datos.append("editId", id);
-      datos.append("editNombre", editNombre);
-      datos.append("editCorreo", editCorreo);
-
-      const respuesta = await fetch(
-        "../controllers/usuarioController.php?action=editar_usuarios",
-        {
-          method: "POST",
-          body: datos,
-          cache: "no-cache",
+        // Basic validation, assuming Tipo is a number
+        if (newTipo && !isNaN(newTipo)) {
+          // Make the AJAX request to update the Tipo value
+          updateTipo(userId, newTipo);
+        } else {
+          alert("Please enter a valid Tipo value.");
         }
-      );
-
-      if (respuesta.ok) {
-        const usuario = await respuesta.json();
-        const tr = document.getElementById(id);
-        if (tr) {
-          const tdNombre = tr.querySelector(".usuario");
-          const tdCorreo = tdNombre.nextElementSibling;
-          tdNombre.textContent = usuario.NombreUsuario;
-          tdCorreo.textContent = usuario.CorreoUsuario;
-        }
-        Swal.fire({
-          ...swalConfig,
-          icon: "success",
-          title: "Usuario editado con éxito.",
-          showConfirmButton: false,
-          timer: 1500,
-        }).then(() => {
-          location.reload();
-        });
-      } else {
-        throw new Error("Error en la respuesta de editar usuario");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      Swal.fire({
-        ...swalConfig,
-        icon: "error",
-        title: "Error",
-        text: "Ha ocurrido un error al editar el usuario. Por favor, intenta nuevamente.",
-      });
-    }
-  }
-}
-
-function obtener(tipo) {
-  var botones = document.querySelectorAll(tipo);
-  botones.forEach((button) => {
-    button.addEventListener("click", () => {
-      id = button.getAttribute("id");
-      if (id != null && tipo == ".button_delete") {
-        eliminarUsuario(id);
-      } else if (id != null && tipo == ".button_edit") {
-        var nombre, correo;
-        var usuarios = document.querySelectorAll(".trs");
-        usuarios.forEach((usuarios) => {
-          if (usuarios.getAttribute("id") == id) {
-            nombre = usuarios.getElementsByClassName("usuario")[0].textContent;
-            correo = usuarios.getElementsByClassName("usuario")[1].textContent;
-          }
-        });
-        editarUsuario(id, nombre, correo);
       }
     });
   });
+}
+
+function updateTipo(userId, newTipo) {
+  fetch("../controllers/usuarioController.php?action=editarUsuario", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ Id: userId, Tipo: newTipo }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        // Update the user Tipo value in the UI/table
+        const userRow = document.getElementById(userId);
+        const tipoCell = userRow.querySelector(".Tipo");
+        tipoCell.textContent = newTipo;
+
+        alert("User Tipo updated successfully!");
+      } else {
+        alert("Error updating user Tipo: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error updating user Tipo:", error);
+      alert("An error occurred. Please try again.");
+    });
+}
+
+function deleteUser(userId) {
+  fetch("../controllers/usuarioController.php?action=eliminar_usuario", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ IdUsuario: userId }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        // Remove the user row from the UI/table
+        const userRow = document.getElementById(userId);
+        userRow.remove();
+
+        alert("User deleted successfully!");
+      } else {
+        alert("Error deleting user: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error deleting user:", error);
+      alert("An error occurred. Please try again.");
+    });
 }
 
 getTabla();

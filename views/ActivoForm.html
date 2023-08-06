@@ -1,84 +1,76 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta
-      http-equiv="Cache-Control"
-      content="no-cache, no-store, must-revalidate"
-    />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <link rel="stylesheet" href="../assets/styles.css?v=<?php echo(rand()); ?>">
-    <link rel="stylesheet" href="../assets/activoForm.css echo(rand()); ?>">
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <link rel="stylesheet" href="../assets/activoForm.css" />
     <title>Modify Product</title>
   </head>
   <body>
-    <header>
-    </header>
+    <header></header>
 
     <main class="main">
       <div class="Tittle">
         <h1>Activo</h1>
       </div>
-    
-<div class="buscarActivos">
-  <h1>Buscar Activo</h1>
-</div>
-  
-    <div>
-      <form id="buscarActivoForm">
-        <label for="scannerInput">Scanner Input:</label>
-        <input
-          type="text"
-          id="scannerInput"
-          placeholder="Scan the barcode or enter the value manually"
-          required
-        />
-        <button type="search">Search</button>
-      </form>
-    </div>
-    <div
-    class="detallesActivo">
-    <form id="activoform">
-      <h2>Detalles de Activo</h2>
 
-      <input type="hidden" id="activoId" />
+      <div class="buscarActivos">
+        <h1>Buscar Activo</h1>
+      </div>
 
-      <label for="serie">Serie</label>
-      <input type="text" id="serie" required />
+      <div>
+        <form id="buscarActivoForm">
+          <label for="scannerInput">Scanner Input:</label>
+          <input
+            type="text"
+            id="scannerInput"
+            placeholder="Scan the barcode or enter the value manually"
+            required
+          />
+          <button type="search">Search</button>
+        </form>
+      </div>
+      <div class="detallesActivo">
+        <form id="activoform">
+          <h2>Detalles de Activo</h2>
 
-      <label for="marca">Marca</label>
-      <input type="text" id="marca" required />
+          <input type="hidden" id="activoId" />
 
-      <label for="tag">Tag:</label>
-      <input type="text" id="tag" required />
+          <label for="serie">Serie</label>
+          <input type="text" id="serie" required />
 
-      <label for="PO">PO:</label>
-      <input type="text" id="PO" required />
+          <label for="marca">Marca</label>
+          <input type="text" id="marca" required />
 
-      <label for="RAM">RAM:</label>
-      <input type="number" id="RAM" required />
+          <label for="tag">Tag:</label>
+          <input type="text" id="tag" required />
 
-      <label for="categoryId">Category:</label>
-      <select id="categoryId" required></select>
+          <label for="PO">PO:</label>
+          <input type="text" id="PO" required />
 
-      <label for="entidadId">Entidad:</label>
-      <select id="entidadId" required></select>
+          <label for="RAM">RAM:</label>
+          <input type="number" id="RAM" required />
 
-      <label for="estadoId">Estado:</label>
-      <select id="estadoId"></select>
+          <label for="categoryId">Category:</label>
+          <select id="categoryId" required></select>
 
-      <label for="WWID">WWID:</label>
-      <input type="text" id="WWID" name="WWID" />
+          <label for="entidadId">Entidad:</label>
+          <select id="entidadId" required></select>
 
-      <button type="submit" id="saveButton">Guardar</button>
-      <button type="button" id="newActivoButton">Nuevo Activo</button>
-      <button type="button" id="deleteButton">Borrar</button>
-    </form>
-  </div>
+          <label for="estadoId">Estado:</label>
+          <select id="estadoId"></select>
+
+          <label for="WWID">WWID:</label>
+          <input type="text" id="WWID" name="WWID" />
+
+          <button type="submit" id="saveButton">Guardar</button>
+          <button type="button" id="newActivoButton">Nuevo Activo</button>
+          <button type="button" id="deleteButton">Borrar</button>
+        </form>
+      </div>
     </main>
-<footer>
-</footer>
+    <footer></footer>
     <script src="../assets/js/ActivoForm.js"></script>
-    <script src="../assets/js/templateHnF.js"></script>
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/footer.js"></script>
   </body>
 </html>

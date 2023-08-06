@@ -1,6 +1,6 @@
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Listar_Usuarios`()
 BEGIN
-	select NombreUsuario, CorreoUsuario from usuario;
+	select * from usuario;
 END
 *******************************************************************
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Registrar_Usuario`(
@@ -15,24 +15,25 @@ END
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Eliminar_Usuario`(
 IN p_IdUsuario INT)
 BEGIN
-	DELETE FROM usuario where IdUuario = p_IdUsuario;
+	DELETE FROM usuario where IdUsuario = p_IdUsuario;
 END
 *******************************************************************
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Editar_Usuario`(
-IN p_Nombre VARCHAR(50),
-IN p_Correo VARCHAR(50),
-IN p_Contrasenna VARCHAR(50),
+IN p_Tipo INT,
 IN p_IdUsuario INT)
 BEGIN
 	UPDATE usuario
     SET
-    NombreUsuario = p_Nombre,
-    CorreoUsuario = p_Correo,
-    Contrasenna = p_Contrasenna
+    Tipo = p_Tipo
     WHERE IdUsuario = p_IdUsuario;
 END
 *******************************************************************
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Buscar_Usuario`(IN p_Correo VARCHAR(50))
+BEGIN
+	
+    select * from usuario where CorreoUsuario = p_Correo;
 
+END
 *******************************************************************
 
 *******************************************************************

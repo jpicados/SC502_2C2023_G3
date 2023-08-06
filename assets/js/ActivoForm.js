@@ -155,15 +155,6 @@ function handleSearch(event) {
       const activo = data[0]; // Assuming the data is an array with a single activo object
       console.log("Activo object:", activo);
       populateModifyProductForm(activo);
-
-      // Fetch and populate the category select options
-      // fetch("../controllers/categoriaController.php?action=getCategorias")
-      //   .then((response) => response.json())
-      //   .then((categorias) => {
-      //     populateCategoryOptions(categorias, activo.IdCategoria); // Pass the IdCategoria
-      //     scannerInput.value = "";
-      //   })
-      //   .catch((error) => console.error("Error fetching categories:", error));
     })
     .catch((error) => console.error("Error fetching activo:", error));
 }
@@ -202,6 +193,24 @@ function fetchAndPopulateEstados() {
       populateEstadoOptions(estados, idEstado);
     })
     .catch((error) => console.error("Error fetching estados:", error));
+}
+
+//Registro de movimientos en bitacora
+function registrarBitacora(serie, accion) {
+  fetch("../controllers/activoController.php?action=registerBitacora", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      Accion: accion,
+      Serie: serie,
+      IdUsuario: userId,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error("Error registering bitacora:", error));
 }
 
 // Function to update an activo
@@ -244,6 +253,7 @@ function updateActivo(event) {
     .then((response) => response.json())
     .then((data) => {
       showConfirmation();
+      registrarBitacora(activoData.Serie, "Activo Modificado");
       scannerInput.value = "";
       scannerInput.focus();
       clearFormInputs();
@@ -286,7 +296,7 @@ function addNewActivo() {
     .then((response) => response.json())
     .then((data) => {
       showConfirmation();
-      // Optionally, clear the form inputs after successful addition
+      registrarBitacora(activoData.Serie, "Activo Nuevo");
       clearFormInputs();
       scannerInput.focus();
     })
@@ -305,6 +315,7 @@ function deleteActivo(event) {
     .then((response) => response.json())
     .then((data) => {
       showConfirmation("Activo deleted successfully!");
+      registrarBitacora(serie, "Activo Eliminado");
       clearFormInputs();
       scannerInput.value = "";
       scannerInput.focus();

@@ -16,15 +16,21 @@ body {
   margin-left: 40px;
 }
 .table_box {
-  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  max-height: 400px; /* You can adjust this value based on your preference */
+  overflow-y: auto;
+  width: 100%; /* or a specific width based on your design */
+  border: 1px solid #ccc; /* Optional */
+  margin-bottom: 10px;
 }
 .table_box_d {
   display: flex;
   justify-content: center;
 }
 .table_t {
+  width: 100%;
   border-collapse: collapse;
-  width: 25rem;
 }
 .table_head {
   background-color: rgb(0, 160, 240);

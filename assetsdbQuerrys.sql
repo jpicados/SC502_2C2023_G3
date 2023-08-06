@@ -73,9 +73,9 @@ VALUES  ('active'),
 		('inactive');
         
 INSERT INTO Usuario (NombreUsuario,  CorreoUsuario, Contrasenna, Tipo)
-VALUES  ('SuperUser', '1@u', 'asd',2),
-		('Usuario2', '2@u', 'asd',0),
-		('Usuario3', '3@u', 'asd',0);
+VALUES  ('SuperUser', '1@u', 'asd',3),
+		('Usuario2', '2@u', 'asd',1),
+		('Usuario3', '3@u', 'asd',1);
         
 INSERT INTO Activo (Serie, Marca, Tag, PO, RAM, IdCategoria, IdEntidad, IdEstado, WWID)
 VALUES  ('ADFSDG','Lenovo','1234','PO1341','13452',1,3,1,11111111),

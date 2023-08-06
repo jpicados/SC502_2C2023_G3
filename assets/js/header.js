@@ -55,19 +55,36 @@ async function renderNavbar() {
     userDisplay = `Perfil: ${userData.userName}`;
   }
 
-  const navbarItems = [
-    { name: "Inicio", link: "index.html" },
-    { name: "Activos", link: "Activos.html" },
-    { name: "Administrar Activos", link: "ActivoForm.html" },
-    { name: "Movimientos", link: "bitacora.html" },
-    { name: "Empleados", link: "empleados.html" },
-    // Solo se muestra si el tipo de usuario es 2
-    ...(userData.userTipo == 2
-      ? [{ name: "Usuarios", link: "usuarios.html" }]
-      : []),
-    { name: "Cerrar Sesion", link: "login.html", id: "logout-link" },
-    { name: userDisplay, link: "#", id: "user-display", class: "user-data" },
-  ];
+  let navbarItems = [];
+
+  if (userData.userTipo === 1) {
+    navbarItems = [
+      { name: "Inicio", link: "index.html" },
+      { name: "Cerrar Sesion", link: "login.html", id: "logout-link" },
+      { name: userDisplay, link: "#", id: "user-display", class: "user-data" },
+    ];
+  } else if (userData.userTipo === 2) {
+    navbarItems = [
+      { name: "Inicio", link: "index.html" },
+      { name: "Activos", link: "Activos.html" },
+      { name: "Administrar Activos", link: "ActivoForm.html" },
+      { name: "Movimientos", link: "bitacora.html" },
+      { name: "Empleados", link: "empleados.html" },
+      { name: "Cerrar Sesion", link: "login.html", id: "logout-link" },
+      { name: userDisplay, link: "#", id: "user-display", class: "user-data" },
+    ];
+  } else if (userData.userTipo === 3) {
+    navbarItems = [
+      { name: "Inicio", link: "index.html" },
+      { name: "Activos", link: "Activos.html" },
+      { name: "Administrar Activos", link: "ActivoForm.html" },
+      { name: "Movimientos", link: "bitacora.html" },
+      { name: "Empleados", link: "empleados.html" },
+      { name: "Usuarios", link: "usuarios.html" },
+      { name: "Cerrar Sesion", link: "login.html", id: "logout-link" },
+      { name: userDisplay, link: "#", id: "user-display", class: "user-data" },
+    ];
+  }
 
   // Generate the HTML for the navbar
   const navbarHTML = `

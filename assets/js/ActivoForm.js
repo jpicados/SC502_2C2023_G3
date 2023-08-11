@@ -1,4 +1,5 @@
 // DOM elements
+
 const buscarActivoForm = document.getElementById("buscarActivoForm");
 const scannerInput = document.getElementById("scannerInput");
 
@@ -19,6 +20,33 @@ window.addEventListener("load", () => {
 
 // Function to populate the modify product form with product details
 function populateModifyProductForm(activo) {
+
+  console.log(activo);
+
+  
+  const serieInput2 = document.getElementById("serie2");
+  const marcaInput2 = document.getElementById("marca2");
+  const tagInput2 = document.getElementById("tag2");
+  const poInput2 = document.getElementById("PO2");
+  const ramInput2 = document.getElementById("RAM2");
+  const categoryIdInput2 = document.getElementById("categoryId2");
+  //const estadoSelect = document.getElementById("estadoId");
+  const wwidInput2 = document.getElementById("WWID2");
+  const entity2 = document.getElementById("entity2");
+  const state2 = document.getElementById("state2");
+  serieInput2.textContent="Serie: "+ activo.Serie;
+  //serieInput.setAttribute("readonly", true);
+  marcaInput2.textContent ="Marca: "+ activo.Marca;
+  entity2.textContent = "Entidad: "+activo.IdEntidad;
+  state2.textContent="Estado: "+activo.IdEstado;
+  tagInput2.textContent ="Tag:"+ activo.Tag;
+  poInput2.textContent = "PO: "+activo.PO;
+  ramInput2.textContent ="RAM: "+ activo.RAM;
+  categoryIdInput2.textContent ="Category: "+ activo.IdCategoria;
+  wwidInput2.textContent ="WWID:"+ activo.WWID;
+
+
+
   const activoIdInput = document.getElementById("activoId");
   const serieInput = document.getElementById("serie");
   const marcaInput = document.getElementById("marca");
@@ -333,6 +361,16 @@ function clearFormInputs() {
   document.getElementById("entidadId").value = "";
   document.getElementById("estadoId").value = "";
   document.getElementById("WWID").value = "";
+  document.getElementById("serie2").textContent="Serie: ";
+  document.getElementById("marca2").textContent="Marca: ";
+  document.getElementById("tag2").textContent="Tag: ";
+  document.getElementById("PO2").textContent="PO: ";
+  document.getElementById("RAM2").textContent="RAM: ";
+  document.getElementById("categoryId2").textContent="Category: ";
+  //const estadoSelect = document.getElementById("estadoId");
+  document.getElementById("WWID2").textContent="WWID: ";
+  document.getElementById("entity2").textContent="Entidad: ";
+  document.getElementById("state2").textContent="Estado: ";
 }
 
 // Add event listeners

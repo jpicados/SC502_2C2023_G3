@@ -9,66 +9,177 @@
     <header></header>
 
     <main class="main">
+    <section class="section_main">
       <div class="Tittle">
-        <h1>Activo</h1>
+        <h1 class="title_activo">Administrador de activos</h1>
       </div>
+      <div class="section_add_container">
+       <div class="info_container">
+        <div class="desc_container">
+       
+            <h5 class="desc_title">Descripcion</h5>
+      
+         
+          
+          
+        </div>
+        
+        <div class="info_desc_container">
+          <div class="container_text">
+          <h5 class="text_desc" id="serie2">Serie: </h5>
+          </div>
+          <div class="container_text">
+          <h5 class="text_desc" id="marca2">Marca: </h5>
+          </div>
+          <div class="container_text">
+          <h5 class="text_desc" id="tag2">Tag: </h5>
+        </div>
+          <div class="container_text">
+          <h5 class="text_desc" id="PO2">PO: </h5>
+        </div>
+          <div class="container_text">
+          <h5 class="text_desc" id="RAM2">RAM: </h5>
+        </div>
+          <div class="container_text">
+          <h5 class="text_desc" id="categoryId2">Category: </h5>
+        </div>
+          <div class="container_text" >
+          <h5 class="text_desc" id="entity2">Entidad: </h5>
+        </div>
+          <div class="container_text">
+          <h5 class="text_desc" id="state2">Estado: </h5>
+        </div>
+          <div class="container_text">
+          <h5 class="text_desc" id="WWID2">WWID: </h5>
+        </div>
 
-      <div class="buscarActivos">
-        <h1>Buscar Activo</h1>
+          
+        </div>
+       </div>
+      
+      <div class="search_id">
+
+        <div class="buscarActivos">
+          <h2 class="details">Buscar Activo</h2>
+        </div>
+        <div class="search_icon_container">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-imac" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 4a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-12z" />
+            <path d="M3 13h18" />
+            <path d="M8 21h8" />
+            <path d="M10 17l-.5 4" />
+            <path d="M14 17l.5 4" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-laptop" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 19l18 0" />
+            <path d="M5 6m0 1a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-keyboard" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M2 6m0 2a2 2 0 0 1 2 -2h16a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2z" />
+            <path d="M6 10l0 .01" />
+            <path d="M10 10l0 .01" />
+            <path d="M14 10l0 .01" />
+            <path d="M18 10l0 .01" />
+            <path d="M6 14l0 .01" />
+            <path d="M18 14l0 .01" />
+            <path d="M10 14l4 .01" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-devices-2" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M10 15h-6a1 1 0 0 1 -1 -1v-8a1 1 0 0 1 1 -1h6" />
+            <path d="M13 4m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" />
+            <path d="M7 19l3 0" />
+            <path d="M17 8l0 .01" />
+            <path d="M17 16m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M9 15l0 4" />
+          </svg>
+        </div>
+        
+        <div class="scanner_container">
+          <form id="buscarActivoForm">
+            <label for="scannerInput" class="label_form">Scanner Input:</label>
+            <input
+              type="text"
+              id="scannerInput"
+              placeholder="Scan the barcode or enter the value manually"
+              required
+            />
+            <button type="search" class="button_search"><p>Buscar</p><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="28" height="28" viewBox="0 0 24 24" stroke-width="2.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+              <path d="M21 21l-6 -6" />
+            </svg></button>
+          </form>
+        </div>
+      </div>  
+      <div class="details_container">
+        <div class="detallesActivo">
+          <div class="title_detail_container">
+          <h2 class="title_detail">Detalles de Activo</h2>
+          </div>
+          <form id="activoform">
+            
+            <input type="hidden" id="activoId" class="input_form"/>
+            
+
+            <label for="serie" class="label_form">Serie</label>
+            <input type="text" id="serie" class="input_form" required />
+
+            <label for="marca" class="label_form">Marca</label>
+            <input type="text" id="marca" class="input_form" required />
+
+            <label for="tag" class="label_form">Tag</label>
+            <input type="text" id="tag"class="input_form"  required />
+
+            <label for="PO" class="label_form">PO</label>
+            <input type="text" id="PO" class="input_form"required />
+
+            <label for="RAM" class="label_form">RAM</label>
+            <input type="number" id="RAM" class="input_form" required />
+
+            <label for="WWID" class="label_form">WWID</label>
+            <input type="text" id="WWID" name="WWID" class="input_form" />
+
+            <label for="categoryId" class="label_form label_form_special">Category</label>
+            <select id="categoryId"  required></select>
+            
+            <label for="entidadId" class="label_form label_form_special">Entidad</label>
+            <select id="entidadId" required></select>
+            <div></div>
+            <label for="estadoId" class="label_form_final label_form_special">Estado</label>
+            <select id="estadoId" ></select>
+
+           
+            
+            
+            <div></div>
+            
+            <button type="submit" id="saveButton" class="detail_buttons">Guardar</button>
+            <button type="button" id="newActivoButton" class="detail_buttons">Nuevo activo</button>
+            <div></div>
+            <button type="button" id="deleteButton" class="detail_buttons"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M4 7l16 0" />
+              <path d="M10 11l0 6" />
+              <path d="M14 11l0 6" />
+              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+            </svg></button>
+             
+            
+          </form>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div>
-        <form id="buscarActivoForm">
-          <label for="scannerInput">Scanner Input:</label>
-          <input
-            type="text"
-            id="scannerInput"
-            placeholder="Scan the barcode or enter the value manually"
-            required
-          />
-          <button type="search">Search</button>
-        </form>
-      </div>
-      <div class="detallesActivo">
-        <form id="activoform">
-          <h2>Detalles de Activo</h2>
-
-          <input type="hidden" id="activoId" />
-
-          <label for="serie">Serie</label>
-          <input type="text" id="serie" required />
-
-          <label for="marca">Marca</label>
-          <input type="text" id="marca" required />
-
-          <label for="tag">Tag:</label>
-          <input type="text" id="tag" required />
-
-          <label for="PO">PO:</label>
-          <input type="text" id="PO" required />
-
-          <label for="RAM">RAM:</label>
-          <input type="number" id="RAM" required />
-
-          <label for="categoryId">Category:</label>
-          <select id="categoryId" required></select>
-
-          <label for="entidadId">Entidad:</label>
-          <select id="entidadId" required></select>
-
-          <label for="estadoId">Estado:</label>
-          <select id="estadoId"></select>
-
-          <label for="WWID">WWID:</label>
-          <input type="text" id="WWID" name="WWID" />
-
-          <button type="submit" id="saveButton">Guardar</button>
-          <button type="button" id="newActivoButton">Nuevo Activo</button>
-          <button type="button" id="deleteButton">Borrar</button>
-        </form>
-      </div>
+    
     </main>
     <footer></footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11?v=<?php echo(rand()); ?"></script>
     <script src="../assets/js/ActivoForm.js"></script>
     <script src="../assets/js/header.js"></script>
     <script src="../assets/js/footer.js"></script>

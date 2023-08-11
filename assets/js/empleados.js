@@ -2,7 +2,7 @@
 const swalConfig = {
   confirmButtonColor: "rgb(16, 77, 148)",
   cancelButtonColor: "rgb(209, 68, 68)",
-  focusConfirm: false,
+  
 };
 
 // Se crea una funcion boton que nos genera los botones de la tabla empleado para editar como para eliminar
@@ -60,6 +60,7 @@ function getTabla() {
   fetch("../controllers/empleadoController.php?action=get_empleados")
     .then((datos) => datos.json())
     .then((empleados) => {
+      
       var tabla = document.getElementById("empleados");
       empleados.forEach((empleado) => {
         tablaEmpleados = item(tabla, empleado);
@@ -96,6 +97,7 @@ async function enviarDatos(Nombre, Correo, WWIDe) {
       }
     );
     var empleados = await respuesta.json();
+    console.log(empleados);
     var tabla = document.getElementById("empleados");
     tabla.remove();
     tabla = document.createElement("tbody");

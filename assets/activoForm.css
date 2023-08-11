@@ -4,7 +4,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
+
+:root{
+  --primary: rgb(16, 77, 148) ;
+  --secondary: rgb(166, 193, 222);
+}
+
+
 body {
   margin: 0;
   padding: 0;
@@ -12,3 +20,257 @@ body {
   font-family: Arial, sans-serif;
   text-decoration: none;
 }
+
+.Tittle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  
+}
+.section_main{
+  width:80%;
+}
+
+.section_add_container{
+  display: grid;
+  grid-template-columns: 33.333% 33.333% 33.333%;
+ 
+ 
+  
+  align-items: center;
+  flex-direction: column;
+  
+
+}
+
+
+.info_container{
+  
+  background-color:var(--secondary) ;
+  height: 100%;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius:100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
+}
+.desc_container{
+  
+  background-color: var(--primary);
+  padding: 20px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  
+}
+.desc_title{
+
+  color: white;
+  font-weight: bold;
+  font-size: 23px;
+}
+
+.info_desc_container{
+  background-color: var(--primary);
+  width: 80%;
+  height: 75%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  
+  justify-content: center;
+
+
+}
+.container_text{
+  width: 80%;
+}
+.text_desc{
+  margin-left: 20%;
+  margin-top: 10px;
+  
+  color: white;
+  padding: 4px;
+  padding-bottom: 6px;
+  padding-top: 6px;
+  border-radius: 10px;
+  font-size: 17px;
+  background-color: var(--secondary);
+}
+
+
+
+.title_activo{
+  
+  font-size: 28px;
+  text-align: center;
+  background-color:var(--primary) ;
+  width: 33.333%;
+  padding-top: 40px;
+  
+  
+  border-top-right-radius: 40px;
+  border-top-left-radius: 40px;
+  color: white;
+  
+  
+}
+.details{
+  font-size: 23px;
+  text-align: center;
+  background-color: var(--secondary);
+  padding: 20px;
+  color: white;
+  border-radius: 20px;
+}
+.details_container{
+  background-color: var(--secondary);
+  padding: 20px;
+  padding: 42px;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  
+}
+
+.label_form, .label_form_final{
+  color: white;
+  font-size: 18px;
+  
+  margin-left: 14px;
+  
+
+}
+.label_form_final{
+  margin-left: 0px;
+}
+.label_form_special{
+  margin-top: 10px;
+}
+.input_form{
+  padding: 6px;
+  margin-bottom: 30px;
+  border: 4px solid rgba(0, 0, 0, 0.144);
+  border-radius: 9px;
+  
+
+  
+  
+
+}
+
+
+
+.title_detail_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.title_detail{
+
+  width: 50%;
+  background-color:var(--primary);
+  text-align: center;
+  padding: 12px;
+  font-size: 23px;
+  color: white;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  
+  
+
+}
+
+
+#activoform{
+
+  display: grid;
+  
+  width: 100%;
+  background-color: var(--primary);
+  padding: 20px;
+  border-radius: 20px;
+  grid-template-columns: 25% 25% 25% 25% ;
+}
+#categoryId,#estadoId,#entidadId{
+height: 40px;
+margin-left: 10px;
+margin-bottom: 20px;
+}
+
+.search_id{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--primary);
+  padding: 50px;
+  /*border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;*/
+}
+
+
+.buscarActivos{
+ margin-bottom: 20px;
+
+}
+.search_icon_container{
+
+  width: 35%;
+  background-color: var(--secondary);
+  display: grid;
+  grid-template-columns: 50% 50%;
+  place-items: center;
+  margin-bottom: 10px;
+  border-radius: 30PX;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+#buscarActivoForm{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.detail_buttons ,.button_search{
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.079);
+  margin-top: 20px;
+  background-color: var(--secondary);
+  cursor: pointer;
+}
+#scannerInput{
+  text-align: center;
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.316);
+}
+.button_search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  
+}
+.button_search p{
+  font-size: 14px;
+  font-weight: 20px;
+  margin-right: 10px;
+  margin-left: 4px;
+}
+#saveButton,#newActivoButton{
+  margin-right: 10px;
+  margin-left: 10px;
+  color: white;
+  font-size: 14px;
+  
+  
+}
+
+

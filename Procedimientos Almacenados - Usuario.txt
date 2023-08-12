@@ -8,8 +8,8 @@ IN p_Nombre VARCHAR(50),
 IN p_Correo VARCHAR(50),
 IN p_Contrasenna VARCHAR(50))
 BEGIN
-	INSERT INTO usuario(NombreUsuario, CorreoUsuario, Contrasenna)
-    VALUES(p_Nombre, p_Correo, p_Contrasenna);
+	INSERT INTO usuario(NombreUsuario, CorreoUsuario, Contrasenna, Tipo)
+    VALUES(p_Nombre, p_Correo, p_Contrasenna, 1);
 END
 *******************************************************************
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Eliminar_Usuario`(

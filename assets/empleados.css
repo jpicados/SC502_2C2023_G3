@@ -18,10 +18,10 @@ body {
 .table_box {
   display: flex;
   justify-content: center;
-  max-height: 400px; /* You can adjust this value based on your preference */
+  max-height: 400px;
   overflow-y: auto;
-  width: 100%; /* or a specific width based on your design */
-  border: 1px solid #ccc; /* Optional */
+  width: 100%;
+  border: 1px solid #ccc;
   margin-bottom: 10px;
 }
 .table_box_d {

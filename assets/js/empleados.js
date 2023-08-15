@@ -1,4 +1,4 @@
-// Standard Swal configuration
+// Configuración estándar de SweetAlert
 const swalConfig = {
   confirmButtonColor: "rgb(16, 77, 148)",
   cancelButtonColor: "rgb(209, 68, 68)",
@@ -115,7 +115,7 @@ enviarEmpleado.addEventListener("click", registroEmpleado);
 
 function registroEmpleado() {
   Swal.fire({
-    ...swalConfig, // Spread the Swal configuration
+    ...swalConfig, // Extender la configuración de SweetAlert
     title: "Registrar empleado",
     html: `<label for="NombreEmpleado"></label><input type="text" id="NombreEmpleado" name="NombreEmpleado" class="swal2-input" placeholder="Nombre">
   <label for="CorreoEmpleado"></label><input type="email" id="CorreoEmpleado" name="CorreoEmpleado" class="swal2-input" placeholder="Correo">
@@ -152,7 +152,7 @@ function registroEmpleado() {
 
 function eliminarEmpleado(id) {
   const Toast = Swal.mixin({
-    ...swalConfig, // Spread the Swal configuration
+    ...swalConfig, // Extender la configuración de SweetAlert
     toast: true,
     position: "top-end",
     showConfirmButton: false,
@@ -252,7 +252,7 @@ async function eliminarId(id) {
 
 async function editarEmpleado(id, nombre, correo, wwid) {
   const { value: formValues } = await Swal.fire({
-    ...swalConfig, // Spread the Swal configuration
+    ...swalConfig, // Extender la configuración de SweetAlert
     title: "Editando a " + correo,
     html: `<label for="editNombre"></label><input type="text" id="editNombre" class="swal2-input" placeholder="WWID" value="${nombre}" readonly>
        <label for="editCorreo"></label><input type="email" id="editCorreo" class="swal2-input" placeholder="Nombre" value="${correo}">
@@ -276,9 +276,9 @@ async function editarEmpleado(id, nombre, correo, wwid) {
       datos.append("editNombre", editCorreo);
       datos.append("editCorreo", editWwid);
       datos.append("editWwid", editNombre);
-      console.log(editNombre);//edit wwid
-      console.log(editCorreo);//edit nombre
-      console.log(editWwid+'so');//edit correo
+      console.log(editNombre);
+      console.log(editCorreo);
+      console.log(editWwid+'so');
     
 
 

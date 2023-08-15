@@ -107,13 +107,13 @@ class ActivoModel {
         $sql = "CALL Registrar_Bitacora(?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
 
-        // Bind the parameters
+        // Vincula los parámetros
         $stmt->bind_param('ssi', $accion, $serie, $idUsuario);
 
-        // Execute the query
+        // Ejecuta la consulta
         $stmt->execute();
 
-        // Check for errors
+        // Verifica errores
         if ($stmt->error) {
             return array("status" => "error", "message" => $stmt->error);
         } else {

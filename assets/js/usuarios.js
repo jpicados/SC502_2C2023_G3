@@ -1,4 +1,4 @@
-// Standard Swal configuration
+// Configuración estándar de SweetAlert
 const swalConfig = {
   confirmButtonColor: "rgb(16, 77, 148)",
   cancelButtonColor: "rgb(209, 68, 68)",
@@ -82,7 +82,7 @@ function obtener(selector) {
     btn.addEventListener("click", function () {
       const userId = this.getAttribute("id");
 
-      // Check if it's the delete button that was clicked
+      // Verificar si se hizo clic en el botón de eliminar
       if (selector === ".button_delete") {
         const confirmation = confirm(
           "Are you sure you want to delete this user?"
@@ -92,13 +92,13 @@ function obtener(selector) {
           deleteUser(userId);
         }
       }
-      // Check if it's the edit button that was clicked
+      // Verificar si se hizo clic en el botón de editar
       else if (selector === ".button_edit") {
         const newTipo = prompt("Please enter the new Tipo value:");
 
-        // Basic validation, assuming Tipo is a number
+        
         if (newTipo && !isNaN(newTipo)) {
-          // Make the AJAX request to update the Tipo value
+          // Hacer la solicitud AJAX para actualizar el valor de Tipo
           updateTipo(userId, newTipo);
         } else {
           alert("Please enter a valid Tipo value.");
@@ -119,7 +119,7 @@ function updateTipo(userId, newTipo) {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        // Update the user Tipo value in the UI/table
+        // Actualizar el valor de Tipo del usuario en la interfaz/tabla
         const userRow = document.getElementById(userId);
         const tipoCell = userRow.querySelector(".Tipo");
         tipoCell.textContent = newTipo;
@@ -146,7 +146,7 @@ function deleteUser(userId) {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        // Remove the user row from the UI/table
+        // Eliminar la fila del usuario de la interfaz/tabla
         const userRow = document.getElementById(userId);
         userRow.remove();
 

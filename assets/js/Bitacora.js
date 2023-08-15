@@ -1,4 +1,4 @@
-// Standard Swal configuration
+// Configuración estándar de SweetAlert
 const swalConfig = {
   confirmButtonColor: "rgb(16, 77, 148)",
   cancelButtonColor: "rgb(209, 68, 68)",

@@ -1,6 +1,5 @@
 <?php
 require_once "../models/entidadModel.php";
-// require_once "../server.php";
 
 class EntidadController {
     private $entidadModel;
@@ -15,11 +14,11 @@ class EntidadController {
         echo json_encode($entidades);
     }
 }
-    // Create an instance of the ActivoModel and ActivoController
+    // Crea una instancia del ActivoModel y ActivoController
 $model = new EntidadModel($conn);
 $controller = new EntidadController($model);
 
-// Determine the action to perform based on the 'action' query parameter
+// Determina la acción a realizar basada en el parámetro de consulta 'action'
 $action = $_GET['action'] ?? '';
 switch ($action) {
     case 'getEntidades':
@@ -28,9 +27,9 @@ switch ($action) {
     case 'null':
         break;
     default:
-        // Invalid action
+        // Acción inválida
         if (!empty($action) && method_exists($controller, $action)) {
-            // Dynamic method invocation for custom actions
+            // Invocación de método dinámico para acciones personalizadas
             $controller->{$action}();
         } else {
             echo json_encode(["error" => "Invalid action"]);

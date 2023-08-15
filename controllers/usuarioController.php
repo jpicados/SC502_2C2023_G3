@@ -30,7 +30,7 @@ class usuarioController {
     public function editarUsuario($Tipo, $id) {
         header("Content-Type: application/json");
         if ($this->usuarioModel->editarUsuario($Tipo, $id)) {
-            //$usuario = $this->usuarioModel->getUsuario($id);
+            
             echo json_encode(['success' => true, 'data' => $Tipo]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Failed to edit user']);
@@ -70,16 +70,16 @@ class usuarioController {
 $model = new usuarioModel($conn);
 $controller = new usuarioController($model);
 
-// Get JSON input data
+// Obtiene datos de entrada JSON
 $data = json_decode(file_get_contents("php://input"), true);
 
-// Check if the action parameter is set
+// Verifica si el parámetro de acción está establecido
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
-// Perform the switch based on the action
+// Realiza la acción correspondiente según la solicitud
 switch ($action) {
     case 'get_usuarios':
-        // Assuming this doesn't need a POST payload
+        
         $controller->getUsuarios();
         break;
 
@@ -128,5 +128,3 @@ switch ($action) {
         echo json_encode(['success' => false, 'message' => 'Invalid action provided']);
         break;
 }
-
-?>

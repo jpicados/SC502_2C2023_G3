@@ -1,6 +1,5 @@
 <?php
 require_once "../models/estadoModel.php";
-// require_once "../server.php";
 
 class EstadoController {
     private $estadoModel;
@@ -15,11 +14,11 @@ class EstadoController {
         echo json_encode($estados);
     }
 }
-    // Create an instance of the ActivoModel and ActivoController
+    // Crea una instancia del ActivoModel y ActivoController
 $model = new EstadoModel($conn);
 $controller = new EstadoController($model);
 
-// Determine the action to perform based on the 'action' query parameter
+// Determina la acción a realizar basada en el parámetro de consulta 'action'
 $action = $_GET['action'] ?? '';
 switch ($action) {
     case 'getEstados':
@@ -28,9 +27,9 @@ switch ($action) {
     case 'null':
         break;
     default:
-        // Invalid action
+        // Acción inválida
         if (!empty($action) && method_exists($controller, $action)) {
-            // Dynamic method invocation for custom actions
+            // Invocación de método dinámico para acciones personalizadas
             $controller->{$action}();
         } else {
             echo json_encode(["error" => "Invalid action"]);

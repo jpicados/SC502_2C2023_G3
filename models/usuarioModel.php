@@ -52,12 +52,12 @@ class usuarioModel {
         $sql = "CALL Login_Usuario('" . $correo . "', '" . $contrasenna . "')";
         $result = $this->conn->query($sql);
 
-        // Check if the login was successful and return the user data if it was
+        // Verifica si el inicio de sesión fue exitoso y devolver los datos del usuario si lo fue
         if ($result->num_rows === 1) {
             $usuario = $result->fetch_assoc();
             return $usuario;
         } else {
-            return null; // Return null if login failed
+            return null; // Devuelve nulo si el inicio de sesión falló
         }
     }
     }

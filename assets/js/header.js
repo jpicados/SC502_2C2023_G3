@@ -1,6 +1,6 @@
 let userId;
 
-// Function to perform the logout operation
+// Función para realizar la operación de cierre de sesión
 async function logoutUsuario() {
   try {
     const respuesta = await fetch(
@@ -31,9 +31,9 @@ async function checkUserSession() {
     const data = await response.json();
 
     if (data.isLoggedIn) {
-      // Store the userId for later use
+      // Almacena el userId para usarlo más tarde
       userId = data.userId;
-      userTipo = data.userTipo; // Store the userTipo for later use
+      userTipo = data.userTipo; // Almacena el userTipo para usarlo más tarde
       return data;
     } else {
       window.location.replace("login.html");
@@ -45,9 +45,9 @@ async function checkUserSession() {
   }
 }
 
-// Function to render the navigation bar
+// Función para renderizar la barra de navegación
 async function renderNavbar() {
-  // Get user session data
+  // Obtener datos de la sesión del usuario
   const userData = await checkUserSession();
 
   let userDisplay = "";
@@ -86,7 +86,7 @@ async function renderNavbar() {
     ];
   }
 
-  // Generate the HTML for the navbar
+  // Generar el HTML para la barra de navegación
   const navbarHTML = `
       <nav class="navigation">
           <ul>
@@ -102,11 +102,11 @@ async function renderNavbar() {
       </nav>
   `;
 
-  // Insert the navbar HTML into the header element
+  // Insertar el HTML de la barra de navegación en el elemento encabezado
   const header = document.querySelector("header");
   header.innerHTML += navbarHTML;
 
-  // Add event listener for logout
+  // Agrega event listener para el logout
   const logoutLink = document.querySelector("#logout-link");
   if (logoutLink) {
     logoutLink.addEventListener("click", function (event) {
@@ -116,5 +116,5 @@ async function renderNavbar() {
   }
 }
 
-// Call the function to render the navbar
+// Llamar a la función para renderizar la barra de navegación
 renderNavbar();

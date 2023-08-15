@@ -47,11 +47,11 @@ class ActivoController {
     public function modificarActivo($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad, $IdEstado, $WWID) {
         $success = $this->activoModel->ModificarActivoSerie($Serie, $Marca, $Tag, $PO, $RAM, $IdCategoria, $IdEntidad, $IdEstado, $WWID);
         if ($success) {
-            // Modification was successful
+            // La modificación fue exitosa
             http_response_code(200);
             echo json_encode(['message' => 'Asset modified successfully']);
         } else {
-            // Modification failed
+            // La modificación fallo
             http_response_code(500);
             echo json_encode(['error' => 'Failed to modify asset']);
         }
@@ -68,11 +68,11 @@ class ActivoController {
         }
     }
 }
-// Create an instance of the ActivoModel and ActivoController
+// Crear una instancia del ActivoModel y ActivoController
 $model = new ActivoModel($conn);
 $controller = new ActivoController($model);
 
-// Determine the action to perform based on the 'action' query parameter
+// Determinar la acción a realizar basada en el parámetro de consulta 'action'
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 switch ($action) {
     case 'getActivos':
@@ -150,9 +150,9 @@ switch ($action) {
             break;
     break;
     default:
-        // Invalid action
+        // Acción inválida
         if (!empty($action) && method_exists($controller, $action)) {
-            // Dynamic method invocation for custom actions
+            // Invocación de método dinámico para acciones personalizadas
             $controller->{$action}();
         } else {
             echo json_encode(["error" => "Invalid action"]);

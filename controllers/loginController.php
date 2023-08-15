@@ -13,10 +13,10 @@ class LoginController {
         $usuario = $this->loginModel->getUserByEmail($CorreoUsuario);
     
         if ($usuario && $Contrasenna == $usuario['Contrasenna']) {
-            // Save user information in the session
+            // Guardar la información del usuario en la sesión
             $_SESSION['user_id'] = $usuario['IdUsuario'];
             $_SESSION['user_name'] = $usuario['NombreUsuario'];
-            $_SESSION['user_tipo'] = $usuario['Tipo']; // Add this line
+            $_SESSION['user_tipo'] = $usuario['Tipo'];
     
             echo json_encode(['message' => 'Login correcto']);
         } else {
@@ -34,7 +34,7 @@ class LoginController {
             if (isset($_SESSION['user_tipo'])) {
                 $response['userTipo'] = $_SESSION['user_tipo'];
             } else {
-                $response['userTipo'] = null; // or a default value if necessary
+                $response['userTipo'] = null;
             }
     
             echo json_encode($response);
@@ -44,12 +44,12 @@ class LoginController {
     }
 
     public function logoutUsuario() {
-            // check if a session is started
+            // verificar si se ha iniciado una sesión
         if(session_id() == '' || !isset($_SESSION)) {
-            // session isn't started
+            // la sesión no está iniciada
             session_start();
         }
-        // Destroy session
+        // Destruye la sesión
         session_destroy();
 
         echo json_encode(['message' => 'Logout correcto']);
@@ -59,13 +59,13 @@ class LoginController {
 $loginModel = new LoginModel($conn);
 $loginController = new LoginController($loginModel);
 
-// Get JSON input data
+// Obtiene datos de entrada JSON
 $data = json_decode(file_get_contents("php://input"), true);
 
-// Check if the action parameter is set
+// Verifica si el parámetro de acción está configurado
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
-// Perform the corresponding action based on the request
+// Realiza la acción correspondiente según la solicitud
 switch ($action) {
     case 'login_usuario':
         $CorreoUsuario = $data['CorreoUsuario'];

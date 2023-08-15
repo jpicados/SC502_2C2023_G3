@@ -11,17 +11,17 @@ document.addEventListener("click", (e) => {
 });
 
 async function registrarUsuario() {
-  let nombre = document.getElementById("nombreInput").value; // Make sure to add the right ID to the input in HTML
-  let correo = document.getElementById("correoInput").value; // Same here
-  let contrasenna = document.getElementById("contrasennaInput").value; // And here
+  let nombre = document.getElementById("nombreInput").value; 
+  let correo = document.getElementById("correoInput").value; 
+  let contrasenna = document.getElementById("contrasennaInput").value; 
 
-  // Perform some basic validation
+  // Realizar una validación básica
   if (!nombre || !correo || !contrasenna) {
     alert("Please fill in all the fields.");
     return;
   }
 
-  // Send the data to the server
+  // Enviar los datos al servidor
   try {
     const response = await fetch(
       "../controllers/usuarioController.php?action=registrar_usuario",
@@ -43,7 +43,7 @@ async function registrarUsuario() {
     if (data.success) {
       alert("Usuario Registrado");
 
-      // Toggle to the sign-in view
+      // Cambiar a la vista de inicio de sesión
       $signUp.classList.toggle("active");
       $signIn.classList.toggle("active");
     } else {

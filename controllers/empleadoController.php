@@ -41,13 +41,13 @@ class empleadoController{
 $model = new empleadoModel($conn);
 $controller = new empleadoController($model);
 
-// Check if the action parameter is set
+// Verifica si el parámetro de acción está establecido
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
-// Perform the switch based on the action
+// Realiza el cambio basado en la acción
 switch ($action) {
     case 'get_empleados':
-        // Get employees and return the response
+        // Obtiene empleados y devolver la respuesta
         $controller->get_empleados();
         break;
         
@@ -83,8 +83,8 @@ switch ($action) {
         break;
         
     default:
-        // Handle unknown action or no action provided
-        // Return an appropriate response or error message
+        // Maneja acción desconocida o ninguna acción proporcionada
+        // Devuelve una respuesta adecuada o mensaje de error
         break;
 }
 ?>

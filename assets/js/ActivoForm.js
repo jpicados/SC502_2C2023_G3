@@ -13,12 +13,12 @@ const saveButton = document.getElementById("saveButton");
 const newActivoButton = document.getElementById("newActivoButton");
 const deleteButton = document.getElementById("deleteButton");
 
-// Set focus on the input field when the page loads
+// Establece el foco en el campo de entrada cuando se carga la página
 window.addEventListener("load", () => {
   scannerInput.focus();
 });
 
-// Function to populate the modify product form with product details
+// Función para llenar el formulario de modificación del producto con los detalles del producto
 function populateModifyProductForm(activo) {
 
   console.log(activo);
@@ -68,21 +68,21 @@ function populateModifyProductForm(activo) {
   wwidInput.value = activo.WWID;
   console.log("WWID", activo.WWID);
 
-  // Fetch and populate the Categoria select options
+  // Obtener y llenar las opciones de selección de Categoria
   fetch("../controllers/categoriaController.php?action=getCategorias")
     .then((response) => response.json())
     .then((categorias) => {
       populateCategoryOptions(categorias, activo.IdCategoria);
     })
     .catch((error) => console.error("Error fetching estados:", error));
-  // Fetch and populate the entidad select options
+  // Obtener y llenar las opciones de selección de entidad
   fetch("../controllers/entidadController.php?action=getEntidades")
     .then((response) => response.json())
     .then((entidades) => {
       populateEntidadOptions(entidades, activo.IdEntidad);
     })
     .catch((error) => console.error("Error fetching entidades:", error));
-  // Fetch and populate the Estado select options
+  // Obtener y llenar las opciones de selección de Estado
   fetch("../controllers/estadoController.php?action=getEstados")
     .then((response) => response.json())
     .then((estados) => {
@@ -95,7 +95,7 @@ function showConfirmation() {
   alert("Activo updated successfully!");
 }
 
-// Function to populate the category select options
+// Función para llenar las opciones de selección de categoría
 function populateCategoryOptions(categorias, selectedCategoryId) {
   categorySelect.innerHTML = "";
 
@@ -107,20 +107,20 @@ function populateCategoryOptions(categorias, selectedCategoryId) {
     option.textContent = categoria.NombreCategoria;
 
     if (categoria.IdCategoria == categoryIdNumber) {
-      option.selected = true; // Set the option as selected
+      option.selected = true; 
     }
 
     categorySelect.appendChild(option);
   });
 
-  // Optionally, add a default option for "Select Category" if needed
+  // Añade una opción predeterminada para 'Seleccionar Categoría' si es necesario
   const defaultOption = document.createElement("option");
-  defaultOption.value = ""; // Use an empty value for the default option
+  defaultOption.value = ""; // Utiliza un valor vacío para la opción predeterminada
   defaultOption.textContent = "Select Category";
   categorySelect.insertBefore(defaultOption, categorySelect.firstChild);
 }
 
-// Function to populate the entidad select options
+// Función para llenar las opciones de selección de entidad
 function populateEntidadOptions(entidades, selectedEntidadId) {
   entidadSelect.innerHTML = "";
 
@@ -132,15 +132,15 @@ function populateEntidadOptions(entidades, selectedEntidadId) {
     option.textContent = entidad.NumeroEntidad;
 
     if (entidad.IdEntidad == entidadIdNumber) {
-      option.selected = true; // Set the option as selected
+      option.selected = true; 
     }
 
     entidadSelect.appendChild(option);
   });
 
-  // Optionally, add a default option for "Select Entidad" if needed
+  // Añade una opción predeterminada para 'Seleccionar Entidad' si es necesariod
   const defaultOption = document.createElement("option");
-  defaultOption.value = ""; // Use an empty value for the default option
+  defaultOption.value = ""; // Utiliza un valor vacío para la opción predeterminada
   defaultOption.textContent = "Select Entidad";
   entidadSelect.insertBefore(defaultOption, entidadSelect.firstChild);
 }
@@ -156,20 +156,20 @@ function populateEstadoOptions(estados, selectedEstadoId) {
     option.textContent = estado._Estado;
 
     if (estado.IdEstado == estadoIdNumber) {
-      option.selected = true; // Set the option as selected
+      option.selected = true; 
     }
 
     estadoSelect.appendChild(option);
   });
 
-  // Optionally, add a default option for "Select Estado" if needed
+  // Añade una opción predeterminada para 'Seleccionar Estado' si es necesariod
   const defaultOption = document.createElement("option");
-  defaultOption.value = ""; // Use an empty value for the default option
+  defaultOption.value = ""; // Utiliza un valor vacío para la opción predeterminada
   defaultOption.textContent = "Select Estado";
   estadoSelect.insertBefore(defaultOption, estadoSelect.firstChild);
 }
 
-// Function to fetch the activo data and populate the form
+// Función para obtener los datos del activo y llenar el formulario
 function handleSearch(event) {
   event.preventDefault();
 
@@ -180,43 +180,45 @@ function handleSearch(event) {
     .then((response) => response.json())
     .then((data) => {
       console.log("Data from server:", data);
-      const activo = data[0]; // Assuming the data is an array with a single activo object
+      const activo = data[0]; 
       console.log("Activo object:", activo);
       populateModifyProductForm(activo);
     })
     .catch((error) => console.error("Error fetching activo:", error));
 }
-// Function to fetch and populate the entidad select options
+// Función para obtener y llenar las opciones de selección de Categoria
 function fetchAndPopulateCategorias() {
   fetch("../controllers/categoriaController.php?action=getCategorias")
     .then((response) => response.json())
     .then((categorias) => {
       const activoIdInput = document.getElementById("activoId");
-      const idCategoria = activoIdInput.value; // Assuming the input for categoria Id is named "activoId"
+      const idCategoria = activoIdInput.value; 
 
       populateCategoryOptions(categorias, idCategoria);
     })
     .catch((error) => console.error("Error fetching categorias:", error));
 }
 
-// Function to fetch and populate the entidad select options
+// Función para obtener y llenar las opciones de selección de entidad
 function fetchAndPopulateEntidades() {
   fetch("../controllers/entidadController.php?action=getEntidades")
     .then((response) => response.json())
     .then((entidades) => {
       const activoIdInput = document.getElementById("activoId");
-      const idEntidad = activoIdInput.value; // Assuming the input for entidad Id is named "activoId"
+      const idEntidad = activoIdInput.value; 
 
       populateEntidadOptions(entidades, idEntidad);
     })
     .catch((error) => console.error("Error fetching entidades:", error));
 }
+
+// Función para obtener y llenar las opciones de selección de entidad
 function fetchAndPopulateEstados() {
   fetch("../controllers/estadoController.php?action=getEstados")
     .then((response) => response.json())
     .then((estados) => {
       const activoIdInput = document.getElementById("activoId");
-      const idEstado = activoIdInput.value; // Assuming the input for estado Id is named "activoId"
+      const idEstado = activoIdInput.value; 
 
       populateEstadoOptions(estados, idEstado);
     })
@@ -241,7 +243,7 @@ function registrarBitacora(serie, accion) {
     .catch((error) => console.error("Error registering bitacora:", error));
 }
 
-// Function to update an activo
+// Función para actualizar un activo
 function updateActivo(event) {
   event.preventDefault();
   const serie = document.getElementById("serie").value;
@@ -289,6 +291,7 @@ function updateActivo(event) {
     .catch((error) => console.error("Error updating activo:", error));
 }
 
+// Función para agregar un activo
 function addNewActivo() {
   const serie = document.getElementById("serie").value;
   const marca = document.getElementById("marca").value;
@@ -331,6 +334,7 @@ function addNewActivo() {
     .catch((error) => console.error("Error adding new activo:", error));
 }
 
+// Función para borrar un activo
 function deleteActivo(event) {
   event.preventDefault();
   const serie = document.getElementById("serie").value;
@@ -379,7 +383,7 @@ modifyProductForm.addEventListener("submit", updateActivo);
 newActivoButton.addEventListener("click", addNewActivo);
 deleteButton.addEventListener("click", deleteActivo);
 
-// Fetch and populate the entidad select options initially
+// Obtener y llenar inicialmente las opciones de selección de entidad
 fetchAndPopulateCategorias();
 fetchAndPopulateEntidades();
 fetchAndPopulateEstados();

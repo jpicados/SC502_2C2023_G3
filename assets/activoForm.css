@@ -274,3 +274,31 @@ margin-bottom: 20px;
 }
 
 
+.swal2-title{
+  text-align: center!important;
+  color: var(--primary)!important;
+  margin-left: 40px!important;
+  margin-right: 30px!important;
+  font-weight: bold!important;
+}
+
+
+.box_display{
+  display: flex;
+
+}
+
+div:where(.swal2-icon).swal2-success .swal2-success-ring {
+
+
+  border: 0.25em solid var(--primary)!important;
+
+}
+
+div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
+
+
+  background-color: var(--primary)!important;
+}
+
+

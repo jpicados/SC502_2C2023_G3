@@ -172,19 +172,69 @@ function populateEstadoOptions(estados, selectedEstadoId) {
 // Función para obtener los datos del activo y llenar el formulario
 function handleSearch(event) {
   event.preventDefault();
-
+  
   const serie = scannerInput.value;
+  console.log(scannerInput);
   fetch(
     `../controllers/activoController.php?action=buscar_activo&serie=${serie}`
   )
     .then((response) => response.json())
     .then((data) => {
       console.log("Data from server:", data);
+
+      if (data[0]){
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top',
+          showConfirmButton: false,
+          timer: 1800,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+      
+        
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Activo encontrado'
+        })
+      }else{
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top',
+          showConfirmButton: false,
+          timer: 1800,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+      
+        
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Activo no encontrado'
+        })
+      }
+      
+
+      
+
+
+
+
+
       const activo = data[0]; 
       console.log("Activo object:", activo);
       populateModifyProductForm(activo);
     })
     .catch((error) => console.error("Error fetching activo:", error));
+   
 }
 // Función para obtener y llenar las opciones de selección de Categoria
 function fetchAndPopulateCategorias() {
@@ -270,6 +320,8 @@ function updateActivo(event) {
     WWID: wwidValue,
   };
 
+  
+
   fetch(
     `../controllers/activoController.php?action=modificar_activo&serie=${serie}`,
     {
@@ -282,7 +334,25 @@ function updateActivo(event) {
   )
     .then((response) => response.json())
     .then((data) => {
-      showConfirmation();
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 1800,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+    
+      
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'Activo Modificado con exito'
+      })
       registrarBitacora(activoData.Serie, "Activo Modificado");
       scannerInput.value = "";
       scannerInput.focus();
@@ -293,6 +363,7 @@ function updateActivo(event) {
 
 // Función para agregar un activo
 function addNewActivo() {
+
   const serie = document.getElementById("serie").value;
   const marca = document.getElementById("marca").value;
   const tag = document.getElementById("tag").value;
@@ -317,27 +388,59 @@ function addNewActivo() {
     WWID: wwidValue,
   };
 
-  fetch("../controllers/activoController.php?action=nuevo_activo", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(activoData),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      showConfirmation();
-      registrarBitacora(activoData.Serie, "Activo Nuevo");
-      clearFormInputs();
-      scannerInput.focus();
+
+  if (serie!="" && marca!="" && tag!="" && po!=""&& ram!="" && categoryId!="" && idEntidad!="" && idEstado !="" && wwid!="" ){
+    fetch("../controllers/activoController.php?action=nuevo_activo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(activoData),
     })
-    .catch((error) => console.error("Error adding new activo:", error));
+      .then((response) => response.json())
+      .then((data) => {
+      
+  
+     
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top',
+          showConfirmButton: false,
+          timer: 1800,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+      
+        
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Activo creado con exito'
+        })
+      
+          
+        
+  
+  
+  
+  
+        registrarBitacora(activoData.Serie, "Activo Nuevo");
+        clearFormInputs();
+        scannerInput.focus();
+      })
+      .catch((error) => console.error("Error adding new activo:", error));
+  }
+  
 }
 
 // Función para borrar un activo
 function deleteActivo(event) {
   event.preventDefault();
-  const serie = document.getElementById("serie").value;
+  const serie = document.querySelector("#serie").value;
+  
   fetch(
     `../controllers/activoController.php?action=EliminarActivo&serie=${serie}`,
     {
@@ -346,11 +449,39 @@ function deleteActivo(event) {
   )
     .then((response) => response.json())
     .then((data) => {
-      showConfirmation("Activo deleted successfully!");
-      registrarBitacora(serie, "Activo Eliminado");
-      clearFormInputs();
-      scannerInput.value = "";
-      scannerInput.focus();
+      
+      if(serie!=""){
+
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top',
+          showConfirmButton: false,
+          timer: 1800,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+      
+        
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Activo eliminado con exito'
+        })
+        clearFormInputs();
+        registrarBitacora(serie, "Activo Eliminado");
+        scannerInput.value = "";
+        scannerInput.focus();
+      }
+     
+      
+      
+      
+      
+      
     })
     .catch((error) => console.error("Error deleting activo:", error));
 }

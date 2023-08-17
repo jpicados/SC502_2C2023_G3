@@ -165,8 +165,8 @@ function eliminarEmpleado(id) {
     },
   });
   Toast.fire({
-    icon: "info",
-    title: "Empleado Eliminado",
+    icon: "error",
+    title: "¡Este empleado tiene uno o más activos asignados!",
   });
 }
 
@@ -238,7 +238,7 @@ async function eliminarId(id) {
         }
         Swal.fire({
           ...swalConfig,
-          icon: "info",
+          icon: "success",
           title: message,
         });
       }

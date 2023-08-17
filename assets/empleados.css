@@ -43,7 +43,7 @@ body {
   width: 50%;
 }
 .buscador_container{
- 
+  
   padding: 15px;
   border-radius: 20px;
   margin-top: 20px;
@@ -181,4 +181,8 @@ body {
 }
 .table_box {
   margin-bottom: 10px;
+}
+div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line] {
+ 
+  background-color: var(--primary)!important;
 }

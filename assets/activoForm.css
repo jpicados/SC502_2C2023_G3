@@ -256,6 +256,7 @@ margin-bottom: 20px;
   justify-content: center;
   align-items: center;
   color: white;
+  margin-bottom: 50px;
   
 }
 .button_search p{
@@ -263,6 +264,13 @@ margin-bottom: 20px;
   font-weight: 20px;
   margin-right: 10px;
   margin-left: 4px;
+}
+
+.intel_logo{
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  
 }
 #saveButton,#newActivoButton{
   margin-right: 10px;

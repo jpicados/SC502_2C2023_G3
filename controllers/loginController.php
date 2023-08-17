@@ -3,6 +3,8 @@ session_start();
 require_once "../models/loginModel.php";
 
 class LoginController {
+
+    public $first_login=0;
     private $loginModel;
 
     public function __construct($loginModel) {
@@ -17,6 +19,7 @@ class LoginController {
             $_SESSION['user_id'] = $usuario['IdUsuario'];
             $_SESSION['user_name'] = $usuario['NombreUsuario'];
             $_SESSION['user_tipo'] = $usuario['Tipo'];
+            $_SESSION['firstLogin']=0;
     
             echo json_encode(['message' => 'Login correcto']);
         } else {
@@ -25,22 +28,29 @@ class LoginController {
     }
     public function getSessionData() {
         if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+            
             $response = [
                 'isLoggedIn' => true,
                 'userId' => $_SESSION['user_id'],
-                'userName' => $_SESSION['user_name']
+                'userName' => $_SESSION['user_name'],
+                'firstLogin'=> $_SESSION['firstLogin']
             ];
+            
     
             if (isset($_SESSION['user_tipo'])) {
                 $response['userTipo'] = $_SESSION['user_tipo'];
+                
             } else {
                 $response['userTipo'] = null;
+                
             }
     
             echo json_encode($response);
+            
         } else {
             echo json_encode(['isLoggedIn' => false]);
         }
+        $_SESSION['firstLogin']+=1;
     }
 
     public function logoutUsuario() {
@@ -51,6 +61,7 @@ class LoginController {
         }
         // Destruye la sesión
         session_destroy();
+        $_SESSION['firstLogin']=0;
 
         echo json_encode(['message' => 'Logout correcto']);
     }

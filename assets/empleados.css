@@ -5,6 +5,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root{
+  --primary: rgb(16, 77, 148) ;
+  --secondary: #A6C1DE;
+}
 body {
   margin: 0;
   padding: 0;
@@ -12,8 +17,61 @@ body {
   font-family: Arial, sans-serif;
   text-decoration: none;
 }
+
+.titulo_gestion_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+ 
+  margin-bottom: 20px;
+}
+ 
+ 
+.intel_logo{
+  background-color: white;
+  padding: 23.7px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.titulo_gestion{
+  text-align: center;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding: 24px;
+  background-color: var(--secondary);
+  width: 50%;
+}
+.buscador_container{
+ 
+  padding: 15px;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buscador{
+  padding: 14px;
+  font-size: 15px;
+  width: 50%;
+  border-radius: 10px;
+  border: 1px solid #a6c1de;
+ 
+}
+.icons_container1{
+  margin-right: 15px;
+}
+.icons_container2{
+  margin-left: 15px;
+}
 .employees_box {
-  margin-left: 40px;
+  background-color:rgb(16, 77, 148);
+  padding: 50px;
+  border-radius: 25px;
+  margin-bottom: 50px;
+  
 }
 .table_box {
   display: flex;
@@ -49,6 +107,7 @@ body {
   color: black;
 }
 .table_t tr:nth-child(even) .button_delete {
+  
   background-color: rgb(16, 77, 148);
 }
 .table_t tr .button_delete {
@@ -77,6 +136,7 @@ body {
   padding: 10px;
   padding-left: 13px;
   padding-right: 13px;
+  cursor: pointer;
 }
 .button_edit:hover {
   background-color: rgba(0, 160, 240, 0.8);
@@ -88,6 +148,7 @@ body {
   padding: 10px;
   padding-left: 13px;
   padding-right: 13px;
+  cursor: pointer;
 }
 .button_delete:hover {
   background-color: rgba(16, 77, 148, 0.8);
@@ -98,7 +159,7 @@ body {
   margin-top: 20px;
 }
 .button_add {
-  background-color: rgb(16, 77, 148);
+  background-color: var(--secondary);
   border: none;
   border-radius: 7px;
   padding: 17px;
@@ -106,6 +167,7 @@ body {
   padding-right: 17px;
   color: #ffffff;
   font-weight: 700;
+  cursor: pointer;
 }
 .button_icon {
   color: #ffffff;

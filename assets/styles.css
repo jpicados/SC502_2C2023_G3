@@ -172,7 +172,23 @@ footer {
 
 
 
- 
+  div:where(.swal2-icon).swal2-error {
+    border-color: rgb(16,77,148)!important;
+    color:rgb(16,77,148)!important ;
+}
    
+div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
 
+  background-color: rgb(16,77,148)!important;
+}
+div:where(.swal2-icon).swal2-success {
+  border-color: rgb(16,77,148)!important;
+  color: rgb(16,77,148)!important;
+}
+
+div:where(.swal2-icon).swal2-success .swal2-success-ring {
+ 
+  border: 0.25em solid rgba(16, 78, 148, 0.423)!important;
+
+}
   /**/

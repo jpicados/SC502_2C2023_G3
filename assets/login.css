@@ -257,3 +257,25 @@ button:hover {
     opacity: 0;
     visibility: hidden;
 }
+
+
+div:where(.swal2-icon).swal2-error {
+    border-color: rgb(16,77,148)!important;
+    color:rgb(16,77,148)!important ;
+
+}
+div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line] {
+ 
+    background-color: rgb(16,77,148)!important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+
+    background-color: rgb(16,77,148)!important;
+  
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus {
+    box-shadow: 0 0 0 3px rgba(16, 78, 148, 0.286)!important;
+}
+

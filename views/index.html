@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="../assets/styles.css" />
-    <title>Inicio</title>
+    <link rel="stylesheet" href="../assets/style_windows_sweetAlert.css">
+    <title>Bienvenido a Intel SGDA</title>
   </head>
   <body>
     <header>
@@ -11,27 +12,58 @@
     </header>
 
     <main class="main">
-      <title>"Bienvenido"</title>
-      <h1>Bienvenido</h1>
-      <div id="userinfo">
-        <!-- Muestra la información del usuario si ha iniciado sesión -->
-        <script>
-          window.onload = async function () {
-            const response = await fetch(
-              "../controllers/loginController.php?action=get_session_data"
-            );
-            const data = await response.json();
+      <section class="container_section">
+        <div class="section_title_container">
+          <h1>Sistema de gestión de activos</h1>
+          <div id="userinfo">
+            <!-- Muestra la información del usuario si ha iniciado sesión -->
+            <script>
+              
+    
+              window.onload = async function () {
+                const response = await fetch(
+                  "../controllers/loginController.php?action=get_session_data"
+                );
+                const data = await response.json();
+    
+                const userInfo = document.getElementById("userinfo");
+    
+                if (data.isLoggedIn) {
+                  userInfo.innerHTML = `${data.userName}`;
+                  
+                  if(data.firstLogin==1){
+                    Swal.fire({
+                    position: 'center',
+                    
+                    title: 'Bienvenido '+data.userName+"\n",
+                    showConfirmButton: false,
+                    imageUrl: 'https://1000marcas.net/wp-content/uploads/2020/02/Intel-logo.jpg',
+                    imageWidth: 200,
+                    imageHeight: 100,
+                    imageAlt: 'Custom image',
+                    icon: 'success',
+                    
+                    timer: 1900,
+                    html: '<h3 class="color_sesion_deploy" ><b>Inicio de sesion completado</b></h3>',
+                  })
+                  }
+                    
+                
+                  
+                } else {
+                  userInfo.innerHTML = "You are not logged in.";
+                }
+              };
+            </script>
+          </div>
+        </div>
+        
+      </section>
 
-            const userInfo = document.getElementById("userinfo");
+      
+      
 
-            if (data.isLoggedIn) {
-              userInfo.innerHTML = `${data.userName}`;
-            } else {
-              userInfo.innerHTML = "You are not logged in.";
-            }
-          };
-        </script>
-      </div>
+
     </main>
 
     <footer></footer>

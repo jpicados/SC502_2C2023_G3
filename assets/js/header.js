@@ -1,5 +1,5 @@
 let userId;
-
+var primerInicio=0;
 // Función para realizar la operación de cierre de sesión
 async function logoutUsuario() {
   try {

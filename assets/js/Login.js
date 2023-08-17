@@ -82,12 +82,13 @@ async function loginUsuario() {
       if (response.message === "Login correcto") {
         // si da correcto se redirecciona a index.html
         window.location.href = "index.html";
+        
       } else {
         Swal.fire({
    
           icon: "error",
-          title: "Error",
-          text: "Invalid credentials. Please try again.",
+          title: "Error al inicar sesión",
+          text: "Datos incorrectos, intente nuevamente",
         });
       }
     } else {

@@ -57,18 +57,78 @@ function item(tabla, bitacora) {
     .append(tdId, tdFecha, tdAccion, tdSerie, tdNombreUsuario);
   return tabla;
 }
-function getTabla() {
-  fetch("../controllers/activoController.php?action=listarbitacora")
+async function getTabla(recibirFuncion,bitacoraFiltrada) {
+
+  let movimientos=[];
+  await fetch("../controllers/activoController.php?action=listarbitacora")
     .then((datos) => datos.json())
     .then((bitacoras) => {
       var tabla = document.getElementById("bitacoras");
       bitacoras.forEach((bitacora) => {
-        tablabitacora = item(tabla, bitacora);
+
+        if (recibirFuncion!=true){
+          tablabitacora = item(tabla, bitacora);
+        }
+       var bitacora={
+        IdBitacora:bitacora.IdBitacora,
+        Fecha:bitacora.Fecha,
+        Accion:bitacora.Accion,
+        Serie:bitacora.Serie,
+        NombreUsuario:bitacora.NombreUsuario
+       }
+       movimientos.push(bitacora);
+
       });
+      
+      if (recibirFuncion==true && bitacoraFiltrada!=null){
+        console.log(bitacoraFiltrada);
+        
+        bitacoraFiltrada.forEach(element => {
+          tablabitacora = item(tabla, element);
+        });
+      }
+
     })
     .catch((error) => {
       console.error("Error:", error);
     });
+    return movimientos;
 }
+
+
+
+document.querySelector('.buscador').addEventListener('input', async (e) => {
+  let busqueda = e.target.value.toLowerCase();
+
+
+  
+
+  var bitacora= await getTabla(true);
+  
+  console.log(busqueda);
+  
+  let bitacoraFiltrada = bitacora.filter(bitacora => bitacora.NombreUsuario.toLowerCase().includes(busqueda));
+  
+
+  
+
+  var tbody = document.getElementById("bitacoras");
+  tbody.remove();
+  tbody = document.createElement("tbody");
+  tbody.setAttribute("id", "bitacoras");
+  var table = document.querySelector(".table_t");
+  table.appendChild(tbody);
+
+  getTabla(true,bitacoraFiltrada);
+
+
+if (busqueda==""){
+  
+
+}
+
+  
+});
+
 
 getTabla();

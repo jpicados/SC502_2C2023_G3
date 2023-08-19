@@ -78,18 +78,88 @@ function item(tabla, activo) {
     );
   return tabla;
 }
-function getTabla() {
-  fetch("../controllers/activoController.php?action=getActivos")
+async function getTabla(traerArreglo,activosFiltrados) {
+  let activosA=[];
+  await fetch("../controllers/activoController.php?action=getActivos")
     .then((datos) => datos.json())
     .then((activos) => {
       var tabla = document.getElementById("activos");
       activos.forEach((activo) => {
-        tablaActivos = item(tabla, activo);
+        
+        var valor = {
+          IdActivo :activo.IdActivo,
+          Serie: activo.Serie,
+          Marca: activo.Marca,
+          Tag: activo.Tag,
+          PO: activo.PO,
+          RAM: activo.RAM,
+          NombreCategoria: activo.NombreCategoria,
+          NumeroEntidad: activo.NumeroEntidad,
+          _Estado: activo._Estado,
+          NombreEmpleado: activo.NombreEmpleado,
+
+        };
+        activosA.push(valor);
+
+        if (traerArreglo!=true){
+          tablaActivos = item(tabla, activo);
+        }
+        
+
       });
+
+      if (traerArreglo==true && activosFiltrados!=null){
+        console.log(activosFiltrados)
+        
+        activosFiltrados.forEach(activoF => {
+          
+         
+          tablaActivos = item(tabla, activoF);
+         
+        });
+
+        
+      }
     })
     .catch((error) => {
       console.error("Error:", error);
     });
+    return activosA;
 }
+
+
+document.querySelector('.buscador').addEventListener('input', async (e) => {
+  let busqueda = e.target.value.toLowerCase();
+
+
+  
+
+  var activos= await getTabla(true);
+  
+  console.log(busqueda);
+  console.log(activos);
+  let activosFiltrados = activos.filter(activo => activo.Serie.toLowerCase().includes(busqueda));
+  
+
+  console.log(activosFiltrados);
+  
+
+  var tbody = document.getElementById("activos");
+  tbody.remove();
+  tbody = document.createElement("tbody");
+  tbody.setAttribute("id", "activos");
+  var table = document.querySelector(".table_t");
+  table.appendChild(tbody);
+
+  getTabla(true,activosFiltrados);
+
+
+if (busqueda==""){
+  
+
+}
+
+  
+});
 
 getTabla();

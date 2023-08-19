@@ -56,21 +56,52 @@ function item(tabla, empleado) {
   return tabla;
 }
 
-function getTabla() {
-  fetch("../controllers/empleadoController.php?action=get_empleados")
+async function getTabla(traerArreglo,empleadosFiltrados) {
+
+  let empleadosA = [];
+
+  await fetch("../controllers/empleadoController.php?action=get_empleados")
     .then((datos) => datos.json())
     .then((empleados) => {
-      
+
       var tabla = document.getElementById("empleados");
       empleados.forEach((empleado) => {
+        
+        var valor = {
+          WWID: empleado.WWID,
+          NombreEmpleado: empleado.NombreEmpleado,
+          CorreoEmpleado: empleado.CorreoEmpleado
+
+        };
+        empleadosA.push(valor);
+        if (traerArreglo!=true){
         tablaEmpleados = item(tabla, empleado);
+
+        }
       });
-      obtener(".button_delete");
-      obtener(".button_edit");
+      console.log(traerArreglo);
+
+      if (traerArreglo!=true){
+        obtener(".button_delete");
+        obtener(".button_edit");
+      }else if(traerArreglo==true && empleadosFiltrados!=null){
+        
+        empleadosFiltrados.forEach(element => {
+          console.log(empleadosFiltrados);
+          tablaEmpleados = item(tabla, element);
+        });
+
+        obtener(".button_delete");
+        obtener(".button_edit");
+      }
+      
+    
+      
     })
     .catch((error) => {
       console.error("Error:", error);
     });
+    return empleadosA;
 }
 
 async function enviarDatos(Nombre, Correo, WWIDe) {
@@ -328,6 +359,43 @@ async function editarEmpleado(id, nombre, correo, wwid) {
   }
 }
 
+
+
+document.querySelector('.buscador').addEventListener('input', async (e) => {
+  let busqueda = e.target.value.toLowerCase();
+
+
+  
+
+  var empleados= await getTabla(true);
+  console.log(empleados);
+  console.log(busqueda);
+  console.log(empleados[0].NombreEmpleado)
+  let empleadosFiltrados = empleados.filter(empleado => empleado.NombreEmpleado.toLowerCase().includes(busqueda));
+  
+
+  console.log(empleadosFiltrados);
+  
+
+  var tbody = document.getElementById("empleados");
+  tbody.remove();
+  tbody = document.createElement("tbody");
+  tbody.setAttribute("id", "empleados");
+  var table = document.querySelector(".table_t");
+  table.appendChild(tbody);
+
+  getTabla(true,empleadosFiltrados);
+
+
+if (busqueda==""){
+  
+
+}
+
+  
+});
+
+
 function obtener(tipo) {
   var botones = document.querySelectorAll(tipo);
   botones.forEach((button) => {
@@ -347,8 +415,7 @@ function obtener(tipo) {
               empleados.getElementsByClassName("empleado")[1].textContent;
            
               wwid = empleados.getElementsByClassName("empleado")[2].textContent;
-              console.log(correo);
-              console.log(wwid);
+              
             }
         });
         editarEmpleado(wwid, nombre, correo, wwid);

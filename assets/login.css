@@ -200,10 +200,30 @@ button:hover {
     transition: all .3s ease-in;
 }
 
-.border-icon:hover {
-    background-color: #2691d9;
+.border-iconI:hover {
+    background-color: #d9264a;
     cursor: pointer;
+    border-radius: 50%;
 }
+
+.border-iconF:hover {
+    background-color: #0400ff;
+    cursor: pointer;
+    border-radius: 50%;
+    
+}
+
+.border-iconT:hover {
+    background-color: #26a6d9;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.Link{
+    color: #e9f4fb;
+    text-decoration: none;
+}
+
 
 .cuenta-Gratis {
     padding: 2rem 0;
